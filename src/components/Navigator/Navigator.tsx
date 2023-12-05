@@ -13,7 +13,7 @@ const Navigator = () => {
 
   return (
     <Tabs
-      aria-label="tabs"
+      orientation="vertical"
       defaultValue={0}
       sx={{ bgcolor: "transparent" }}
       onChange={onChangeHandler}
@@ -23,6 +23,8 @@ const Navigator = () => {
         disableUnderline
         sx={{
           p: 0.5,
+          fontSize: 12,
+          justifyContent: "center",
           gap: 0.5,
           borderRadius: "xl",
           bgcolor: "background.level1",

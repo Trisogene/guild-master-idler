@@ -21,7 +21,9 @@ export interface I_PerkIcon {
 
 /* ------------------------------- RecruitCard ------------------------------ */
 export interface I_RecruitCard {
-  player: T_PlayerConfig;
+  recruit: T_PlayerConfig;
+  onCardClickHandler: (recruitId: string) => void;
+  isSelected: boolean;
 }
 /* -------------------------------------------------------------------------- */
 /*                                   CONFIG                                   */
@@ -35,16 +37,6 @@ export type T_RecruitConfig = {
   name: string;
   race: string;
 };
-/* --------------------------------- Timers --------------------------------- */
-export type T_TimersConfig = {
-  [key: string]: T_TimerConfig;
-};
-
-export type T_TimerConfig = {
-  id: string;
-  name: string;
-  duration: number;
-};
 
 /* --------------------------------- Player --------------------------------- */
 export type T_PlayersConfig = {
@@ -56,6 +48,17 @@ export type T_PlayerConfig = {
   name: string;
   race: string;
   currentContent: string;
+};
+
+/* --------------------------------- Timers --------------------------------- */
+export type T_TimersConfig = {
+  [key: string]: T_TimerConfig;
+};
+
+export type T_TimerConfig = {
+  id: string;
+  name: string;
+  duration: number;
 };
 
 /* ---------------------------------- Links --------------------------------- */
@@ -157,7 +160,8 @@ export type T_GameManager = {
 };
 
 export type T_RecruitSlice = {
-  recruits: T_PlayerConfig[];
+  recruits: T_PlayersConfig;
+  currentlySelectedRecruit: string | null;
 };
 
 export type T_NavigationSlice = {

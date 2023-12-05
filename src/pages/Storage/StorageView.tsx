@@ -4,6 +4,7 @@ import ItemCard from "../../components/Cards/ItemCard";
 import { ITEM_CATEGORIES } from "../../config/ITEMS";
 import useFilteredItems from "../../lib/hooks/useFilteredItems";
 import { changeCurrentFilter } from "../../lib/redux/slices/storage_slice";
+import { PageBody, PageBottom, PageHeader } from "../../styles/PageStyles";
 import { T_ReduxState } from "../../types/types.d";
 
 const StorageView = () => {
@@ -17,7 +18,7 @@ const StorageView = () => {
     <Box
       sx={{ display: "flex", flexDirection: "column", gap: 1, height: "100%" }}
     >
-      <Box
+      <PageHeader
         sx={{
           display: "flex",
           gap: 1,
@@ -35,8 +36,7 @@ const StorageView = () => {
             sx={{
               minWidth: 80,
               textAlign: "center",
-              p: 0.5,
-              minHeight: 35,
+              height: 16,
               textTransform: "uppercase",
               fontSize: 12,
             }}
@@ -44,25 +44,26 @@ const StorageView = () => {
             {filter}
           </Chip>
         ))}
-      </Box>
+      </PageHeader>
 
-      <Box
+      <PageBody
         sx={{
-          height: "100%",
           border: (theme) => `1px solid ${theme.palette.background.level2}`,
           borderRadius: (theme) => theme.spacing(1),
           p: 1,
           bgcolor: "background.level1",
         }}
       >
-        <Grid container spacing={1} sx={{}}>
+        <Grid container spacing={1}>
           {Object.values(filteredItems).map((item) => (
             <Grid xs={3}>
               <ItemCard key={item.id} item={item} />
             </Grid>
           ))}
         </Grid>
-      </Box>
+      </PageBody>
+
+      <PageBottom sx={{ bgcolor: "background.level1" }}></PageBottom>
     </Box>
   );
 };

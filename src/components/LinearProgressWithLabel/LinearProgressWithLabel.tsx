@@ -1,3 +1,4 @@
+import { Box } from "@mui/joy";
 import LinearProgress from "@mui/joy/LinearProgress";
 import { useSelector } from "react-redux";
 import { TIMERS } from "../../config/TIMERS";
@@ -14,17 +15,23 @@ export default function LinearProgressWithLabel({
   return (
     <LinearProgress
       determinate
-      // variant="outlined"
       // variant="solid"
       color="neutral"
-      // thickness={10}
+      thickness={10}
       value={timerPerc}
       sx={{
-        // borderColor: "neutral.500",
         "&::before": {
           transition: "width 0.2s ease-in-out",
         },
+        "--LinearProgress-radius": "0px",
+        "--LinearProgress-progressThickness": "64px",
+        // boxShadow: "sm",
+        borderColor: "neutral.500",
       }}
-    ></LinearProgress>
+    >
+      <Box sx={{ mixBlendMode: "difference", fontWeight: 600, fontSize: 16 }}>
+        NEW RECRUITS IN {TIMERS[timerId].duration - timeToFinish}
+      </Box>
+    </LinearProgress>
   );
 }

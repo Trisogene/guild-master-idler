@@ -18,7 +18,7 @@ const PlayerCard = ({ player }: I_PlayerCard) => {
   const playerRace = RACES[player.race];
   return (
     <>
-      <Card sx={{ bgcolor: "background.level1", width: "100%" }}>
+      <Card size="sm" sx={{ bgcolor: "background.level1", width: "100%" }}>
         <CardContent>
           <Box
             sx={{

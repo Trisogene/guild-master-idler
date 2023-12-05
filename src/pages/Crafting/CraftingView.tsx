@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import CraftableItemCard from "../../components/Cards/CraftableItemCard";
 import { CRAFTABLE_CATEGORIES, ITEMS_EQUIP } from "../../config/ITEMS";
 import { changeCurrentFilter } from "../../lib/redux/slices/crafting_slice";
+import { PageBody, PageBottom, PageHeader } from "../../styles/PageStyles";
 import { T_ReduxState } from "../../types/types.d";
 
 const CraftingView = () => {
@@ -23,17 +24,21 @@ const CraftingView = () => {
     <Box
       sx={{ display: "flex", flexDirection: "column", height: "100%", gap: 1 }}
     >
-      <Box
-        sx={{ height: "60%", display: "flex", flexDirection: "column", gap: 1 }}
+      <PageHeader
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          gap: 1,
+          bgcolor: "background.level1",
+          border: (theme) => `1px solid ${theme.palette.background.level2}`,
+        }}
       >
         <Box
           sx={{
             display: "flex",
             gap: 1,
-            border: (theme) => `1px solid ${theme.palette.background.level2}`,
-            borderRadius: (theme) => theme.spacing(1),
+            flexWrap: "wrap",
             p: 1,
-            bgcolor: "background.level1",
           }}
         >
           {Object.values(CRAFTABLE_CATEGORIES).map((filter) => (
@@ -44,8 +49,7 @@ const CraftingView = () => {
               sx={{
                 minWidth: 80,
                 textAlign: "center",
-                p: 0.5,
-                minHeight: 35,
+                height: 16,
                 textTransform: "uppercase",
                 fontSize: 12,
               }}
@@ -54,38 +58,37 @@ const CraftingView = () => {
             </Chip>
           ))}
         </Box>
-        <Box
-          sx={{
-            overflowY: "auto",
-            height: "100%",
-            border: (theme) => `1px solid ${theme.palette.background.level2}`,
-            borderRadius: (theme) => theme.spacing(1),
-            p: 1,
-            bgcolor: "background.level1",
-          }}
-        >
-          <Grid container spacing={1} sx={{}}>
-            {Object.values(filteredCraftables).map((item) => (
-              <Grid
-                xs={6}
-                onClick={() => setSelectedItem(item.id)}
-                sx={{
-                  ":hover": {
-                    bgcolor: "background.level3",
-                    cursor: "pointer",
-                    userSelect: "none",
-                  },
-                }}
-              >
-                <CraftableItemCard key={item.id} item={item.id} />
-              </Grid>
-            ))}
-          </Grid>
-        </Box>
-      </Box>
-      <Box
+      </PageHeader>
+
+      <PageBody
         sx={{
-          height: "40%",
+          border: (theme) => `1px solid ${theme.palette.background.level2}`,
+          borderRadius: (theme) => theme.spacing(1),
+          p: 1,
+          bgcolor: "background.level1",
+        }}
+      >
+        <Grid container spacing={1} sx={{}}>
+          {Object.values(filteredCraftables).map((item) => (
+            <Grid
+              xs={6}
+              onClick={() => setSelectedItem(item.id)}
+              sx={{
+                ":hover": {
+                  bgcolor: "background.level3",
+                  cursor: "pointer",
+                  userSelect: "none",
+                },
+              }}
+            >
+              <CraftableItemCard key={item.id} item={item.id} />
+            </Grid>
+          ))}
+        </Grid>
+      </PageBody>
+
+      <PageBottom
+        sx={{
           bgcolor: "background.level1",
           display: "flex",
           alignItems: "center",
@@ -93,7 +96,7 @@ const CraftingView = () => {
         }}
       >
         {selectedItem} craft info
-      </Box>
+      </PageBottom>
     </Box>
   );
 };

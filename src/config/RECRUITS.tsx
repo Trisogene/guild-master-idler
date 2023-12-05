@@ -39,11 +39,11 @@ export const RECRUITS: T_RecruitsConfig = {
 };
 
 export const getRandomCharacter = () => {
-  const recruits = Object.keys(RECRUITS);
-  const randomIndex = Math.floor(Math.random() * recruits.length);
+  const recruitConfigs = Object.keys(RECRUITS);
+  const randomIndex = Math.floor(Math.random() * recruitConfigs.length);
   const randomCharacter = {
     id: uuid(),
-    ...RECRUITS[recruits[randomIndex]],
+    ...RECRUITS[recruitConfigs[randomIndex]],
     currentContent: CONTENTS.gathering.id,
   };
   return randomCharacter;

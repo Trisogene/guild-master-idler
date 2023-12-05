@@ -6,6 +6,7 @@ import Navigator from "./components/Navigator/Navigator";
 import Topbar from "./components/Topbar/Topbar";
 import { LINKS } from "./config/LINKS";
 import { startGameManager } from "./lib/redux/slices/gameManager_slice";
+import { updateRecruits } from "./lib/redux/slices/recruit_slice";
 import { AppDispatch } from "./lib/redux/store";
 import { T_ReduxState } from "./types/types.d";
 
@@ -17,6 +18,7 @@ function App() {
 
   useEffect(() => {
     dispatch(startGameManager());
+    dispatch(updateRecruits());
   }, [dispatch]);
 
   return (
@@ -34,32 +36,39 @@ function App() {
           id="App-Header"
           sx={{
             width: "100%",
-            minHeight: 60,
+            minHeight: 48,
             p: 1,
           }}
         >
           <Topbar />
         </Box>
         <Box
-          id="App-Page"
+          id="App-Body"
           sx={{
-            overflowY: "auto",
-            flexGrow: 1,
-            p: 1,
-            width: "100%",
+            display: "flex",
+            minHeight: "calc(100% - 48px)",
+            maxHeight: "calc(100% - 48px)",
           }}
         >
-          {LINKS[currentPage].component}
-        </Box>
-        <Box
-          id="App-Navigator"
-          sx={{
-            width: "100%",
-            p: 1,
-            minHeight: 60,
-          }}
-        >
-          <Navigator />
+          <Box
+            id="App-Navigator"
+            sx={{
+              p: 1,
+            }}
+          >
+            <Navigator />
+          </Box>
+          <Box
+            id="App-Page"
+            sx={{
+              overflowY: "auto",
+              p: 1,
+              width: "100%",
+              height: "100%",
+            }}
+          >
+            {LINKS[currentPage].component}
+          </Box>
         </Box>
       </Box>
     </>

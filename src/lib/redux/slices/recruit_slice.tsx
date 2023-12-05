@@ -1,39 +1,64 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { getRandomCharacter } from "../../../config/RECRUITS";
-import { T_PlayerConfig, T_RecruitSlice } from "../../../types/types.d";
+import {
+  T_PlayerConfig,
+  T_PlayersConfig,
+  T_RecruitSlice,
+} from "../../../types/types.d";
 import { AppDispatch } from "../store";
 import { initPlayerTimer } from "./gameManager_slice";
 import { addPlayer } from "./players_slice";
 
 const updateRecruitsHandler = (state: T_RecruitSlice) => {
-  state.recruits = Array.from({ length: 5 }, () => getRandomCharacter());
+  const randomRecruits: T_PlayersConfig = {};
+  for (let i = 0; i < 5; i++) {
+    const randomRecruit = getRandomCharacter();
+    randomRecruits[randomRecruit.id] = randomRecruit;
+  }
+  state.currentlySelectedRecruit = null;
+  state.recruits = randomRecruits;
 };
 
 const removeRecruitHandler = (
   state: T_RecruitSlice,
   { payload: recruitId }: PayloadAction<string>
 ) => {
-  state.recruits = state.recruits.filter((recruit) => recruit.id !== recruitId);
+  state.recruits = Object.fromEntries(
+    Object.entries(state.recruits).filter(([key, value]) => key !== recruitId)
+  );
+  if (state.currentlySelectedRecruit === recruitId) {
+    state.currentlySelectedRecruit = null;
+  }
+};
+
+const setCurrentSelectedRecruitHandler = (
+  state: T_RecruitSlice,
+  { payload: recruitId }: PayloadAction<string>
+) => {
+  state.currentlySelectedRecruit = recruitId;
 };
 
 export const recruit_slice = createSlice({
   name: "recruit",
   initialState: {
-    recruits: Array.from({ length: 5 }, () => getRandomCharacter()),
+    recruits: {},
+    currentlySelectedRecruit: null,
   },
   reducers: {
     updateRecruits: updateRecruitsHandler,
     removeRecruit: removeRecruitHandler,
+    setCurrentSelectedRecruit: setCurrentSelectedRecruitHandler,
   },
 });
 
 export default recruit_slice.reducer;
-export const { updateRecruits, removeRecruit } = recruit_slice.actions;
+export const { updateRecruits, removeRecruit, setCurrentSelectedRecruit } =
+  recruit_slice.actions;
 
 export const recruitPlayer =
-  (player: T_PlayerConfig): any =>
+  (recruit: T_PlayerConfig): any =>
   (dispatch: AppDispatch) => {
-    dispatch(removeRecruit(player.id));
-    dispatch(addPlayer(player));
-    dispatch(initPlayerTimer(player.id));
+    dispatch(removeRecruit(recruit.id));
+    dispatch(addPlayer(recruit));
+    dispatch(initPlayerTimer(recruit.id));
   };
