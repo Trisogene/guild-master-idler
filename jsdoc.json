@@ -1,0 +1,10 @@
+{
+  "opts": {
+    "template": "node_modules/tui-jsdoc-template"
+  },
+  "templates": {
+    "default": {
+      "theme": "dark"
+    }
+  }
+}

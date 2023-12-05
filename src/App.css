@@ -1,0 +1,14 @@
+#root {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background:rgb(16, 16, 16);
+}
+
+#App {
+    width: 400px;
+    height: 700px;
+    background: black;
+}
