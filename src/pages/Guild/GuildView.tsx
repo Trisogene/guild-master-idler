@@ -1,11 +1,16 @@
 import { Box } from "@mui/joy";
 import { useSelector } from "react-redux";
 import PlayerCard from "../../components/Cards/PlayerCard";
+import PlayerInfo from "../../components/Info/PlayerInfo";
 import { PageBody, PageBottom, PageHeader } from "../../styles/PageStyles";
 import { T_ReduxState } from "../../types/types.d";
 
 const Guild = () => {
   const players = useSelector((state: T_ReduxState) => state.players.players);
+  const currentlySelectedPlayer = useSelector(
+    (state: T_ReduxState) => state.players.currentlySelectedPlayer
+  );
+
   return (
     <Box
       id="Guild"
@@ -32,7 +37,11 @@ const Guild = () => {
         }}
       >
         {Object.values(players).map((player) => (
-          <PlayerCard key={player.id} player={player} />
+          <PlayerCard
+            key={player.id}
+            player={player}
+            isSelected={player.id === currentlySelectedPlayer}
+          />
         ))}
       </PageBody>
 
@@ -41,7 +50,11 @@ const Guild = () => {
         sx={{
           bgcolor: "background.level1",
         }}
-      ></PageBottom>
+      >
+        {currentlySelectedPlayer && (
+          <PlayerInfo recruit={players[currentlySelectedPlayer]} />
+        )}
+      </PageBottom>
     </Box>
   );
 };

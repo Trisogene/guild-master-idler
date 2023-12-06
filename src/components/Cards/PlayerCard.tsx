@@ -5,20 +5,39 @@ import Avatar from "@mui/joy/Avatar";
 import Box from "@mui/joy/Box";
 import Card from "@mui/joy/Card";
 import CardContent from "@mui/joy/CardContent";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { CONTENTS } from "../../config/CONTENTS";
 import { RACES } from "../../config/RACES";
+import { setCurrentlySelectedPlayer } from "../../lib/redux/slices/players_slice";
+import { AppDispatch } from "../../lib/redux/store";
 
-const PlayerCard = ({ player }: I_PlayerCard) => {
+const PlayerCard = ({ player, isSelected }: I_PlayerCard) => {
   const playerTimer = useSelector(
     (state: any) => state.gameManager.timers.players[player.id]
   );
   const timerPerc =
     (playerTimer / CONTENTS[player.currentContent].timeToComplete) * 100;
   const playerRace = RACES[player.race];
+  const dispatch = useDispatch<AppDispatch>();
+
   return (
     <>
-      <Card size="sm" sx={{ bgcolor: "background.level1", width: "100%" }}>
+      <Card
+        size="sm"
+        sx={{
+          bgcolor: "background.level1",
+          width: "100%",
+          boxShadow: isSelected ? "0px 0px 2px 1px #fff" : "none",
+          filter: isSelected ? "brightness(1)" : "brightness(0.5)",
+          ":hover": {
+            cursor: "pointer",
+            filter: isSelected ? "brightness(1)" : "brightness(0.75)",
+          },
+        }}
+        onClick={() => {
+          dispatch(setCurrentlySelectedPlayer(player.id));
+        }}
+      >
         <CardContent>
           <Box
             sx={{

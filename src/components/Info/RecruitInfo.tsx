@@ -1,4 +1,4 @@
-import { Box, Button, Grid } from "@mui/joy";
+import { Box, Button, Grid, Typography } from "@mui/joy";
 import { useDispatch } from "react-redux";
 import { PERKS } from "../../config/PERKS";
 import { RACES } from "../../config/RACES";
@@ -6,11 +6,11 @@ import { recruitPlayer } from "../../lib/redux/slices/recruit_slice";
 import { AppDispatch } from "../../lib/redux/store";
 import { T_PlayerConfig } from "../../types/types.d";
 
-interface I_ExtendedRecruitCard {
+interface I_RecruitInfo {
   recruit: T_PlayerConfig;
 }
 
-const ExtendedRecruitCard = ({ recruit }: I_ExtendedRecruitCard) => {
+const ExtendedRecruitCard = ({ recruit }: I_RecruitInfo) => {
   const dispatch = useDispatch<AppDispatch>();
   const recruitRace = RACES[recruit.race];
   return (
@@ -24,19 +24,22 @@ const ExtendedRecruitCard = ({ recruit }: I_ExtendedRecruitCard) => {
       <Box
         sx={{
           display: "flex",
-          justifyContent: "space-between",
+          gap: 1,
           alignItems: "center",
           bgcolor: "background.level2",
           p: 1,
         }}
       >
-        <Box
+        <Typography fontSize="sm">[ {recruitRace.label} ]</Typography>
+        <Typography
+          fontSize="md"
           sx={{
             fontWeight: "bold",
           }}
         >
           {recruit.name}
-        </Box>
+        </Typography>
+
         <Button
           sx={{ position: "absolute", top: 0, right: 0, m: 0.5 }}
           size="sm"
@@ -68,9 +71,10 @@ const ExtendedRecruitCard = ({ recruit }: I_ExtendedRecruitCard) => {
           }}
         >
           {Object.values(recruitRace.perks).map((perk) => (
-            <Grid xs={6} key={PERKS[perk].id}>
+            <Grid xs={12} key={PERKS[perk].id} sx={{}}>
               <Box
                 sx={{
+                  height: "100%",
                   p: 1,
                   display: "flex",
                   alignItems: "center",
@@ -84,9 +88,12 @@ const ExtendedRecruitCard = ({ recruit }: I_ExtendedRecruitCard) => {
                 <Box
                   component="img"
                   src={PERKS[perk].img}
-                  sx={{ width: 16, height: 16 }}
+                  sx={{
+                    width: 16,
+                    height: 16,
+                  }}
                 />
-                <Box>{PERKS[perk].label}</Box>
+                <Typography>{PERKS[perk].description}</Typography>
               </Box>
             </Grid>
           ))}

@@ -4,6 +4,7 @@
 /* ------------------------------- PlayerCard ------------------------------- */
 export interface I_PlayerCard {
   player: T_PlayerConfig;
+  isSelected: boolean;
 }
 
 /* ------------------------- LinearProgressWithLabel ------------------------ */
@@ -22,7 +23,6 @@ export interface I_PerkIcon {
 /* ------------------------------- RecruitCard ------------------------------ */
 export interface I_RecruitCard {
   recruit: T_PlayerConfig;
-  onCardClickHandler: (recruitId: string) => void;
   isSelected: boolean;
 }
 /* -------------------------------------------------------------------------- */
@@ -147,6 +147,7 @@ export type T_ReduxState = {
 
 export type T_PlayersSlice = {
   players: T_PlayersConfig;
+  currentlySelectedPlayer: string | null;
 };
 
 export type T_GameManager = {

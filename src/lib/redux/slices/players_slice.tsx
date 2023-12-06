@@ -8,6 +8,9 @@ const addPlayerHandler = (
   { payload: player }: PayloadAction<T_PlayerConfig>
 ) => {
   state.players[player.id] = player;
+  if (!state.currentlySelectedPlayer) {
+    state.currentlySelectedPlayer = player.id;
+  }
 };
 
 const changePlayerContentHandler = (
@@ -21,16 +24,26 @@ const changePlayerContentHandler = (
   }
 };
 
+const setCurrentlySelectedPlayerHandler = (
+  state: T_PlayersSlice,
+  { payload: playerId }: PayloadAction<string>
+) => {
+  state.currentlySelectedPlayer = playerId;
+};
+
 export const player_slice = createSlice({
   name: "players",
   initialState: {
     players: {},
+    currentlySelectedPlayer: null,
   },
   reducers: {
     addPlayer: addPlayerHandler,
     changePlayerContent: changePlayerContentHandler,
+    setCurrentlySelectedPlayer: setCurrentlySelectedPlayerHandler,
   },
 });
 
-export const { addPlayer, changePlayerContent } = player_slice.actions;
+export const { addPlayer, changePlayerContent, setCurrentlySelectedPlayer } =
+  player_slice.actions;
 export default player_slice.reducer;

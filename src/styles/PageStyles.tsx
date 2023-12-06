@@ -1,7 +1,8 @@
 import { Box, styled } from "@mui/joy";
 
 export const PageHeader = styled(Box)(({ theme }) => ({
-  height: 80,
+  minHeight: 40,
+  maxHeight: 40,
   width: "100%",
   border: `1px solid ${theme.palette.background.level2}`,
   borderRadius: theme.spacing(1),
@@ -9,8 +10,8 @@ export const PageHeader = styled(Box)(({ theme }) => ({
 }));
 
 export const PageBody = styled(Box)(({ theme }) => ({
-  minHeight: "calc(100% - 280px)",
-  maxHeight: "calc(100% - 280px)",
+  minHeight: "calc(100% - 304px)",
+  maxHeight: "calc(100% - 304px)",
   overflowY: "auto",
   border: `1px solid ${theme.palette.background.level2}`,
   borderRadius: theme.spacing(1),
@@ -18,8 +19,7 @@ export const PageBody = styled(Box)(({ theme }) => ({
 }));
 
 export const PageBottom = styled(Box)(({ theme }) => ({
-  minHeight: "200px",
-  maxHeight: "200px",
+  height: 256,
   // overflowY: "auto",
   border: `1px solid ${theme.palette.background.level2}`,
   borderRadius: theme.spacing(1),

@@ -15,7 +15,8 @@ const updateRecruitsHandler = (state: T_RecruitSlice) => {
     const randomRecruit = getRandomCharacter();
     randomRecruits[randomRecruit.id] = randomRecruit;
   }
-  state.currentlySelectedRecruit = null;
+
+  state.currentlySelectedRecruit = Object.keys(randomRecruits)[0];
   state.recruits = randomRecruits;
 };
 
@@ -27,7 +28,11 @@ const removeRecruitHandler = (
     Object.entries(state.recruits).filter(([key, value]) => key !== recruitId)
   );
   if (state.currentlySelectedRecruit === recruitId) {
-    state.currentlySelectedRecruit = null;
+    if (Object.entries(state.recruits).length > 0) {
+      state.currentlySelectedRecruit = Object.keys(state.recruits)[0];
+    } else {
+      state.currentlySelectedRecruit = null;
+    }
   }
 };
 

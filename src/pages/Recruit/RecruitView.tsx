@@ -1,13 +1,8 @@
 import { Box } from "@mui/joy";
-import { useDispatch, useSelector } from "react-redux";
-import ExtendedRecruitCard from "../../components/Cards/ExtendedRecruitCard";
+import { useSelector } from "react-redux";
 import RecruitCard from "../../components/Cards/RecruitCard";
+import ExtendedRecruitCard from "../../components/Info/RecruitInfo";
 import LinearProgressWithLabel from "../../components/LinearProgressWithLabel/LinearProgressWithLabel";
-import {
-  recruitPlayer,
-  setCurrentSelectedRecruit,
-} from "../../lib/redux/slices/recruit_slice";
-import { AppDispatch } from "../../lib/redux/store";
 import { PageBody, PageBottom, PageHeader } from "../../styles/PageStyles";
 import { T_ReduxState } from "../../types/types.d";
 
@@ -16,17 +11,6 @@ const Recruit = () => {
   const currentSelectedRecruit = useSelector(
     (state: T_ReduxState) => state.recruit.currentlySelectedRecruit
   );
-  const dispatch = useDispatch<AppDispatch>();
-
-  const onCardClickHandler = (recruitId: string) => {
-    dispatch(setCurrentSelectedRecruit(recruitId));
-  };
-
-  const clickRecruitHandler = () => {
-    if (currentSelectedRecruit) {
-      dispatch(recruitPlayer(recruits[currentSelectedRecruit]));
-    }
-  };
 
   return (
     <Box
@@ -68,7 +52,6 @@ const Recruit = () => {
             key={recruit.id}
             recruit={recruit}
             isSelected={recruit.id === currentSelectedRecruit}
-            onCardClickHandler={onCardClickHandler}
           />
         ))}
       </PageBody>
