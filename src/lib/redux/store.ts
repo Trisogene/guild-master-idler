@@ -1,10 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
+import { loadState, saveState } from "../utils";
 import { crafting_slice } from "./crafting/crafting_slice";
 import { navigation_slice } from "./navigation/navigation_slice";
 import { player_slice } from "./player/players_slice";
 import { recruit_slice } from "./recruit/recruit_slice";
 import { storage_slice } from "./storage/storage_slice";
 import { timer_slice } from "./timer/timer_slice";
+
+const persistedState = loadState();
 
 const reducer = {
   players: player_slice.reducer,
@@ -17,7 +20,19 @@ const reducer = {
 
 const store = configureStore({
   reducer: reducer,
+  preloadedState: persistedState,
   middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
+});
+
+store.subscribe(() => {
+  saveState({
+    players: store.getState().players,
+    storage: store.getState().storage,
+    navigation: store.getState().navigation,
+    timer: store.getState().timer,
+    recruit: store.getState().recruit,
+    crafting: store.getState().crafting,
+  });
 });
 
 export type AppDispatch = typeof store.dispatch;
