@@ -1,13 +1,16 @@
 import { Avatar, Button, Typography } from "@mui/joy";
 import Box from "@mui/joy/Box";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RACES } from "../../config/RACES";
 import { setCurrentSelectedRecruit } from "../../lib/redux/recruit/recruit_slice";
 import { recruitPlayer } from "../../lib/redux/recruit/recruit_thunks";
 import { AppDispatch } from "../../lib/redux/store";
-import { I_RecruitCard } from "../../types/types.d";
+import { I_RecruitCard, T_ReduxState } from "../../types/types.d";
 
 export default function RecruitCard({ recruit, isSelected }: I_RecruitCard) {
+  const avaialablePicks = useSelector(
+    (state: T_ReduxState) => state.recruit.avaialablePicks
+  );
   const recruitRace = RACES[recruit.race];
   const dispatch = useDispatch<AppDispatch>();
 
@@ -44,6 +47,7 @@ export default function RecruitCard({ recruit, isSelected }: I_RecruitCard) {
       >
         <Box sx={{ height: 12, fontSize: 10 }}>{recruit.name}</Box>
         <Button
+          disabled={avaialablePicks === 0}
           color="neutral"
           size="sm"
           onClick={(e) => {
@@ -52,7 +56,7 @@ export default function RecruitCard({ recruit, isSelected }: I_RecruitCard) {
           }}
         >
           {" "}
-          <Typography fontSize="sm">RECRUIT</Typography>
+          <Typography fontSize="sm">RECRUIT ({avaialablePicks}/2)</Typography>
         </Button>
       </Box>
     </Box>

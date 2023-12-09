@@ -163,6 +163,7 @@ export type T_TimerSlice = {
 export type T_RecruitSlice = {
   recruits: T_PlayersConfig;
   currentlySelectedRecruit: string | null;
+  avaialablePicks: number;
 };
 
 export type T_NavigationSlice = {

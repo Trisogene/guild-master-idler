@@ -8,7 +8,7 @@ const updateRecruits = (state: T_RecruitSlice) => {
     const randomRecruit = getRandomCharacter();
     randomRecruits[randomRecruit.id] = randomRecruit;
   }
-
+  state.avaialablePicks = 2;
   state.currentlySelectedRecruit = Object.keys(randomRecruits)[0];
   state.recruits = randomRecruits;
 };
@@ -29,6 +29,10 @@ const removeRecruit = (
   }
 };
 
+const decreaseAvailablePicks = (state: T_RecruitSlice) => {
+  state.avaialablePicks--;
+};
+
 const setCurrentSelectedRecruit = (
   state: T_RecruitSlice,
   { payload: recruitId }: PayloadAction<string>
@@ -40,4 +44,5 @@ export const recruitActions = {
   updateRecruits,
   removeRecruit,
   setCurrentSelectedRecruit,
+  decreaseAvailablePicks,
 };
