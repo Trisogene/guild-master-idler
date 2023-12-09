@@ -5,9 +5,9 @@ import "./App.css";
 import Navigator from "./components/Navigator/Navigator";
 import Topbar from "./components/Topbar/Topbar";
 import { LINKS } from "./config/LINKS";
-import { startGameManager } from "./lib/redux/slices/gameManager_slice";
-import { updateRecruits } from "./lib/redux/slices/recruit_slice";
+import { updateRecruits } from "./lib/redux/recruit/recruit_slice";
 import { AppDispatch } from "./lib/redux/store";
+import { startTimers } from "./lib/redux/timer/timer_thunks";
 import { T_ReduxState } from "./types/types.d";
 
 function App() {
@@ -17,14 +17,14 @@ function App() {
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
-    dispatch(startGameManager());
+    dispatch(startTimers());
     dispatch(updateRecruits());
   }, [dispatch]);
 
   return (
     <>
       <Box
-        id="App"
+        className="App"
         sx={{
           height: "100vh",
           width: "100vw",
@@ -33,7 +33,7 @@ function App() {
         }}
       >
         <Box
-          id="App-Header"
+          className="App-Header"
           sx={{
             width: "100%",
             minHeight: 48,
@@ -43,7 +43,7 @@ function App() {
           <Topbar />
         </Box>
         <Box
-          id="App-Body"
+          className="App-Body"
           sx={{
             display: "flex",
             minHeight: "calc(100% - 48px)",
@@ -51,7 +51,7 @@ function App() {
           }}
         >
           <Box
-            id="App-Navigator"
+            className="App-Navigator"
             sx={{
               p: 1,
             }}
@@ -59,7 +59,7 @@ function App() {
             <Navigator />
           </Box>
           <Box
-            id="App-Page"
+            className="App-Page"
             sx={{
               overflowY: "auto",
               p: 1,

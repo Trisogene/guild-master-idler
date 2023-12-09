@@ -140,7 +140,7 @@ export type T_ReduxState = {
   players: T_PlayersSlice;
   storage: T_StorageSlice;
   navigation: T_NavigationSlice;
-  gameManager: T_GameManager;
+  timer: T_TimerSlice;
   recruit: T_RecruitSlice;
   crafting: T_CraftingSlice;
 };
@@ -150,7 +150,7 @@ export type T_PlayersSlice = {
   currentlySelectedPlayer: string | null;
 };
 
-export type T_GameManager = {
+export type T_TimerSlice = {
   timers: {
     recruit: number;
     clock: number;

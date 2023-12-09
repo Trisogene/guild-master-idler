@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import ItemCard from "../../components/Cards/ItemCard";
 import { ITEM_CATEGORIES } from "../../config/ITEMS";
 import useFilteredItems from "../../lib/hooks/useFilteredItems";
-import { changeCurrentFilter } from "../../lib/redux/slices/storage_slice";
+import { changeCurrentFilter } from "../../lib/redux/storage/storage_slice";
 import { PageBody, PageBottom, PageHeader } from "../../styles/PageStyles";
 import { T_ReduxState } from "../../types/types.d";
 

@@ -1,14 +1,15 @@
 import Tab, { tabClasses } from "@mui/joy/Tab";
 import TabList from "@mui/joy/TabList";
 import Tabs from "@mui/joy/Tabs";
+import { useDispatch } from "react-redux";
 import { LINKS } from "../../config/LINKS";
-import useNavigation from "../../lib/hooks/useNavigation";
+import { changePage } from "../../lib/redux/navigation/navigation_slice";
 
 const Navigator = () => {
-  const { changePage } = useNavigation();
+  const dispatch = useDispatch();
 
   const onChangeHandler = (_: any, value: any) => {
-    changePage(Object.values(LINKS)[value].id);
+    dispatch(changePage(Object.values(LINKS)[value].id));
   };
 
   return (

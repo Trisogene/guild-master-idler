@@ -8,7 +8,7 @@ export default function LinearProgressWithLabel({
   timerId,
 }: I_LinearProgressWithLabel) {
   const timeToFinish = useSelector(
-    (state: T_ReduxState) => state.gameManager.timers.recruit
+    (state: T_ReduxState) => state.timer.timers.recruit
   );
   const timerPerc = (timeToFinish / TIMERS[timerId].duration) * 100;
 

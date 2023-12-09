@@ -3,7 +3,7 @@ import { useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CraftableItemCard from "../../components/Cards/CraftableItemCard";
 import { CRAFTABLE_CATEGORIES, ITEMS_EQUIP } from "../../config/ITEMS";
-import { changeCurrentFilter } from "../../lib/redux/slices/crafting_slice";
+import { changeCurrentFilter } from "../../lib/redux/crafting/crafting_slice";
 import { PageBody, PageBottom, PageHeader } from "../../styles/PageStyles";
 import { T_ReduxState } from "../../types/types.d";
 

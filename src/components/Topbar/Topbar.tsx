@@ -5,9 +5,7 @@ import silversIcon from "../../assets/utils/silvers.svg";
 import { T_ReduxState } from "../../types/types.d";
 
 const Topbar = () => {
-  const clock = useSelector(
-    (state: T_ReduxState) => state.gameManager.timers.clock
-  );
+  const clock = useSelector((state: T_ReduxState) => state.timer.timers.clock);
 
   const hours = Math.floor(clock / 60);
   const minutes = clock % 60;

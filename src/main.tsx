@@ -2,7 +2,7 @@ import { CssBaseline, CssVarsProvider, GlobalStyles } from "@mui/joy";
 import ReactDOM from "react-dom/client";
 import { Provider } from "react-redux";
 import App from "./App.jsx";
-import store from "./lib/redux/store.jsx";
+import store from "./lib/redux/store.js";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <>

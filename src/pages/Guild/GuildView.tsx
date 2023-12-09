@@ -1,7 +1,7 @@
-import { Box } from "@mui/joy";
+import { Box, Grid } from "@mui/joy";
 import { useSelector } from "react-redux";
 import PlayerCard from "../../components/Cards/PlayerCard";
-import PlayerInfo from "../../components/Info/PlayerInfo";
+import PlayerInfo from "../../components/Info/PlayerInfo/PlayerInfo";
 import { PageBody, PageBottom, PageHeader } from "../../styles/PageStyles";
 import { T_ReduxState } from "../../types/types.d";
 
@@ -13,11 +13,11 @@ const Guild = () => {
 
   return (
     <Box
-      id="Guild"
+      className="Guild"
       sx={{ display: "flex", flexDirection: "column", height: "100%", gap: 1 }}
     >
       <PageHeader
-        id="Guild-header"
+        className="Guild-header"
         sx={{
           display: "flex",
           flexDirection: "column",
@@ -27,32 +27,35 @@ const Guild = () => {
       >
         <Box sx={{ textAlign: "center", fontSize: 12 }}></Box>
       </PageHeader>
+
       <PageBody
+        className="Guild-body"
         sx={{
-          display: "flex",
-          flexDirection: "column",
-          gap: 1,
           bgcolor: "background.level1",
           p: 1,
         }}
       >
-        {Object.values(players).map((player) => (
-          <PlayerCard
-            key={player.id}
-            player={player}
-            isSelected={player.id === currentlySelectedPlayer}
-          />
-        ))}
+        <Grid container spacing={1}>
+          {Object.values(players).map((player) => (
+            <Grid xs={6}>
+              <PlayerCard
+                key={player.id}
+                player={player}
+                isSelected={player.id === currentlySelectedPlayer}
+              />
+            </Grid>
+          ))}
+        </Grid>
       </PageBody>
 
       <PageBottom
-        id="Guild-bottom"
+        className="Guild-bottom"
         sx={{
           bgcolor: "background.level1",
         }}
       >
         {currentlySelectedPlayer && (
-          <PlayerInfo recruit={players[currentlySelectedPlayer]} />
+          <PlayerInfo player={players[currentlySelectedPlayer]} />
         )}
       </PageBottom>
     </Box>

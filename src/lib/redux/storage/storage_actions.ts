@@ -1,10 +1,9 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { PayloadAction } from "@reduxjs/toolkit";
 import { CONTENTS } from "../../../config/CONTENTS";
-import { ITEM_CATEGORIES } from "../../../config/ITEMS";
 import { T_StorageSlice } from "../../../types/types.d";
 import { getReward } from "../../utils";
 
-const giveContentRewardHandler = (
+const giveContentReward = (
   state: T_StorageSlice,
   { payload: contentId }: PayloadAction<string>
 ) => {
@@ -22,25 +21,14 @@ const giveContentRewardHandler = (
   }
 };
 
-const changeCurrentFilterHandler = (
+const changeCurrentFilter = (
   state: T_StorageSlice,
   { payload: filter }: PayloadAction<string>
 ) => {
   state.currentFilter = filter;
 };
 
-export const storage_slice = createSlice({
-  name: "storage",
-  initialState: {
-    storage: {},
-    currentFilter: ITEM_CATEGORIES.resource,
-  },
-  reducers: {
-    giveContentReward: giveContentRewardHandler,
-    changeCurrentFilter: changeCurrentFilterHandler,
-  },
-});
-
-export const { giveContentReward, changeCurrentFilter } = storage_slice.actions;
-
-export default storage_slice.reducer;
+export const storageActions = {
+  giveContentReward,
+  changeCurrentFilter,
+};

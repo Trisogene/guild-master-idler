@@ -1,9 +1,8 @@
-import { createSlice } from "@reduxjs/toolkit";
 import { T_PlayerConfig, T_PlayersSlice } from "../../../types/types.d";
 
 import { PayloadAction } from "@reduxjs/toolkit";
 
-const addPlayerHandler = (
+const addPlayer = (
   state: T_PlayersSlice,
   { payload: player }: PayloadAction<T_PlayerConfig>
 ) => {
@@ -13,7 +12,7 @@ const addPlayerHandler = (
   }
 };
 
-const changePlayerContentHandler = (
+const changePlayerContent = (
   state: T_PlayersSlice,
   {
     payload: { playerId, contentId },
@@ -24,26 +23,15 @@ const changePlayerContentHandler = (
   }
 };
 
-const setCurrentlySelectedPlayerHandler = (
+const setCurrentlySelectedPlayer = (
   state: T_PlayersSlice,
   { payload: playerId }: PayloadAction<string>
 ) => {
   state.currentlySelectedPlayer = playerId;
 };
 
-export const player_slice = createSlice({
-  name: "players",
-  initialState: {
-    players: {},
-    currentlySelectedPlayer: null,
-  },
-  reducers: {
-    addPlayer: addPlayerHandler,
-    changePlayerContent: changePlayerContentHandler,
-    setCurrentlySelectedPlayer: setCurrentlySelectedPlayerHandler,
-  },
-});
-
-export const { addPlayer, changePlayerContent, setCurrentlySelectedPlayer } =
-  player_slice.actions;
-export default player_slice.reducer;
+export const playerActions = {
+  addPlayer,
+  changePlayerContent,
+  setCurrentlySelectedPlayer,
+};

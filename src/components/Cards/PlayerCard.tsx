@@ -1,19 +1,17 @@
-import { I_PlayerCard } from "../../types/types.d";
+import { I_PlayerCard, T_ReduxState } from "../../types/types.d";
 
-import { Chip, LinearProgress } from "@mui/joy";
+import { LinearProgress, Typography } from "@mui/joy";
 import Avatar from "@mui/joy/Avatar";
 import Box from "@mui/joy/Box";
-import Card from "@mui/joy/Card";
-import CardContent from "@mui/joy/CardContent";
 import { useDispatch, useSelector } from "react-redux";
 import { CONTENTS } from "../../config/CONTENTS";
 import { RACES } from "../../config/RACES";
-import { setCurrentlySelectedPlayer } from "../../lib/redux/slices/players_slice";
+import { setCurrentlySelectedPlayer } from "../../lib/redux/player/players_slice";
 import { AppDispatch } from "../../lib/redux/store";
 
 const PlayerCard = ({ player, isSelected }: I_PlayerCard) => {
   const playerTimer = useSelector(
-    (state: any) => state.gameManager.timers.players[player.id]
+    (state: T_ReduxState) => state.timer.timers.players[player.id]
   );
   const timerPerc =
     (playerTimer / CONTENTS[player.currentContent].timeToComplete) * 100;
@@ -22,53 +20,86 @@ const PlayerCard = ({ player, isSelected }: I_PlayerCard) => {
 
   return (
     <>
-      <Card
-        size="sm"
+      <Box
+        className="PlayerCard"
         sx={{
+          userSelect: "none",
+          minHeight: 64,
+          position: "relative",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
+          alignItems: "center",
+          overflow: "hidden",
+          borderRadius: (theme) => theme.spacing(1),
           bgcolor: "background.level1",
           width: "100%",
           boxShadow: isSelected ? "0px 0px 2px 1px #fff" : "none",
-          filter: isSelected ? "brightness(1)" : "brightness(0.5)",
-          ":hover": {
-            cursor: "pointer",
-            filter: isSelected ? "brightness(1)" : "brightness(0.75)",
-          },
+          filter: isSelected ? "brightness(1)" : "brightness(1) ",
+          border: (theme) => `1px solid ${theme.palette.background.level2}`,
         }}
         onClick={() => {
           dispatch(setCurrentlySelectedPlayer(player.id));
         }}
       >
-        <CardContent>
+        <Box
+          className="PlayerCard-info"
+          sx={{
+            width: "100%",
+            height: "100%",
+            display: "flex",
+            alignItem: "center",
+            gap: 1,
+            p: 0.5,
+          }}
+        >
+          <Avatar
+            className="PlayerCard-avatar"
+            src={playerRace.img}
+            size="sm"
+          />
+
           <Box
+            className="PlayerCard-info"
             sx={{
               display: "flex",
-              gap: 1,
               alignItems: "center",
+              justifyContent: "space-between",
+              gap: 1,
+              width: "100%",
             }}
           >
-            <Avatar src={playerRace.img} size="sm" />
-            <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
-              <Box sx={{ height: 12, fontSize: 10 }}>{player.name}</Box>
-              <Chip size="sm" variant="solid">
-                {player.currentContent}
-              </Chip>
-            </Box>
+            <Typography fontSize="sm">{player.name}</Typography>
           </Box>
-        </CardContent>
-        <Box>
+        </Box>
+
+        <Box
+          className="PlayerCard-timer"
+          sx={{
+            width: "100%",
+            height: 18,
+          }}
+        >
           <LinearProgress
             determinate
             value={timerPerc}
-            thickness={8}
+            thickness={18}
+            variant="solid"
             sx={{
+              zIndex: -1,
               borderColor: "white",
+              "--LinearProgress-radius": "0px",
               "&::before": {
                 transition: "width 0.2s ease-in-out",
               },
             }}
-          />
+          >
+            <Typography fontSize="xs" sx={{ color: "white", zIndex: 1 }}>
+              {player.currentContent}
+            </Typography>
+          </LinearProgress>
         </Box>
-      </Card>
+      </Box>
     </>
   );
 };

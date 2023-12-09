@@ -10,8 +10,8 @@ export const PageHeader = styled(Box)(({ theme }) => ({
 }));
 
 export const PageBody = styled(Box)(({ theme }) => ({
-  minHeight: "calc(100% - 304px)",
-  maxHeight: "calc(100% - 304px)",
+  minHeight: "calc(50% - 32px)",
+  maxHeight: "calc(50% - 32px)",
   overflowY: "auto",
   border: `1px solid ${theme.palette.background.level2}`,
   borderRadius: theme.spacing(1),
@@ -19,8 +19,8 @@ export const PageBody = styled(Box)(({ theme }) => ({
 }));
 
 export const PageBottom = styled(Box)(({ theme }) => ({
-  height: 256,
-  // overflowY: "auto",
+  minHeight: "calc(50% - 32px)",
+  maxHeight: "calc(50% - 32px)",
   border: `1px solid ${theme.palette.background.level2}`,
   borderRadius: theme.spacing(1),
   bgcolor: "background.level1",

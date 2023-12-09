@@ -1,10 +1,9 @@
+import { Avatar, Button, Typography } from "@mui/joy";
 import Box from "@mui/joy/Box";
-import Card from "@mui/joy/Card";
-import CardContent from "@mui/joy/CardContent";
-import Typography from "@mui/joy/Typography";
 import { useDispatch } from "react-redux";
 import { RACES } from "../../config/RACES";
-import { setCurrentSelectedRecruit } from "../../lib/redux/slices/recruit_slice";
+import { setCurrentSelectedRecruit } from "../../lib/redux/recruit/recruit_slice";
+import { recruitPlayer } from "../../lib/redux/recruit/recruit_thunks";
 import { AppDispatch } from "../../lib/redux/store";
 import { I_RecruitCard } from "../../types/types.d";
 
@@ -13,62 +12,49 @@ export default function RecruitCard({ recruit, isSelected }: I_RecruitCard) {
   const dispatch = useDispatch<AppDispatch>();
 
   return (
-    <Card
-      size="sm"
+    <Box
+      className="RecruitCard"
       sx={{
+        userSelect: "none",
+        display: "flex",
+        alignItems: "center",
+        overflow: "hidden",
+        gap: 1,
         p: 0.5,
+        borderRadius: (theme) => theme.spacing(1),
         bgcolor: "background.level1",
-        ":hover": { cursor: "pointer", bgcolor: "background.level2" },
+        width: "100%",
         boxShadow: isSelected ? "0px 0px 2px 1px #fff" : "none",
-        filter: isSelected ? "brightness(1)" : "brightness(0.5)",
+        filter: isSelected ? "brightness(1)" : "brightness(0.7) ",
       }}
       onClick={() => {
         dispatch(setCurrentSelectedRecruit(recruit.id));
       }}
     >
-      <CardContent sx={{ gap: 1 }}>
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "space-between",
+      <Avatar className="PlayerCard-avatar" src={recruitRace.img} size="sm" />
+      <Box
+        className="PlayerCard-info"
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          gap: 1,
+          width: "100%",
+        }}
+      >
+        <Box sx={{ height: 12, fontSize: 10 }}>{recruit.name}</Box>
+        <Button
+          color="neutral"
+          size="sm"
+          onClick={(e) => {
+            e.stopPropagation();
+            dispatch(recruitPlayer(recruit));
           }}
         >
-          <Box sx={{ display: "flex", flexDirection: "column" }}>
-            <Typography fontSize="xl" fontWeight="lg">
-              {recruit.name}
-            </Typography>
-            <Typography
-              level="body-sm"
-              fontWeight="lg"
-              textColor="text.tertiary"
-            >
-              {recruitRace.label}
-            </Typography>
-          </Box>
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              bgcolor: "background.level2",
-              borderRadius: "50%",
-              width: 32,
-              height: 32,
-              p: 0.5,
-            }}
-          >
-            <Box
-              component={"img"}
-              loading="lazy"
-              alt=""
-              src={recruitRace.img}
-              sx={{
-                width: "100%",
-                height: "100%",
-              }}
-            />
-          </Box>
-        </Box>
-      </CardContent>
-    </Card>
+          {" "}
+          <Typography fontSize="sm">RECRUIT</Typography>
+        </Button>
+      </Box>
+    </Box>
   );
 }

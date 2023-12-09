@@ -4,11 +4,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background:rgb(16, 16, 16);
+    background:rgb(20, 20, 20);
 }
 
-#App {
-    width: 400px;
-    height: 650px;
-    background: black;
+.App {
+    width: 400px !important;
+    height: 800px !important;
+    background: rgba(12,12, 12, 1);
 }

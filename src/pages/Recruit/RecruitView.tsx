@@ -1,7 +1,7 @@
-import { Box } from "@mui/joy";
+import { Box, Grid } from "@mui/joy";
 import { useSelector } from "react-redux";
 import RecruitCard from "../../components/Cards/RecruitCard";
-import ExtendedRecruitCard from "../../components/Info/RecruitInfo";
+import RecruitInfo from "../../components/Info/RecruitInfo/RecruitInfo";
 import LinearProgressWithLabel from "../../components/LinearProgressWithLabel/LinearProgressWithLabel";
 import { PageBody, PageBottom, PageHeader } from "../../styles/PageStyles";
 import { T_ReduxState } from "../../types/types.d";
@@ -14,7 +14,7 @@ const Recruit = () => {
 
   return (
     <Box
-      id="Recruit"
+      className="Recruit"
       sx={{
         display: "flex",
         flexDirection: "column",
@@ -23,49 +23,42 @@ const Recruit = () => {
       }}
     >
       <PageHeader
-        id="Recruit-header"
+        className="Recruit-header"
         sx={{
           display: "flex",
           alignItems: "stretch",
           bgcolor: "background.level1",
           gap: 1,
           overflow: "hidden",
-
-          // p: 1,
         }}
       >
         <LinearProgressWithLabel timerId={"recruit"} />
       </PageHeader>
 
-      <PageBody
-        id="Recruit-body"
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          bgcolor: "background.level1",
-          gap: 1,
-          p: 1,
-        }}
-      >
-        {Object.values(recruits).map((recruit) => (
-          <RecruitCard
-            key={recruit.id}
-            recruit={recruit}
-            isSelected={recruit.id === currentSelectedRecruit}
-          />
-        ))}
+      <PageBody className="Recruit-body" sx={{ p: 1 }}>
+        <Grid container spacing={1}>
+          {Object.values(recruits).map((recruit) => (
+            <Grid xs={12} key={recruit.id}>
+              <RecruitCard
+                key={recruit.id}
+                recruit={recruit}
+                isSelected={recruit.id === currentSelectedRecruit}
+              />
+            </Grid>
+          ))}
+        </Grid>
       </PageBody>
 
       <PageBottom
-        id="Recruit-bottom"
+        className="Recruit-bottom"
         sx={{
           bgcolor: "background.level1",
         }}
       >
-        {currentSelectedRecruit ? (
-          <ExtendedRecruitCard recruit={recruits[currentSelectedRecruit]} />
+        {currentSelectedRecruit && recruits[currentSelectedRecruit] ? (
+          <RecruitInfo recruit={recruits[currentSelectedRecruit]} />
         ) : (
-          <></>
+          <>??</>
         )}
       </PageBottom>
     </Box>
