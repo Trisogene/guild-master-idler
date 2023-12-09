@@ -18,7 +18,10 @@ function App() {
 
   useEffect(() => {
     dispatch(startTimers());
-    dispatch(updateRecruits());
+    const state = localStorage.getItem("state");
+    if (!state) {
+      dispatch(updateRecruits());
+    }
   }, [dispatch]);
 
   return (

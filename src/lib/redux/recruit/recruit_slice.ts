@@ -6,7 +6,7 @@ export const recruit_slice = createSlice({
   initialState: {
     recruits: {},
     currentlySelectedRecruit: null,
-    avaialablePicks: 2,
+    avaialablePicks: 0,
   },
   reducers: recruitActions,
 });
