@@ -71,6 +71,7 @@ const CraftingView = () => {
         <Grid container spacing={1} sx={{}}>
           {Object.values(filteredCraftables).map((item) => (
             <Grid
+              key={item.id}
               xs={6}
               onClick={() => setSelectedItem(item.id)}
               sx={{

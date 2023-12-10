@@ -64,6 +64,17 @@ export const ITEMS_RESOURCES = {
   },
 };
 
+export const ITEMS_MATERIALS = {
+  cloth: {
+    id: "cloth",
+    label: "Cloth",
+    description: "A bundle of cloth.",
+    type: "material",
+    subType: "",
+    img: fiber_icon,
+  },
+};
+
 export const ITEMS_DROP = {
   rune: {
     id: "rune",

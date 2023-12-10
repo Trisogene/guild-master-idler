@@ -1,4 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
+import { throttle } from "lodash";
 import { loadState, saveState } from "../utils";
 import { crafting_slice } from "./crafting/crafting_slice";
 import { navigation_slice } from "./navigation/navigation_slice";
@@ -24,16 +25,29 @@ const store = configureStore({
   middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
 });
 
-store.subscribe(() => {
-  saveState({
-    players: store.getState().players,
-    storage: store.getState().storage,
-    navigation: store.getState().navigation,
-    timer: store.getState().timer,
-    recruit: store.getState().recruit,
-    crafting: store.getState().crafting,
-  });
-});
+// store.subscribe(() => {
+//   saveState({
+//     players: store.getState().players,
+//     storage: store.getState().storage,
+//     navigation: store.getState().navigation,
+//     timer: store.getState().timer,
+//     recruit: store.getState().recruit,
+//     crafting: store.getState().crafting,
+//   });
+// });
+
+store.subscribe(
+  throttle(() => {
+    saveState({
+      players: store.getState().players,
+      storage: store.getState().storage,
+      navigation: store.getState().navigation,
+      timer: store.getState().timer,
+      recruit: store.getState().recruit,
+      crafting: store.getState().crafting,
+    });
+  }, 1000)
+);
 
 export type AppDispatch = typeof store.dispatch;
 export type RootState = ReturnType<typeof store.getState>;

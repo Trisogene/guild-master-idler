@@ -37,7 +37,7 @@ const Guild = () => {
       >
         <Grid container spacing={1}>
           {Object.values(players).map((player) => (
-            <Grid xs={6}>
+            <Grid key={player.id} xs={6}>
               <PlayerCard
                 key={player.id}
                 player={player}
