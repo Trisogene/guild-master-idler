@@ -1,5 +1,4 @@
 export const COLORS = {
-  //custom colors 'giant', 'human', 'elf', 'dwarf', 'gnome', 'fairy', 'demon', 'northern'
   demon: "#ff0000",
   human: "#0000ff",
   dwarf: "#00ff00",

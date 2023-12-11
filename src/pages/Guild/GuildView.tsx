@@ -1,8 +1,13 @@
-import { Box, Grid } from "@mui/joy";
+import { Grid } from "@mui/joy";
 import { useSelector } from "react-redux";
 import PlayerCard from "../../components/Cards/PlayerCard";
 import PlayerInfo from "../../components/Info/PlayerInfo/PlayerInfo";
-import { PageBody, PageBottom, PageHeader } from "../../styles/PageStyles";
+import {
+  Page,
+  PageBody,
+  PageBottom,
+  PageHeader,
+} from "../../styles/PageStyles";
 import { T_ReduxState } from "../../types/types.d";
 
 const Guild = () => {
@@ -12,21 +17,8 @@ const Guild = () => {
   );
 
   return (
-    <Box
-      className="Guild"
-      sx={{ display: "flex", flexDirection: "column", height: "100%", gap: 1 }}
-    >
-      <PageHeader
-        className="Guild-header"
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          bgcolor: "background.level1",
-          gap: 0.5,
-        }}
-      >
-        <Box sx={{ textAlign: "center", fontSize: 12 }}></Box>
-      </PageHeader>
+    <Page className="Guild">
+      <PageHeader className="Guild-header" />
 
       <PageBody
         className="Guild-body"
@@ -48,17 +40,12 @@ const Guild = () => {
         </Grid>
       </PageBody>
 
-      <PageBottom
-        className="Guild-bottom"
-        sx={{
-          bgcolor: "background.level1",
-        }}
-      >
+      <PageBottom className="Guild-bottom">
         {currentlySelectedPlayer && (
           <PlayerInfo player={players[currentlySelectedPlayer]} />
         )}
       </PageBottom>
-    </Box>
+    </Page>
   );
 };
 

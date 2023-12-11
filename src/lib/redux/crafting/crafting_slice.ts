@@ -6,10 +6,12 @@ export const crafting_slice = createSlice({
   name: "crafting",
   initialState: {
     currentFilter: CRAFTABLE_CATEGORIES.weapon,
+    currentSelectedCraft: null,
   },
   reducers: craftingActions,
 });
 
-export const { changeCurrentFilter } = crafting_slice.actions;
+export const { setCurrentFilter, setCurrentSelectedCraft } =
+  crafting_slice.actions;
 
 export default crafting_slice.reducer;

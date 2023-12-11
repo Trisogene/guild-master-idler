@@ -1,15 +1,13 @@
 /* -------------------------------------------------------------------------- */
 /*                                 Components                                 */
 /* -------------------------------------------------------------------------- */
+
+import { T_ItemStack } from "../config/config";
+
 /* ------------------------------- PlayerCard ------------------------------- */
 export interface I_PlayerCard {
   player: T_PlayerConfig;
   isSelected: boolean;
-}
-
-/* ------------------------- LinearProgressWithLabel ------------------------ */
-export interface I_LinearProgressWithLabel {
-  timerId: string;
 }
 
 /* -------------------------------- Navigator ------------------------------- */
@@ -114,25 +112,6 @@ export type T_ContentRewardConfig = {
   possibility: number;
 };
 
-/* ---------------------------------- Items --------------------------------- */
-export type T_Items = {
-  [key: string]: T_Item;
-};
-
-export type T_Item = {
-  id: string;
-  label: string;
-  description: string;
-  type: string;
-  subType: string;
-  img: string;
-};
-
-export type T_ItemStack = {
-  id: string;
-  quantity: number;
-};
-
 /* -------------------------------------------------------------------------- */
 /*                                    Redux                                   */
 /* -------------------------------------------------------------------------- */
@@ -179,4 +158,5 @@ export type T_StorageSlice = {
 
 export type T_CraftingSlice = {
   currentFilter: string;
+  currentSelectedCraft: string | null;
 };

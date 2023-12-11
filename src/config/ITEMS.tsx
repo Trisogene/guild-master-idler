@@ -9,264 +9,325 @@ import stone_icon from "../assets/items/stone.svg";
 import temp_armor_icon from "../assets/items/temp_armor.svg";
 import temp_weapon_icon from "../assets/items/temp_weapon.svg";
 import wood_icon from "../assets/items/wood.svg";
-import { T_Items } from "../types/types.d";
+
+/* -------------------------------------------------------------------------- */
+/*                                    Types                                   */
+/* -------------------------------------------------------------------------- */
+export type T_Items = {
+  [key: string]: T_Item;
+};
+
+export type T_Item = {
+  id: string;
+  label: string;
+  description: string;
+  type: string;
+  subType: string;
+  img: string;
+};
+
+/* -------------------------------------------------------------------------- */
+/*                                    Enums                                   */
+/* -------------------------------------------------------------------------- */
 
 export const ITEM_CATEGORIES = {
-  resource: "resource",
   drop: "drop",
+  material: "material",
+  resource: "resource",
 };
 
 export const CRAFTABLE_CATEGORIES = {
-  weapon: "weapon",
-  armor: "armor",
+  material: "material",
+  equip: "equip",
 };
 
+/* -------------------------------------------------------------------------- */
+/*                                    Items                                   */
+/* -------------------------------------------------------------------------- */
+
+/* -------------------------------- Resources ------------------------------- */
 export const ITEMS_RESOURCES = {
   fiber: {
-    id: "fiber",
-    label: "Fiber",
     description: "A bundle of fiber.",
-    type: "resource",
-    subType: "",
+    id: "fiber",
     img: fiber_icon,
-  },
-  wood: {
-    id: "wood",
-    label: "Wood",
-    description: "A bundle of wood.",
-    type: "resource",
+    label: "Fiber",
     subType: "",
-    img: wood_icon,
-  },
-  stone: {
-    id: "stone",
-    label: "Stone",
-    description: "A bundle of stone.",
-    type: "resource",
-    subType: "",
-    img: stone_icon,
-  },
-  ore: {
-    id: "ore",
-    label: "Ore",
-    description: "A bundle of ore.",
-    type: "resource",
-    subType: "",
-    img: ore_icon,
+    type: ITEM_CATEGORIES.resource,
   },
   hide: {
-    id: "hide",
-    label: "Hide",
     description: "A bundle of hide.",
-    type: "resource",
-    subType: "",
+    id: "hide",
     img: hide_icon,
+    label: "Hide",
+    subType: "",
+    type: ITEM_CATEGORIES.resource,
+  },
+  ore: {
+    description: "A bundle of ore.",
+    id: "ore",
+    img: ore_icon,
+    label: "Ore",
+    subType: "",
+    type: ITEM_CATEGORIES.resource,
+  },
+  stone: {
+    description: "A bundle of stone.",
+    id: "stone",
+    img: stone_icon,
+    label: "Stone",
+    subType: "",
+    type: ITEM_CATEGORIES.resource,
+  },
+  wood: {
+    description: "A bundle of wood.",
+    id: "wood",
+    img: wood_icon,
+    label: "Wood",
+    subType: "",
+    type: ITEM_CATEGORIES.resource,
   },
 };
 
+/* -------------------------------- Materials ------------------------------- */
 export const ITEMS_MATERIALS = {
   cloth: {
     id: "cloth",
     label: "Cloth",
     description: "A bundle of cloth.",
-    type: "material",
+    type: ITEM_CATEGORIES.material,
     subType: "",
     img: fiber_icon,
   },
+  plank: {
+    id: "plank",
+    label: "Plank",
+    description: "A bundle of planks.",
+    type: ITEM_CATEGORIES.material,
+    subType: "",
+    img: wood_icon,
+  },
+  stoneBlock: {
+    id: "stoneBlock",
+    label: "Stone Block",
+    description: "A bundle of stone blocks.",
+    type: ITEM_CATEGORIES.material,
+    subType: "",
+    img: stone_icon,
+  },
+  metalBar: {
+    id: "metalBar",
+    label: "Metal Bar",
+    description: "A bundle of metal bars.",
+    type: ITEM_CATEGORIES.material,
+    subType: "",
+    img: ore_icon,
+  },
+  leather: {
+    id: "leather",
+    label: "Leather",
+    description: "A bundle of leather.",
+    type: ITEM_CATEGORIES.material,
+    subType: "",
+    img: hide_icon,
+  },
 };
 
+/* ---------------------------------- Drops --------------------------------- */
 export const ITEMS_DROP = {
-  rune: {
-    id: "rune",
-    label: "Rune",
-    description: "A rune.",
-    type: "drop",
+  artifact: {
+    description: "An artifact.",
+    id: "artifact",
+    img: artifact_icon,
+    label: "Artifact",
     subType: "",
-    img: rune_icon,
-  },
-  soul: {
-    id: "soul",
-    label: "Soul",
-    description: "A soul.",
     type: "drop",
-    subType: "",
-    img: soul_icon,
   },
   relic: {
-    id: "relic",
-    label: "Relic",
     description: "A relic.",
-    type: "drop",
-    subType: "",
+    id: "relic",
     img: relic_icon,
-  },
-  artifact: {
-    id: "artifact",
-    label: "Artifact",
-    description: "An artifact.",
-    type: "drop",
+    label: "Relic",
     subType: "",
-    img: artifact_icon,
+    type: "drop",
+  },
+  rune: {
+    description: "A rune.",
+    id: "rune",
+    img: rune_icon,
+    label: "Rune",
+    subType: "",
+    type: "drop",
+  },
+  soul: {
+    description: "A soul.",
+    id: "soul",
+    img: soul_icon,
+    label: "Soul",
+    subType: "",
+    type: "drop",
   },
 };
 
+/* ---------------------------------- Equip --------------------------------- */
 export const ITEMS_EQUIP = {
-  sword: {
-    id: "sword",
-    label: "Sword",
-    description: "A sword.",
-    type: "equip",
-    subType: "weapon",
+  arcaneStaff: {
+    description: "An arcane staff.",
+    id: "arcaneStaff",
     img: temp_weapon_icon,
-  },
-  mace: {
-    id: "mace",
-    label: "Mace",
-    description: "A mace.",
-    type: "equip",
+    label: "Arcane Staff",
     subType: "weapon",
-    img: temp_weapon_icon,
-  },
-  hammer: {
-    id: "hammer",
-    label: "Hammer",
-    description: "A hammer.",
     type: "equip",
-    subType: "weapon",
-    img: temp_weapon_icon,
   },
   axe: {
-    id: "axe",
-    label: "Axe",
     description: "An axe.",
-    type: "equip",
-    subType: "weapon",
+    id: "axe",
     img: temp_weapon_icon,
+    label: "Axe",
+    subType: "weapon",
+    type: "equip",
   },
   bow: {
-    id: "bow",
-    label: "Bow",
     description: "A bow.",
-    type: "equip",
-    subType: "weapon",
+    id: "bow",
     img: temp_weapon_icon,
-  },
-  fireStaff: {
-    id: "fireStaff",
-    label: "Fire Staff",
-    description: "A fire staff.",
-    type: "equip",
+    label: "Bow",
     subType: "weapon",
-    img: temp_weapon_icon,
-  },
-  holyStaff: {
-    id: "holyStaff",
-    label: "Holy Staff",
-    description: "A holy staff.",
     type: "equip",
-    subType: "weapon",
-    img: temp_weapon_icon,
-  },
-  arcaneStaff: {
-    id: "arcaneStaff",
-    label: "Arcane Staff",
-    description: "An arcane staff.",
-    type: "equip",
-    subType: "weapon",
-    img: temp_weapon_icon,
-  },
-  spear: {
-    id: "spear",
-    label: "Spear",
-    description: "A spear.",
-    type: "equip",
-    subType: "weapon",
-    img: temp_weapon_icon,
-  },
-  shield: {
-    id: "shield",
-    label: "Shield",
-    description: "A shield.",
-    type: "equip",
-    subType: "armor",
-    img: temp_armor_icon,
-  },
-  ironHelmet: {
-    id: "ironHelmet",
-    label: "Iron Helmet",
-    description: "An iron helmet.",
-    type: "equip",
-    subType: "armor",
-    img: temp_armor_icon,
-  },
-  ironChest: {
-    id: "ironChest",
-    label: "Iron Chest",
-    description: "An iron chest.",
-    type: "equip",
-    subType: "armor",
-    img: temp_armor_icon,
-  },
-  ironBoots: {
-    id: "ironBoots",
-    label: "Iron Boots",
-    description: "Iron boots.",
-    type: "equip",
-    subType: "armor",
-    img: temp_armor_icon,
-  },
-  leatherHelmet: {
-    id: "leatherHelmet",
-    label: "Leather Helmet",
-    description: "A leather helmet.",
-    type: "equip",
-    subType: "armor",
-    img: temp_armor_icon,
-  },
-  leatherChest: {
-    id: "leatherChest",
-    label: "Leather Chest",
-    description: "A leather chest.",
-    type: "equip",
-    subType: "armor",
-    img: temp_armor_icon,
-  },
-  leatherBoots: {
-    id: "leatherBoots",
-    label: "Leather Boots",
-    description: "Leather boots.",
-    type: "equip",
-    subType: "armor",
-    img: temp_armor_icon,
-  },
-  clothHelmet: {
-    id: "clothHelmet",
-    label: "Cloth Helmet",
-    description: "A cloth helmet.",
-    type: "equip",
-    subType: "armor",
-    img: temp_armor_icon,
-  },
-  clothChest: {
-    id: "clothChest",
-    label: "Cloth Chest",
-    description: "A cloth chest.",
-    type: "equip",
-    subType: "armor",
-    img: temp_armor_icon,
   },
   clothBoots: {
-    id: "clothBoots",
-    label: "Cloth Boots",
     description: "Cloth boots.",
-    type: "equip",
-    subType: "armor",
+    id: "clothBoots",
     img: temp_armor_icon,
+    label: "Cloth Boots",
+    subType: "armor",
+    type: "equip",
+  },
+  clothChest: {
+    description: "A cloth chest.",
+    id: "clothChest",
+    img: temp_armor_icon,
+    label: "Cloth Chest",
+    subType: "armor",
+    type: "equip",
+  },
+  clothHelmet: {
+    description: "A cloth helmet.",
+    id: "clothHelmet",
+    img: temp_armor_icon,
+    label: "Cloth Helmet",
+    subType: "armor",
+    type: "equip",
+  },
+  fireStaff: {
+    description: "A fire staff.",
+    id: "fireStaff",
+    img: temp_weapon_icon,
+    label: "Fire Staff",
+    subType: "weapon",
+    type: "equip",
+  },
+  hammer: {
+    description: "A hammer.",
+    id: "hammer",
+    img: temp_weapon_icon,
+    label: "Hammer",
+    subType: "weapon",
+    type: "equip",
+  },
+  holyStaff: {
+    description: "A holy staff.",
+    id: "holyStaff",
+    img: temp_weapon_icon,
+    label: "Holy Staff",
+    subType: "weapon",
+    type: "equip",
+  },
+  ironBoots: {
+    description: "Iron boots.",
+    id: "ironBoots",
+    img: temp_armor_icon,
+    label: "Iron Boots",
+    subType: "armor",
+    type: "equip",
+  },
+  ironChest: {
+    description: "An iron chest.",
+    id: "ironChest",
+    img: temp_armor_icon,
+    label: "Iron Chest",
+    subType: "armor",
+    type: "equip",
+  },
+  ironHelmet: {
+    description: "An iron helmet.",
+    id: "ironHelmet",
+    img: temp_armor_icon,
+    label: "Iron Helmet",
+    subType: "armor",
+    type: "equip",
+  },
+  leatherBoots: {
+    description: "Leather boots.",
+    id: "leatherBoots",
+    img: temp_armor_icon,
+    label: "Leather Boots",
+    subType: "armor",
+    type: "equip",
+  },
+  leatherChest: {
+    description: "A leather chest.",
+    id: "leatherChest",
+    img: temp_armor_icon,
+    label: "Leather Chest",
+    subType: "armor",
+    type: "equip",
+  },
+  leatherHelmet: {
+    description: "A leather helmet.",
+    id: "leatherHelmet",
+    img: temp_armor_icon,
+    label: "Leather Helmet",
+    subType: "armor",
+    type: "equip",
+  },
+  mace: {
+    description: "A mace.",
+    id: "mace",
+    img: temp_weapon_icon,
+    label: "Mace",
+    subType: "weapon",
+    type: "equip",
+  },
+  shield: {
+    description: "A shield.",
+    id: "shield",
+    img: temp_armor_icon,
+    label: "Shield",
+    subType: "armor",
+    type: "equip",
+  },
+  spear: {
+    description: "A spear.",
+    id: "spear",
+    img: temp_weapon_icon,
+    label: "Spear",
+    subType: "weapon",
+    type: "equip",
+  },
+  sword: {
+    description: "A sword.",
+    id: "sword",
+    img: temp_weapon_icon,
+    label: "Sword",
+    subType: "weapon",
+    type: "equip",
   },
 };
 
 export const ITEMS: T_Items = {
   ...ITEMS_RESOURCES,
+  ...ITEMS_MATERIALS,
   ...ITEMS_DROP,
   ...ITEMS_EQUIP,
 };

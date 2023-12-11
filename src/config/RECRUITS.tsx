@@ -1,6 +1,4 @@
-import uuid from "react-uuid";
 import { T_RecruitsConfig } from "../types/types.d";
-import { CONTENTS } from "./CONTENTS";
 import { RACES } from "./RACES";
 
 export const RECRUITS: T_RecruitsConfig = {
@@ -36,15 +34,4 @@ export const RECRUITS: T_RecruitsConfig = {
     name: "Vikingito",
     race: RACES.viking.id,
   },
-};
-
-export const getRandomCharacter = () => {
-  const recruitConfigs = Object.keys(RECRUITS);
-  const randomIndex = Math.floor(Math.random() * recruitConfigs.length);
-  const randomCharacter = {
-    id: uuid(),
-    ...RECRUITS[recruitConfigs[randomIndex]],
-    currentContent: CONTENTS.gathering.id,
-  };
-  return randomCharacter;
 };

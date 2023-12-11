@@ -1,5 +1,5 @@
 import { Box } from "@mui/joy";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./App.css";
 import Navigator from "./components/Navigator/Navigator";
@@ -15,6 +15,7 @@ function App() {
     (state: T_ReduxState) => state.navigation.currentPage
   );
   const dispatch = useDispatch<AppDispatch>();
+  const [isModalOpen, setIsModalOpen] = useState(true);
 
   useEffect(() => {
     dispatch(startTimers());
@@ -59,7 +60,7 @@ function App() {
               p: 1,
             }}
           >
-            <Navigator />
+            <Navigator currentPage={currentPage} />
           </Box>
           <Box
             className="App-Page"
@@ -74,6 +75,29 @@ function App() {
           </Box>
         </Box>
       </Box>
+      {/* <Modal open={isModalOpen} onClose={() => setIsModalOpen(false)}>
+        <ModalDialog>
+          <ModalClose />
+          <Box>
+            <Typography fontSize="xl">Patch 0.03</Typography>
+            <Typography fontSize="sm">- Persistent state</Typography>
+            <Typography fontSize="sm">- Max 2 recruits</Typography>
+            <Typography fontSize="sm">- Minor fixes</Typography>
+          </Box>
+
+          <Box>
+            <Typography fontSize="xl">Patch 0.02</Typography>
+            <Typography fontSize="sm">- Storage & Crafting</Typography>
+            <Typography fontSize="sm">- New UI</Typography>
+            <Typography fontSize="sm">- Minor fixes</Typography>
+          </Box>
+
+          <Box>
+            <Typography fontSize="xl">Patch 0.01</Typography>
+            <Typography fontSize="sm">- Initial release</Typography>
+          </Box>
+        </ModalDialog>
+      </Modal> */}
     </>
   );
 }

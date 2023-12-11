@@ -1,6 +1,6 @@
 import { PayloadAction } from "@reduxjs/toolkit";
-import { getRandomCharacter } from "../../../config/RECRUITS";
 import { T_PlayersConfig, T_RecruitSlice } from "../../../types/types.d";
+import { getRandomCharacter } from "../../utils";
 
 const updateRecruits = (state: T_RecruitSlice) => {
   const randomRecruits: T_PlayersConfig = {};

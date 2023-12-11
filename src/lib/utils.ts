@@ -1,6 +1,9 @@
+import uuid from "react-uuid";
+import { RECRUITS } from "../config/RECRUITS";
 import { T_ContentRewardConfig, T_ReduxState } from "../types/types.d";
 
 import _ from "lodash";
+import { CONTENTS } from "../config/CONTENTS";
 
 export const getReward = (rewards: T_ContentRewardConfig[]) => {
   const random = _.random(0, 1, true);
@@ -30,4 +33,15 @@ export const saveState = (state: T_ReduxState) => {
   } catch {
     // ignore write errors
   }
+};
+
+export const getRandomCharacter = () => {
+  const recruitConfigs = Object.keys(RECRUITS);
+  const randomIndex = Math.floor(Math.random() * recruitConfigs.length);
+  const randomCharacter = {
+    id: uuid(),
+    ...RECRUITS[recruitConfigs[randomIndex]],
+    currentContent: CONTENTS.gathering.id,
+  };
+  return randomCharacter;
 };

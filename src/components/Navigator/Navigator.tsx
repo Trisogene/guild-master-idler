@@ -5,7 +5,11 @@ import { useDispatch } from "react-redux";
 import { LINKS } from "../../config/LINKS";
 import { changePage } from "../../lib/redux/navigation/navigation_slice";
 
-const Navigator = () => {
+interface I_NavigatorProps {
+  currentPage: string;
+}
+
+const Navigator = ({ currentPage }: I_NavigatorProps) => {
   const dispatch = useDispatch();
 
   const onChangeHandler = (_: any, value: any) => {
@@ -18,6 +22,7 @@ const Navigator = () => {
       defaultValue={0}
       sx={{ bgcolor: "transparent" }}
       onChange={onChangeHandler}
+      value={Object.values(LINKS).findIndex((link) => link.id === currentPage)}
     >
       <TabList
         tabFlex={1}

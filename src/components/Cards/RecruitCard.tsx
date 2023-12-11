@@ -1,4 +1,4 @@
-import { Avatar, Button, Typography } from "@mui/joy";
+import { Avatar, Button, Card, CardContent, Divider } from "@mui/joy";
 import Box from "@mui/joy/Box";
 import { useDispatch, useSelector } from "react-redux";
 import { RACES } from "../../config/RACES";
@@ -15,50 +15,55 @@ export default function RecruitCard({ recruit, isSelected }: I_RecruitCard) {
   const dispatch = useDispatch<AppDispatch>();
 
   return (
-    <Box
+    <Card
       className="RecruitCard"
       sx={{
-        userSelect: "none",
         display: "flex",
-        alignItems: "center",
-        overflow: "hidden",
-        gap: 1,
-        p: 0.5,
-        borderRadius: (theme) => theme.spacing(1),
-        bgcolor: "background.level1",
-        width: "100%",
-        boxShadow: isSelected ? "0px 0px 2px 1px #fff" : "none",
-        filter: isSelected ? "brightness(1)" : "brightness(0.7) ",
+        flexDirection: "column",
+        justifyContent: "center",
+        bgcolor: isSelected ? "background.level2" : "background.level1",
       }}
       onClick={() => {
         dispatch(setCurrentSelectedRecruit(recruit.id));
       }}
     >
-      <Avatar className="PlayerCard-avatar" src={recruitRace.img} size="sm" />
       <Box
-        className="PlayerCard-info"
         sx={{
           display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
           gap: 1,
           width: "100%",
         }}
       >
-        <Box sx={{ height: 12, fontSize: 10 }}>{recruit.name}</Box>
+        <Avatar className="PlayerCard-avatar" src={recruitRace.img} />
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            gap: 1,
+            width: "100%",
+          }}
+        >
+          <Box sx={{ height: 12, fontSize: 10 }}>{recruit.name}</Box>
+        </Box>
+      </Box>
+
+      <Divider orientation="horizontal" />
+
+      <CardContent>
         <Button
           disabled={avaialablePicks === 0}
           color="neutral"
           size="sm"
+          variant="solid"
           onClick={(e) => {
             e.stopPropagation();
             dispatch(recruitPlayer(recruit));
           }}
         >
-          {" "}
-          <Typography fontSize="sm">RECRUIT ({avaialablePicks}/2)</Typography>
+          RECRUIT ({avaialablePicks}/2)
         </Button>
-      </Box>
-    </Box>
+      </CardContent>
+    </Card>
   );
 }

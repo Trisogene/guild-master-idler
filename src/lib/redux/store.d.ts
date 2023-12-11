@@ -1,4 +1,5 @@
-import { T_ItemStack, T_PlayersConfig } from "./../../types/types.d";
+import { T_ItemStack } from "./../../config/config.d";
+import { T_PlayersConfig } from "./../../types/types.d";
 
 export type T_ReduxState = {
   players: T_PlayersSlice;

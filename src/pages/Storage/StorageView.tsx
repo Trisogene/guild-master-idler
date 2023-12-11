@@ -55,9 +55,9 @@ const StorageView = () => {
         }}
       >
         <Grid container spacing={1}>
-          {Object.values(filteredItems).map((item) => (
-            <Grid key={item.id} xs={3}>
-              <ItemCard key={item.id} item={item} />
+          {Object.values(filteredItems).map((itemStack) => (
+            <Grid key={itemStack.id} xs={4}>
+              <ItemCard key={itemStack.id} itemStack={itemStack} />
             </Grid>
           ))}
         </Grid>

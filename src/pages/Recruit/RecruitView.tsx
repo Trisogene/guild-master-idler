@@ -2,8 +2,13 @@ import { Box, Grid } from "@mui/joy";
 import { useSelector } from "react-redux";
 import RecruitCard from "../../components/Cards/RecruitCard";
 import RecruitInfo from "../../components/Info/RecruitInfo/RecruitInfo";
-import LinearProgressWithLabel from "../../components/LinearProgressWithLabel/LinearProgressWithLabel";
-import { PageBody, PageBottom, PageHeader } from "../../styles/PageStyles";
+import RecruitTimer from "../../components/RecruitTimer/RecruitTimer";
+import {
+  Page,
+  PageBody,
+  PageBottom,
+  PageHeader,
+} from "../../styles/PageStyles";
 import { T_ReduxState } from "../../types/types.d";
 
 const Recruit = () => {
@@ -13,32 +18,27 @@ const Recruit = () => {
   );
 
   return (
-    <Box
-      className="Recruit"
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        gap: 1,
-        height: "100%",
-      }}
-    >
+    <Page className="Recruit">
       <PageHeader
         className="Recruit-header"
         sx={{
           display: "flex",
-          alignItems: "stretch",
-          bgcolor: "background.level1",
           gap: 1,
           overflow: "hidden",
         }}
-      >
-        <LinearProgressWithLabel timerId={"recruit"} />
-      </PageHeader>
+      ></PageHeader>
 
-      <PageBody className="Recruit-body" sx={{ p: 1 }}>
+      <PageBody
+        className="Recruit-body"
+        sx={{ p: 1, display: "flex", flexDirection: "column", gap: 1 }}
+      >
+        <Box className="Recruit-body-timer-container">
+          <RecruitTimer />
+        </Box>
+
         <Grid container spacing={1}>
           {Object.values(recruits).map((recruit) => (
-            <Grid xs={12} key={recruit.id}>
+            <Grid xs={6} key={recruit.id}>
               <RecruitCard
                 key={recruit.id}
                 recruit={recruit}
@@ -49,19 +49,14 @@ const Recruit = () => {
         </Grid>
       </PageBody>
 
-      <PageBottom
-        className="Recruit-bottom"
-        sx={{
-          bgcolor: "background.level1",
-        }}
-      >
+      <PageBottom className="Recruit-bottom">
         {currentSelectedRecruit && recruits[currentSelectedRecruit] ? (
           <RecruitInfo recruit={recruits[currentSelectedRecruit]} />
         ) : (
           <>??</>
         )}
       </PageBottom>
-    </Box>
+    </Page>
   );
 };
 

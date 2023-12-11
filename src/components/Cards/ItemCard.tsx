@@ -1,61 +1,40 @@
-import { Box, Card, CardContent, Typography } from "@mui/joy";
+import { Avatar, Box, Card, CardContent, Divider } from "@mui/joy";
 import { ITEMS } from "../../config/ITEMS";
-import { T_ItemStack } from "../../types/types.d";
+import { T_ItemStack } from "../../config/config";
 
 interface I_ItemCard {
-  item: T_ItemStack;
+  itemStack: T_ItemStack;
 }
-const ItemCard = ({ item }: I_ItemCard) => {
-  const itemConfig = ITEMS[item.id];
+
+const ItemCard = ({ itemStack }: I_ItemCard) => {
+  const itemConfig = ITEMS[itemStack.id];
 
   return (
-    <Card size="sm" sx={{ bgcolor: "background.level1", p: 0, maxHeight: 60 }}>
-      <CardContent
+    <Card>
+      <Box
         sx={{
           display: "flex",
-          justifyContent: "center",
+          gap: 1,
+          width: "100%",
         }}
       >
+        <Avatar className="PlayerCard-avatar" src={itemConfig.img} />
         <Box
           sx={{
             display: "flex",
-            flexDirection: "column",
             alignItems: "center",
+            justifyContent: "space-between",
+            gap: 1,
+            width: "100%",
           }}
         >
-          <Typography
-            fontSize={10}
-            component={"div"}
-            sx={{
-              textAlign: "center",
-              width: "100%",
-              bgcolor: "background.level2",
-
-              p: 0.5,
-            }}
-          >
-            {itemConfig.label}
-          </Typography>
-          <Box
-            sx={{
-              display: "grid",
-              gridTemplateColumns: "repeat(2, 1fr)",
-              width: "100%",
-              placeItems: "center",
-              p: 0.5,
-            }}
-          >
-            <Box
-              component="img"
-              src={itemConfig.img}
-              sx={{
-                width: 24,
-                height: 24,
-              }}
-            />
-            <Box sx={{ flexGrow: 1 }}>x{item.quantity}</Box>
-          </Box>
+          <Box sx={{ height: 12, fontSize: 10 }}>{itemConfig.label}</Box>
         </Box>
+      </Box>
+
+      <Divider orientation="horizontal" />
+      <CardContent sx={{ alignItems: "center" }}>
+        <Box sx={{ flexGrow: 1 }}>x{itemStack.quantity}</Box>
       </CardContent>
     </Card>
   );

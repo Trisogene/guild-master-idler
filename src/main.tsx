@@ -3,10 +3,11 @@ import ReactDOM from "react-dom/client";
 import { Provider } from "react-redux";
 import App from "./App.jsx";
 import store from "./lib/redux/store.js";
+import { theme } from "./styles/theme.js";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <>
-    <CssVarsProvider defaultMode="dark">
+    <CssVarsProvider defaultMode="dark" theme={theme}>
       <CssBaseline />
       <Provider store={store}>
         <GlobalStyles

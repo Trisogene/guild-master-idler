@@ -1,6 +1,6 @@
 import { I_PlayerCard, T_ReduxState } from "../../types/types.d";
 
-import { LinearProgress, Typography } from "@mui/joy";
+import { Card, Divider, LinearProgress, Typography } from "@mui/joy";
 import Avatar from "@mui/joy/Avatar";
 import Box from "@mui/joy/Box";
 import { useDispatch, useSelector } from "react-redux";
@@ -20,47 +20,27 @@ const PlayerCard = ({ player, isSelected }: I_PlayerCard) => {
 
   return (
     <>
-      <Box
+      <Card
         className="PlayerCard"
         sx={{
-          userSelect: "none",
-          minHeight: 64,
-          position: "relative",
           display: "flex",
           flexDirection: "column",
-          justifyContent: "space-between",
-          alignItems: "center",
-          overflow: "hidden",
-          borderRadius: (theme) => theme.spacing(1),
-          bgcolor: "background.level1",
-          width: "100%",
-          boxShadow: isSelected ? "0px 0px 2px 1px #fff" : "none",
-          filter: isSelected ? "brightness(1)" : "brightness(1) ",
-          border: (theme) => `1px solid ${theme.palette.background.level2}`,
+          justifyContent: "center",
+          bgcolor: isSelected ? "background.level2" : "background.level1",
         }}
         onClick={() => {
           dispatch(setCurrentlySelectedPlayer(player.id));
         }}
       >
         <Box
-          className="PlayerCard-info"
           sx={{
-            width: "100%",
-            height: "100%",
             display: "flex",
-            alignItem: "center",
             gap: 1,
-            p: 0.5,
+            width: "100%",
           }}
         >
-          <Avatar
-            className="PlayerCard-avatar"
-            src={playerRace.img}
-            size="sm"
-          />
-
+          <Avatar className="PlayerCard-avatar" src={playerRace.img} />
           <Box
-            className="PlayerCard-info"
             sx={{
               display: "flex",
               alignItems: "center",
@@ -69,13 +49,16 @@ const PlayerCard = ({ player, isSelected }: I_PlayerCard) => {
               width: "100%",
             }}
           >
-            <Typography fontSize="sm">{player.name}</Typography>
+            <Box sx={{ height: 12, fontSize: 10 }}>{playerRace.label}</Box>
           </Box>
         </Box>
+
+        <Divider orientation="horizontal" />
 
         <Box
           className="PlayerCard-timer"
           sx={{
+            zIndex: 1,
             width: "100%",
             height: 18,
           }}
@@ -99,7 +82,7 @@ const PlayerCard = ({ player, isSelected }: I_PlayerCard) => {
             </Typography>
           </LinearProgress>
         </Box>
-      </Box>
+      </Card>
     </>
   );
 };
