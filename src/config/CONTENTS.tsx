@@ -5,13 +5,13 @@ export const CONTENTS: T_ContentsConfig = {
   sleeping: {
     id: "sleeping",
     label: "Sleeping",
-    timeToComplete: 60,
+    timeToComplete: 20,
     rewards: [],
   },
   gathering: {
     id: "gathering",
     label: "Gathering",
-    timeToComplete: 15,
+    timeToComplete: 10,
     rewards: [
       {
         item: ITEMS_RESOURCES.fiber.id,
@@ -38,7 +38,7 @@ export const CONTENTS: T_ContentsConfig = {
   dungeoning: {
     id: "dungeoning",
     label: "Dungeoning",
-    timeToComplete: 30,
+    timeToComplete: 15,
     rewards: [
       {
         item: ITEMS_DROP.rune.id,
@@ -58,22 +58,4 @@ export const CONTENTS: T_ContentsConfig = {
       },
     ],
   },
-  // crafting: {
-  //   id: "crafting",
-  //   label: "Crafting",
-  //   timeToComplete: 10,
-  //   rewards: [],
-  // },
-  // arena: {
-  //   id: "arena",
-  //   label: "Arena",
-  //   timeToComplete: 10,
-  //   rewards: [],
-  // },
-  // trading: {
-  //   id: "trading",
-  //   label: "Trading",
-  //   timeToComplete: 10,
-  //     rewards: [],
-  // },
 };

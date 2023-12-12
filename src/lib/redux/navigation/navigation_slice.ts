@@ -1,11 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { LINKS } from "../../../config/LINKS";
 import { navigationActions } from "./navigation_actions";
 
 export const navigation_slice = createSlice({
   name: "players",
-  initialState: { currentPage: LINKS.recruit.id },
+  initialState: { notifications: {}, currentPage: "recruit" },
   reducers: navigationActions,
 });
 
-export const { changePage } = navigation_slice.actions;
+export const { setPage, sendNotification, removeNotification } =
+  navigation_slice.actions;

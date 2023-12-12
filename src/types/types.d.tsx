@@ -147,6 +147,9 @@ export type T_RecruitSlice = {
 
 export type T_NavigationSlice = {
   currentPage: string;
+  notifications: {
+    [key: string]: number;
+  };
 };
 
 export type T_StorageSlice = {

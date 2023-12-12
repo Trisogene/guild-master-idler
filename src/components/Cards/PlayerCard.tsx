@@ -66,12 +66,12 @@ const PlayerCard = ({ player, isSelected }: I_PlayerCard) => {
           <LinearProgress
             determinate
             value={timerPerc}
-            thickness={18}
             variant="solid"
             sx={{
               zIndex: -1,
               borderColor: "white",
-              "--LinearProgress-radius": "0px",
+              "--LinearProgress-radius": "4px",
+              "--LinearProgress-progressThickness": "100%",
               "&::before": {
                 transition: "width 0.2s ease-in-out",
               },

@@ -5,7 +5,7 @@ import { craftingActions } from "./crafting_actions";
 export const crafting_slice = createSlice({
   name: "crafting",
   initialState: {
-    currentFilter: CRAFTABLE_CATEGORIES.weapon,
+    currentFilter: CRAFTABLE_CATEGORIES.material,
     currentSelectedCraft: null,
   },
   reducers: craftingActions,

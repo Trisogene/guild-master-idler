@@ -1,7 +1,7 @@
 import { Box } from "@mui/joy";
 
 const RecruitInfoInfo = () => {
-  return <Box>RecruitInfoInfo</Box>;
+  return <Box></Box>;
 };
 
 export default RecruitInfoInfo;

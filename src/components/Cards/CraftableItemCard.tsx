@@ -1,6 +1,8 @@
 import { Avatar, Box, Card, CardContent, Chip, Divider } from "@mui/joy";
+import { memo } from "react";
 import { ITEMS, T_Item } from "../../config/ITEMS";
 import { RECIPES, T_Recipe } from "../../config/RECIPES";
+import useSelectItemsFromStorage from "../../lib/hooks/useSelectItemsFromStorage";
 
 interface I_CraftableItemCard {
   item: string;
@@ -10,7 +12,15 @@ interface I_CraftableItemCard {
 const CraftableItemCard = ({ item, isSelected }: I_CraftableItemCard) => {
   const itemConfig: T_Item = ITEMS[item];
   const itemRecipe: T_Recipe = RECIPES[item];
-  console.log(itemRecipe);
+  const igredientsInStorage = useSelectItemsFromStorage(
+    Object.keys(itemRecipe.ingredients)
+  );
+
+  const isCraftable = Object.entries(itemRecipe.ingredients).every(
+    ([ingredientName, igredientQuantity]) => {
+      return igredientsInStorage[ingredientName]?.quantity >= igredientQuantity;
+    }
+  );
 
   return (
     <Card
@@ -44,11 +54,14 @@ const CraftableItemCard = ({ item, isSelected }: I_CraftableItemCard) => {
           ([ingredientName, igredientQuantity]) => {
             return (
               <Chip
-                size="sm"
+                sx={{ minWidth: "100%" }}
+                variant="solid"
+                color={isCraftable ? "warning" : "neutral"}
                 key={ingredientName}
                 startDecorator={<Avatar src={ITEMS[ingredientName].img} />}
               >
-                {igredientQuantity} {ingredientName}
+                {igredientsInStorage[ingredientName]?.quantity || 0} /{" "}
+                {igredientQuantity}
               </Chip>
             );
           }
@@ -58,4 +71,4 @@ const CraftableItemCard = ({ item, isSelected }: I_CraftableItemCard) => {
   );
 };
 
-export default CraftableItemCard;
+export default memo(CraftableItemCard);

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import CraftableItemCard from "../../components/Cards/CraftableItemCard";
 import CraftingInfo from "../../components/Info/CraftingInfo/CraftingInfo";
 import { CRAFTABLE_CATEGORIES, ITEMS } from "../../config/ITEMS";
-import { RECIPES } from "../../config/RECIPES";
+import { RECIPES, T_Recipes } from "../../config/RECIPES";
 import {
   setCurrentFilter,
   setCurrentSelectedCraft,
@@ -18,15 +18,22 @@ const CraftingView = () => {
   const currentFilter = useSelector(
     (state: T_ReduxState) => state.crafting.currentFilter
   );
-  const currentSelectedCraft = useSelector(
-    (state: T_ReduxState) => state.crafting.currentSelectedCraft
-  );
 
   const filteredRecipes = useMemo(() => {
-    return Object.values(RECIPES).filter((recipe) => {
-      return ITEMS[recipe.id].type === currentFilter;
+    let newFilteredRecipes: T_Recipes = {};
+
+    Object.values(RECIPES).forEach((recipe) => {
+      if (ITEMS[recipe.id].type === currentFilter) {
+        newFilteredRecipes[recipe.id] = recipe;
+      }
     });
+
+    return newFilteredRecipes;
   }, [currentFilter]);
+
+  const currentSelectedItem = useSelector(
+    (state: T_ReduxState) => state.crafting.currentSelectedCraft
+  );
 
   return (
     <Box
@@ -35,37 +42,26 @@ const CraftingView = () => {
       <PageHeader
         sx={{
           display: "flex",
-          flexDirection: "column",
           gap: 1,
-          bgcolor: "background.level1",
-          border: (theme) => `1px solid ${theme.palette.background.level2}`,
+          p: 1,
         }}
       >
-        <Box
-          sx={{
-            display: "flex",
-            gap: 1,
-            flexWrap: "wrap",
-            p: 1,
-          }}
-        >
-          {Object.values(CRAFTABLE_CATEGORIES).map((filter) => (
-            <Chip
-              key={filter}
-              variant={currentFilter === filter ? "solid" : "plain"}
-              onClick={() => dispatch(setCurrentFilter(filter))}
-              sx={{
-                minWidth: 80,
-                textAlign: "center",
-                height: 16,
-                textTransform: "uppercase",
-                fontSize: 12,
-              }}
-            >
-              {filter}
-            </Chip>
-          ))}
-        </Box>
+        {Object.values(CRAFTABLE_CATEGORIES).map((filter) => (
+          <Chip
+            key={filter}
+            variant={currentFilter === filter ? "solid" : "plain"}
+            onClick={() => dispatch(setCurrentFilter(filter))}
+            sx={{
+              minWidth: 80,
+              textAlign: "center",
+              height: 16,
+              textTransform: "uppercase",
+              fontSize: 12,
+            }}
+          >
+            {filter}
+          </Chip>
+        ))}
       </PageHeader>
 
       <PageBody
@@ -76,7 +72,7 @@ const CraftingView = () => {
           bgcolor: "background.level1",
         }}
       >
-        <Grid container spacing={1} sx={{}}>
+        <Grid container spacing={1}>
           {Object.values(filteredRecipes).map((item) => (
             <Grid
               key={item.id}
@@ -86,7 +82,7 @@ const CraftingView = () => {
               <CraftableItemCard
                 key={item.id}
                 item={item.id}
-                isSelected={currentSelectedCraft === item.id}
+                isSelected={currentSelectedItem === item.id}
               />
             </Grid>
           ))}
@@ -98,9 +94,7 @@ const CraftingView = () => {
           bgcolor: "background.level1",
         }}
       >
-        {currentSelectedCraft && (
-          <CraftingInfo recipe={RECIPES[currentSelectedCraft]} />
-        )}
+        {currentSelectedItem && <CraftingInfo itemId={currentSelectedItem} />}
       </PageBottom>
     </Box>
   );

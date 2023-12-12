@@ -6,6 +6,10 @@ export type T_Recipes = {
   [key: string]: T_Recipe;
 };
 
+export type T_ExtendedRecipes = {
+  [key: string]: T_ExtenedRecipe;
+};
+
 export type T_RecipeIngredient = Record<string, number>;
 
 export type T_Recipe = {
@@ -14,6 +18,10 @@ export type T_Recipe = {
   id: string;
   label: string;
   ingredients: T_RecipeIngredient;
+};
+
+export type T_ExtenedRecipe = T_Recipe & {
+  quantity: number;
 };
 
 /* -------------------------------- Materials ------------------------------- */

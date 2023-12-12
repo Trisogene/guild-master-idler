@@ -1,9 +1,11 @@
+import { Badge, Typography } from "@mui/joy";
 import Tab, { tabClasses } from "@mui/joy/Tab";
 import TabList from "@mui/joy/TabList";
 import Tabs from "@mui/joy/Tabs";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { LINKS } from "../../config/LINKS";
-import { changePage } from "../../lib/redux/navigation/navigation_slice";
+import { setPage } from "../../lib/redux/navigation/navigation_slice";
+import { T_ReduxState } from "../../types/types.d";
 
 interface I_NavigatorProps {
   currentPage: string;
@@ -11,9 +13,11 @@ interface I_NavigatorProps {
 
 const Navigator = ({ currentPage }: I_NavigatorProps) => {
   const dispatch = useDispatch();
-
+  const notifications = useSelector(
+    (state: T_ReduxState) => state.navigation.notifications
+  );
   const onChangeHandler = (_: any, value: any) => {
-    dispatch(changePage(Object.values(LINKS)[value].id));
+    dispatch(setPage(Object.values(LINKS)[value].id));
   };
 
   return (
@@ -41,9 +45,15 @@ const Navigator = ({ currentPage }: I_NavigatorProps) => {
         }}
       >
         {Object.values(LINKS).map((link) => (
-          <Tab key={link.label} disableIndicator>
-            {link.label}
-          </Tab>
+          <Badge
+            badgeInset="10%"
+            key={link.label}
+            badgeContent={notifications?.[link.id] || null}
+          >
+            <Tab disableIndicator>
+              <Typography>{link.label}</Typography>
+            </Tab>
+          </Badge>
         ))}
       </TabList>
     </Tabs>

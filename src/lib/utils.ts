@@ -45,3 +45,12 @@ export const getRandomCharacter = () => {
   };
   return randomCharacter;
 };
+
+export const pickKeys = (obj: Record<string, any>, keys: string[]) => {
+  return keys.reduce((newObj, key) => {
+    if (obj.hasOwnProperty(key)) {
+      newObj[key] = obj[key];
+    }
+    return newObj;
+  }, {} as Record<string, any>);
+};

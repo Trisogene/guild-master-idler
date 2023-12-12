@@ -31,9 +31,10 @@ export type T_Item = {
 /* -------------------------------------------------------------------------- */
 
 export const ITEM_CATEGORIES = {
+  resource: "resource",
   drop: "drop",
   material: "material",
-  resource: "resource",
+  equip: "equip",
 };
 
 export const CRAFTABLE_CATEGORIES = {

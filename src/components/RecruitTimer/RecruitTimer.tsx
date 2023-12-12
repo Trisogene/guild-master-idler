@@ -27,7 +27,7 @@ export default function RecruitTimer({}: I_RecruitTimerProps) {
       }}
     >
       <Typography
-        fontSize="sm"
+        fontSize={12}
         sx={{
           mixBlendMode: "color-dodge",
         }}

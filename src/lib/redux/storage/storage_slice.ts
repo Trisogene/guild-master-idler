@@ -11,6 +11,7 @@ export const storage_slice = createSlice({
   reducers: storageActions,
 });
 
-export const { giveContentReward, changeCurrentFilter } = storage_slice.actions;
+export const { setCurrentStorageFilter, addItem, removeItem } =
+  storage_slice.actions;
 
 export default storage_slice.reducer;

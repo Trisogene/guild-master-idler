@@ -1,6 +1,7 @@
 import { CssBaseline, CssVarsProvider, GlobalStyles } from "@mui/joy";
 import ReactDOM from "react-dom/client";
 import { Provider } from "react-redux";
+import "react-toastify/dist/ReactToastify.css";
 import App from "./App.jsx";
 import store from "./lib/redux/store.js";
 import { theme } from "./styles/theme.js";
@@ -26,6 +27,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
             },
           }}
         />
+
         <App />
       </Provider>
     </CssVarsProvider>

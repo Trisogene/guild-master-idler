@@ -52,7 +52,7 @@ export default function RecruitCard({ recruit, isSelected }: I_RecruitCard) {
 
       <CardContent>
         <Button
-          disabled={avaialablePicks === 0}
+          disabled={!isSelected || avaialablePicks === 0}
           color="neutral"
           size="sm"
           variant="solid"

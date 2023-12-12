@@ -1,20 +1,31 @@
-import { Avatar, Box, Button, Grid, Typography } from "@mui/joy";
+import { Avatar, Box, Button, Typography } from "@mui/joy";
+import { useMemo } from "react";
+import { useDispatch } from "react-redux";
 import { ITEMS } from "../../../config/ITEMS";
-import { T_Recipe } from "../../../config/RECIPES";
+import { RECIPES, T_Recipe } from "../../../config/RECIPES";
 import useSelectItemsFromStorage from "../../../lib/hooks/useSelectItemsFromStorage";
+import { craftItem } from "../../../lib/redux/crafting/crafting_thunks";
 
 interface I_CraftingInfo {
-  recipe: T_Recipe;
+  itemId: string;
 }
 
-const CraftingInfo = ({ recipe }: I_CraftingInfo) => {
+const CraftingInfo = ({ itemId }: I_CraftingInfo) => {
+  const recipe: T_Recipe = RECIPES[itemId];
+  const dispatch = useDispatch();
+
   const ingredientsInStorage = useSelectItemsFromStorage(
     Object.keys(recipe.ingredients)
   );
-  const canBeCrafted = Object.entries(recipe.ingredients).every(
-    ([ingredientId, requiredQuantity]) =>
-      ingredientsInStorage[ingredientId] >= requiredQuantity
-  );
+  const canBeCrafted = useMemo(() => {
+    return Object.entries(recipe.ingredients).every(
+      ([ingredientName, igredientQuantity]) => {
+        return (
+          ingredientsInStorage[ingredientName]?.quantity >= igredientQuantity
+        );
+      }
+    );
+  }, [ingredientsInStorage, recipe.ingredients]);
 
   return (
     <Box
@@ -54,46 +65,7 @@ const CraftingInfo = ({ recipe }: I_CraftingInfo) => {
         </Typography>
       </Box>
 
-      <Box className="CraftingInfo-body" sx={{ width: "100%", p: 1 }}>
-        <Grid container spacing={1} sx={{ width: "100%" }}>
-          {Object.entries(recipe.ingredients).map(
-            ([ingredientId, requiredQuantity]) => {
-              const ingredientItem = ITEMS[ingredientId];
-              return (
-                <Grid
-                  key={ingredientItem.id}
-                  xs={6}
-                  sx={{
-                    display: "flex",
-                    gap: 0,
-                    borderRadius: (theme) => theme.spacing(1),
-                    alignItems: "center",
-                    border: "1px solid",
-                    p: 0.5,
-                  }}
-                >
-                  {/* TODO - create the recipe required item icon */}
-                  <Avatar src={ingredientItem.img} size="sm" />
-                  <Box
-                    sx={{
-                      width: "100%",
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: "center",
-                    }}
-                  >
-                    <Typography>{ingredientItem.label}</Typography>
-                    <Typography fontSize="sm">
-                      {" "}
-                      {ingredientsInStorage[ingredientId]}/{requiredQuantity}
-                    </Typography>
-                  </Box>
-                </Grid>
-              );
-            }
-          )}
-        </Grid>
-      </Box>
+      <Box className="CraftingInfo-body" sx={{ width: "100%", p: 1 }}></Box>
 
       <Box
         className="CraftingInfo-footer"
@@ -104,6 +76,7 @@ const CraftingInfo = ({ recipe }: I_CraftingInfo) => {
           fullWidth
           disabled={!canBeCrafted}
           sx={{ height: "100%" }}
+          onClick={() => dispatch(craftItem(recipe.id))}
         >
           Craft
         </Button>

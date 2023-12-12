@@ -1,11 +1,13 @@
 import { Dispatch } from "@reduxjs/toolkit";
 import _ from "lodash";
 import { CONTENTS } from "../../../config/CONTENTS";
+import { LINKS } from "../../../config/LINKS";
 import { TIMERS } from "../../../config/TIMERS";
 import { T_ReduxState } from "../../../types/types.d";
+import { sendNotification } from "../navigation/navigation_slice";
 import { changePlayerContent } from "../player/players_slice";
 import { updateRecruits } from "../recruit/recruit_slice";
-import { giveContentReward } from "../storage/storage_slice";
+import { giveContentReward } from "../storage/storage_thunks";
 import { reset, tick } from "./timer_slice";
 
 export const startTimers =
@@ -26,6 +28,7 @@ export const startTimers =
       } else {
         dispatch(updateRecruits());
         dispatch(reset({ timerName: "recruit" }));
+        dispatch(sendNotification(LINKS.recruit.id));
       }
 
       /* ------------------------------ playersTimers ----------------------------- */

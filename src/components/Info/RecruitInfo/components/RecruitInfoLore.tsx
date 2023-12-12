@@ -1,5 +1,5 @@
 const RecruitInfoLore = () => {
-  return <div>RecruitInfoLore</div>;
+  return <div></div>;
 };
 
 export default RecruitInfoLore;

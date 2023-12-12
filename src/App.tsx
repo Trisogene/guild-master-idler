@@ -1,4 +1,4 @@
-import { Box } from "@mui/joy";
+import { Box, Modal, ModalClose, ModalDialog, Typography } from "@mui/joy";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./App.css";
@@ -18,11 +18,12 @@ function App() {
   const [isModalOpen, setIsModalOpen] = useState(true);
 
   useEffect(() => {
+    localStorage.clear();
     dispatch(startTimers());
-    const state = localStorage.getItem("state");
-    if (!state) {
-      dispatch(updateRecruits());
-    }
+    // const state = localStorage.getItem("state");
+    // if (!state) {
+    dispatch(updateRecruits());
+    // }
   }, [dispatch]);
 
   return (
@@ -75,9 +76,15 @@ function App() {
           </Box>
         </Box>
       </Box>
-      {/* <Modal open={isModalOpen} onClose={() => setIsModalOpen(false)}>
+      <Modal open={isModalOpen} onClose={() => setIsModalOpen(false)}>
         <ModalDialog>
           <ModalClose />
+          <Box>
+            <Typography fontSize="xl">Patch 0.04</Typography>
+            <Typography fontSize="sm">- Add crafting System</Typography>
+            <Typography fontSize="sm">- Navigator notifications</Typography>
+            <Typography fontSize="sm">- Removed Persistent state</Typography>
+          </Box>
           <Box>
             <Typography fontSize="xl">Patch 0.03</Typography>
             <Typography fontSize="sm">- Persistent state</Typography>
@@ -97,7 +104,7 @@ function App() {
             <Typography fontSize="sm">- Initial release</Typography>
           </Box>
         </ModalDialog>
-      </Modal> */}
+      </Modal>
     </>
   );
 }

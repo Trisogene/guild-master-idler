@@ -17,7 +17,6 @@ const useFilteredItems = () => {
     const newFilteredItems: T_ItemStacks = {};
 
     Object.values(storage).forEach((itemStack) => {
-      console.log(itemStack);
       if (ITEMS[itemStack.id].type === currentFilter) {
         newFilteredItems[itemStack.id] = {
           id: itemStack.id,

@@ -29,6 +29,10 @@ export const theme = extendTheme({
             background: theme.palette.background.level1,
             overflow: "hidden",
             gap: theme.spacing(0.5),
+            ":hover": {
+              cursor: "pointer",
+              background: theme.palette.background.level2,
+            },
           }),
         }),
       },
@@ -50,9 +54,14 @@ export const theme = extendTheme({
         root: ({ ownerState, theme }) => ({
           ...(ownerState.size === "sm" && {
             borderRadius: theme.vars.radius.md,
-            background: theme.palette.background.level2,
+            // background: theme.palette.background.level2,
           }),
         }),
+      },
+    },
+    JoyBadge: {
+      defaultProps: {
+        size: "sm",
       },
     },
     JoyButton: {

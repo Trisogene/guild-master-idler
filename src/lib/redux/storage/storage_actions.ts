@@ -1,34 +1,51 @@
 import { PayloadAction } from "@reduxjs/toolkit";
-import { CONTENTS } from "../../../config/CONTENTS";
 import { T_StorageSlice } from "../../../types/types.d";
-import { getReward } from "../../utils";
 
-const giveContentReward = (
-  state: T_StorageSlice,
-  { payload: contentId }: PayloadAction<string>
-) => {
-  const rewards = CONTENTS[contentId].rewards;
-  const reward = getReward(rewards);
-  if (reward) {
-    if (state.storage[reward.item]) {
-      state.storage[reward.item].quantity += 1;
-    } else {
-      state.storage[reward.item] = {
-        id: reward.item,
-        quantity: 1,
-      };
-    }
-  }
-};
-
-const changeCurrentFilter = (
+const setCurrentStorageFilter = (
   state: T_StorageSlice,
   { payload: filter }: PayloadAction<string>
 ) => {
   state.currentFilter = filter;
 };
 
+type T_AddItemReq = {
+  itemId: string;
+  quantity: number;
+};
+const addItem = (
+  state: T_StorageSlice,
+  { payload }: PayloadAction<T_AddItemReq>
+) => {
+  const { itemId, quantity } = payload;
+  if (state.storage[itemId]) {
+    state.storage[itemId].quantity += quantity;
+  } else {
+    state.storage[itemId] = {
+      id: itemId,
+      quantity,
+    };
+  }
+};
+
+type T_RemoveItemReq = {
+  itemId: string;
+  quantity: number;
+};
+const removeItem = (
+  state: T_StorageSlice,
+  { payload }: PayloadAction<T_RemoveItemReq>
+) => {
+  const { itemId, quantity } = payload;
+  if (state.storage[itemId]) {
+    state.storage[itemId].quantity -= quantity;
+    if (state.storage[itemId].quantity <= 0) {
+      delete state.storage[itemId];
+    }
+  }
+};
+
 export const storageActions = {
-  giveContentReward,
-  changeCurrentFilter,
+  setCurrentStorageFilter,
+  addItem,
+  removeItem,
 };

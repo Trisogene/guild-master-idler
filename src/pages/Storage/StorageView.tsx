@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import ItemCard from "../../components/Cards/ItemCard";
 import { ITEM_CATEGORIES } from "../../config/ITEMS";
 import useFilteredItems from "../../lib/hooks/useFilteredItems";
-import { changeCurrentFilter } from "../../lib/redux/storage/storage_slice";
+
+import { setCurrentStorageFilter } from "../../lib/redux/storage/storage_slice";
 import { PageBody, PageBottom, PageHeader } from "../../styles/PageStyles";
 import { T_ReduxState } from "../../types/types.d";
 
@@ -21,7 +22,7 @@ const StorageView = () => {
       <PageHeader
         sx={{
           display: "flex",
-          gap: 1,
+          gap: 0.5,
           border: (theme) => `1px solid ${theme.palette.background.level2}`,
           borderRadius: (theme) => theme.spacing(1),
           p: 1,
@@ -32,9 +33,8 @@ const StorageView = () => {
           <Chip
             key={filter}
             variant={currentFilter === filter ? "solid" : "plain"}
-            onClick={() => dispatch(changeCurrentFilter(filter))}
+            onClick={() => dispatch(setCurrentStorageFilter(filter))}
             sx={{
-              minWidth: 80,
               textAlign: "center",
               height: 16,
               textTransform: "uppercase",
@@ -56,7 +56,7 @@ const StorageView = () => {
       >
         <Grid container spacing={1}>
           {Object.values(filteredItems).map((itemStack) => (
-            <Grid key={itemStack.id} xs={4}>
+            <Grid key={itemStack.id} xs={6}>
               <ItemCard key={itemStack.id} itemStack={itemStack} />
             </Grid>
           ))}
