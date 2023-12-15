@@ -3,13 +3,17 @@ import { I_PlayerCard, T_ReduxState } from "../../types/types.d";
 import { Card, Divider, LinearProgress, Typography } from "@mui/joy";
 import Avatar from "@mui/joy/Avatar";
 import Box from "@mui/joy/Box";
+import { useAnimate } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
 import { CONTENTS } from "../../config/CONTENTS";
 import { RACES } from "../../config/RACES";
 import { setCurrentlySelectedPlayer } from "../../lib/redux/player/players_slice";
 import { AppDispatch } from "../../lib/redux/store";
+import { advancePlayerContent } from "../../lib/redux/timer/timer_thunks";
 
 const PlayerCard = ({ player, isSelected }: I_PlayerCard) => {
+  const [progressRef, animate] = useAnimate();
+
   const playerTimer = useSelector(
     (state: T_ReduxState) => state.timer.timers.players[player.id]
   );
@@ -29,7 +33,21 @@ const PlayerCard = ({ player, isSelected }: I_PlayerCard) => {
           bgcolor: isSelected ? "background.level2" : "background.level1",
         }}
         onClick={() => {
-          dispatch(setCurrentlySelectedPlayer(player.id));
+          if (!isSelected) {
+            dispatch(setCurrentlySelectedPlayer(player.id));
+          }
+          dispatch(advancePlayerContent(player.id));
+          animate(
+            progressRef.current,
+            {
+              scale: [1, 1.1, 1],
+              filter: ["brightness(1)", "brightness(1.2)", "brightness(1)"],
+            },
+            {
+              duration: 0.5,
+              ease: "easeInOut",
+            }
+          );
         }}
       >
         <Box
@@ -56,6 +74,7 @@ const PlayerCard = ({ player, isSelected }: I_PlayerCard) => {
         <Divider orientation="horizontal" />
 
         <Box
+          ref={progressRef}
           className="PlayerCard-timer"
           sx={{
             zIndex: 1,

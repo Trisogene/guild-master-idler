@@ -11,7 +11,8 @@ export const giveContentReward =
     const rewards = CONTENTS[contentId].rewards;
     const reward = getReward(rewards);
     if (reward) {
-      dispatch(addItem({ itemId: reward.item, quantity: 1 }));
+      const quantity = Math.floor(Math.random() * 10) + 1;
+      dispatch(addItem({ itemId: reward.item, quantity: quantity }));
       dispatch(sendNotification(LINKS.storage.id));
     }
   };

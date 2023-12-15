@@ -1,4 +1,11 @@
-import { Box, Modal, ModalClose, ModalDialog, Typography } from "@mui/joy";
+import {
+  Box,
+  Card,
+  Modal,
+  ModalClose,
+  ModalDialog,
+  Typography,
+} from "@mui/joy";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./App.css";
@@ -79,29 +86,52 @@ function App() {
       <Modal open={isModalOpen} onClose={() => setIsModalOpen(false)}>
         <ModalDialog>
           <ModalClose />
-          <Box>
-            <Typography fontSize="xl">Patch 0.04</Typography>
-            <Typography fontSize="sm">- Add crafting System</Typography>
-            <Typography fontSize="sm">- Navigator notifications</Typography>
-            <Typography fontSize="sm">- Removed Persistent state</Typography>
-          </Box>
-          <Box>
-            <Typography fontSize="xl">Patch 0.03</Typography>
-            <Typography fontSize="sm">- Persistent state</Typography>
-            <Typography fontSize="sm">- Max 2 recruits</Typography>
-            <Typography fontSize="sm">- Minor fixes</Typography>
-          </Box>
-
-          <Box>
-            <Typography fontSize="xl">Patch 0.02</Typography>
-            <Typography fontSize="sm">- Storage & Crafting</Typography>
-            <Typography fontSize="sm">- New UI</Typography>
-            <Typography fontSize="sm">- Minor fixes</Typography>
-          </Box>
-
-          <Box>
-            <Typography fontSize="xl">Patch 0.01</Typography>
-            <Typography fontSize="sm">- Initial release</Typography>
+          <Box sx={{ display: "flex", gap: 2 }}>
+            <Card size="md">
+              <Typography fontSize="xl" sx={{ fontWeight: "bold" }}>
+                PATCHS
+              </Typography>
+              <Box>
+                <Typography fontSize="xl">Patch 0.04.1</Typography>
+                <Typography fontSize="sm">
+                  - Players can be clicked to advance their content
+                </Typography>
+                <Typography fontSize="sm">
+                  - Rewards are now random between 1 and 10
+                </Typography>
+              </Box>
+              <Box>
+                <Typography fontSize="xl">Patch 0.04</Typography>
+                <Typography fontSize="sm">- Add crafting System</Typography>
+                <Typography fontSize="sm">- Navigator notifications</Typography>
+              </Box>
+              <Box>
+                <Typography fontSize="xl">Patch 0.03</Typography>
+                <Typography fontSize="sm">- Max 2 recruits</Typography>
+                <Typography fontSize="sm">- Minor fixes</Typography>
+              </Box>
+              <Box>
+                <Typography fontSize="xl">Patch 0.02</Typography>
+                <Typography fontSize="sm">- Storage & Crafting</Typography>
+                <Typography fontSize="sm">- New UI</Typography>
+                <Typography fontSize="sm">- Minor fixes</Typography>
+              </Box>
+              <Box>
+                <Typography fontSize="xl">Patch 0.01</Typography>
+                <Typography fontSize="sm">- Initial release</Typography>
+              </Box>
+            </Card>
+            <Card size="md">
+              {" "}
+              <Typography fontSize="xl" sx={{ fontWeight: "bold" }}>
+                UPCOMING
+              </Typography>
+              <Box>
+                <Typography fontSize="sm">- Add equip System</Typography>
+                <Typography fontSize="sm">- Add real recruits</Typography>
+                <Typography fontSize="sm">- Add battle system</Typography>
+              </Box>
+            </Card>
           </Box>
         </ModalDialog>
       </Modal>

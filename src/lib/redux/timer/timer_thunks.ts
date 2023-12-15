@@ -38,17 +38,41 @@ export const startTimers =
         const isContentComplete = playerTimer >= playerContent.timeToComplete;
 
         if (isContentComplete) {
-          dispatch(reset({ timerName: "players", timerId: player.id }));
-          dispatch(giveContentReward(player.currentContent));
-          dispatch(
-            changePlayerContent({
-              playerId: player.id,
-              contentId: _.sample(Object.keys(CONTENTS)) || "idle",
-            })
-          );
+          completeContent(player.id, player.currentContent, dispatch);
         } else {
           dispatch(tick({ timerName: "players", timerId: player.id }));
         }
       });
     }, 1000);
   };
+
+export const advancePlayerContent =
+  (playerId: string) => (dispatch: Dispatch, getState: () => T_ReduxState) => {
+    const state = getState();
+    const player = state.players.players[playerId];
+    const playerContent = CONTENTS[player.currentContent];
+    const playerTimer = state.timer.timers.players[playerId];
+    const isContentComplete = playerTimer >= playerContent.timeToComplete;
+
+    if (isContentComplete) {
+      completeContent(playerId, player.currentContent, dispatch);
+    } else {
+      dispatch(tick({ timerName: "players", timerId: playerId }));
+    }
+  };
+
+/* ------------------------------ SubFunctions ------------------------------ */
+const completeContent = (
+  playerId: string,
+  contentId: string,
+  dispatch: Dispatch
+) => {
+  dispatch(reset({ timerName: "players", timerId: playerId }));
+  dispatch(giveContentReward(contentId));
+  dispatch(
+    changePlayerContent({
+      playerId,
+      contentId: _.sample(Object.keys(CONTENTS)) || "idle",
+    })
+  );
+};
