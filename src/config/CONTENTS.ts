@@ -1,7 +1,7 @@
-import { T_ContentsConfig } from "../types/types.d";
 import { ITEMS_DROP, ITEMS_RESOURCES } from "./ITEMS";
+import { T_Contents } from "./config";
 
-export const CONTENTS: T_ContentsConfig = {
+export const CONTENTS: T_Contents = {
   sleeping: {
     id: "sleeping",
     label: "Sleeping",

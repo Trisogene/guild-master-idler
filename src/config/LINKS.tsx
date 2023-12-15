@@ -2,9 +2,9 @@ import CraftingView from "../pages/Crafting/CraftingView";
 import Guild from "../pages/Guild/GuildView";
 import Recruit from "../pages/Recruit/RecruitView";
 import Storage from "../pages/Storage/StorageView";
-import { T_LinksConfig } from "../types/types.d";
+import { T_Links } from "./config";
 
-export const LINKS: T_LinksConfig = {
+export const LINKS: T_Links = {
   recruit: {
     id: "recruit",
     label: "Recruit",

@@ -1,21 +1,16 @@
-import {
-  Box,
-  Card,
-  Modal,
-  ModalClose,
-  ModalDialog,
-  Typography,
-} from "@mui/joy";
+import { Box } from "@mui/joy";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { version } from "../package.json";
 import "./App.css";
 import Navigator from "./components/Navigator/Navigator";
 import Topbar from "./components/Topbar/Topbar";
+
 import { LINKS } from "./config/LINKS";
 import { updateRecruits } from "./lib/redux/recruit/recruit_slice";
 import { AppDispatch } from "./lib/redux/store";
+import { T_ReduxState } from "./lib/redux/store.d";
 import { startTimers } from "./lib/redux/timer/timer_thunks";
-import { T_ReduxState } from "./types/types.d";
 
 function App() {
   const currentPage = useSelector(
@@ -25,13 +20,20 @@ function App() {
   const [isModalOpen, setIsModalOpen] = useState(true);
 
   useEffect(() => {
-    localStorage.clear();
-    dispatch(startTimers());
-    // const state = localStorage.getItem("state");
-    // if (!state) {
-    dispatch(updateRecruits());
-    // }
+    handlePersistance();
   }, [dispatch]);
+
+  const handlePersistance = () => {
+    dispatch(startTimers());
+    const localStorageVersion = localStorage.getItem("version");
+    if (!localStorageVersion || localStorageVersion !== version) {
+      localStorage.clear();
+      localStorage.setItem("version", version);
+      dispatch(updateRecruits());
+    } else {
+      const state = localStorage.getItem("state");
+    }
+  };
 
   return (
     <>
@@ -83,58 +85,6 @@ function App() {
           </Box>
         </Box>
       </Box>
-      <Modal open={isModalOpen} onClose={() => setIsModalOpen(false)}>
-        <ModalDialog>
-          <ModalClose />
-          <Box sx={{ display: "flex", gap: 2 }}>
-            <Card size="md">
-              <Typography fontSize="xl" sx={{ fontWeight: "bold" }}>
-                PATCHS
-              </Typography>
-              <Box>
-                <Typography fontSize="xl">Patch 0.04.1</Typography>
-                <Typography fontSize="sm">
-                  - Players can be clicked to advance their content
-                </Typography>
-                <Typography fontSize="sm">
-                  - Rewards are now random between 1 and 10
-                </Typography>
-              </Box>
-              <Box>
-                <Typography fontSize="xl">Patch 0.04</Typography>
-                <Typography fontSize="sm">- Add crafting System</Typography>
-                <Typography fontSize="sm">- Navigator notifications</Typography>
-              </Box>
-              <Box>
-                <Typography fontSize="xl">Patch 0.03</Typography>
-                <Typography fontSize="sm">- Max 2 recruits</Typography>
-                <Typography fontSize="sm">- Minor fixes</Typography>
-              </Box>
-              <Box>
-                <Typography fontSize="xl">Patch 0.02</Typography>
-                <Typography fontSize="sm">- Storage & Crafting</Typography>
-                <Typography fontSize="sm">- New UI</Typography>
-                <Typography fontSize="sm">- Minor fixes</Typography>
-              </Box>
-              <Box>
-                <Typography fontSize="xl">Patch 0.01</Typography>
-                <Typography fontSize="sm">- Initial release</Typography>
-              </Box>
-            </Card>
-            <Card size="md">
-              {" "}
-              <Typography fontSize="xl" sx={{ fontWeight: "bold" }}>
-                UPCOMING
-              </Typography>
-              <Box>
-                <Typography fontSize="sm">- Add equip System</Typography>
-                <Typography fontSize="sm">- Add real recruits</Typography>
-                <Typography fontSize="sm">- Add battle system</Typography>
-              </Box>
-            </Card>
-          </Box>
-        </ModalDialog>
-      </Modal>
     </>
   );
 }

@@ -2,7 +2,7 @@ import isEqual from "fast-deep-equal";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { ITEMS } from "../../config/ITEMS";
-import { T_ItemStacks } from "../../config/config";
+import { T_Item_Stacks } from "../../config/config";
 import { T_ReduxState } from "../../types/types.d";
 
 const useFilteredItems = () => {
@@ -11,10 +11,10 @@ const useFilteredItems = () => {
     (state: T_ReduxState) => state.storage.currentFilter
   );
 
-  const [filteredItems, setFilteredItems] = useState<T_ItemStacks>({});
+  const [filteredItems, setFilteredItems] = useState<T_Item_Stacks>({});
 
   useEffect(() => {
-    const newFilteredItems: T_ItemStacks = {};
+    const newFilteredItems: T_Item_Stacks = {};
 
     Object.values(storage).forEach((itemStack) => {
       if (ITEMS[itemStack.id].type === currentFilter) {

@@ -4,7 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import CraftableItemCard from "../../components/Cards/CraftableItemCard";
 import CraftingInfo from "../../components/Info/CraftingInfo/CraftingInfo";
 import { CRAFTABLE_CATEGORIES, ITEMS } from "../../config/ITEMS";
-import { RECIPES, T_Recipes } from "../../config/RECIPES";
+import { RECIPES } from "../../config/RECIPES";
+import { T_Recipes } from "../../config/config";
 import {
   setCurrentFilter,
   setCurrentSelectedCraft,

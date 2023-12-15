@@ -2,10 +2,16 @@ import { Avatar, Button, Card, CardContent, Divider } from "@mui/joy";
 import Box from "@mui/joy/Box";
 import { useDispatch, useSelector } from "react-redux";
 import { RACES } from "../../config/RACES";
+import { T_PlayerConfig } from "../../config/config";
 import { setCurrentSelectedRecruit } from "../../lib/redux/recruit/recruit_slice";
 import { recruitPlayer } from "../../lib/redux/recruit/recruit_thunks";
 import { AppDispatch } from "../../lib/redux/store";
-import { I_RecruitCard, T_ReduxState } from "../../types/types.d";
+import { T_ReduxState } from "../../types/types.d";
+
+interface I_RecruitCard {
+  recruit: T_PlayerConfig;
+  isSelected: boolean;
+}
 
 export default function RecruitCard({ recruit, isSelected }: I_RecruitCard) {
   const avaialablePicks = useSelector(

@@ -1,28 +1,8 @@
 import temp_material_icon from "../assets/items/wood.svg";
 import { ITEMS_EQUIP, ITEMS_MATERIALS, ITEMS_RESOURCES } from "./ITEMS";
+import { T_Recipes } from "./config";
 
 /* ---------------------------------- Types --------------------------------- */
-export type T_Recipes = {
-  [key: string]: T_Recipe;
-};
-
-export type T_ExtendedRecipes = {
-  [key: string]: T_ExtenedRecipe;
-};
-
-export type T_RecipeIngredient = Record<string, number>;
-
-export type T_Recipe = {
-  description: string;
-  icon: string;
-  id: string;
-  label: string;
-  ingredients: T_RecipeIngredient;
-};
-
-export type T_ExtenedRecipe = T_Recipe & {
-  quantity: number;
-};
 
 /* -------------------------------- Materials ------------------------------- */
 const RECIPES_MATERIAL = {

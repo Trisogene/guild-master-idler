@@ -11,7 +11,7 @@ import {
 } from "../../styles/PageStyles";
 import { T_ReduxState } from "../../types/types.d";
 
-const Recruit = () => {
+const RecruitView = () => {
   const recruits = useSelector((state: T_ReduxState) => state.recruit.recruits);
   const currentSelectedRecruit = useSelector(
     (state: T_ReduxState) => state.recruit.currentlySelectedRecruit
@@ -60,4 +60,4 @@ const Recruit = () => {
   );
 };
 
-export default Recruit;
+export default RecruitView;

@@ -1,9 +1,9 @@
 import { Avatar, Box, Card, CardContent, Divider } from "@mui/joy";
 import { ITEMS } from "../../config/ITEMS";
-import { T_ItemStack } from "../../config/config";
+import { T_Item_Stack } from "../../config/config";
 
 interface I_ItemCard {
-  itemStack: T_ItemStack;
+  itemStack: T_Item_Stack;
 }
 
 const ItemCard = ({ itemStack }: I_ItemCard) => {

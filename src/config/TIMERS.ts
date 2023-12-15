@@ -1,6 +1,6 @@
-import { T_TimersConfig } from "../types/types.d";
+import { T_Timers } from "./config";
 
-export const TIMERS: T_TimersConfig = {
+export const TIMERS: T_Timers = {
   recruit: {
     id: "recruit",
     name: "Recruit",

@@ -1,7 +1,7 @@
-import { T_RecruitsConfig } from "../types/types.d";
 import { RACES } from "./RACES";
+import { T_Recruits } from "./config";
 
-export const RECRUITS: T_RecruitsConfig = {
+export const RECRUITS: T_Recruits = {
   giantito: {
     name: "Giantito",
     race: RACES.giant.id,

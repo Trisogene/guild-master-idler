@@ -1,11 +1,12 @@
 import uuid from "react-uuid";
 import { RECRUITS } from "../config/RECRUITS";
-import { T_ContentRewardConfig, T_ReduxState } from "../types/types.d";
+import { T_ReduxState } from "../types/types.d";
 
 import _ from "lodash";
 import { CONTENTS } from "../config/CONTENTS";
+import { T_ContentReward } from "../config/config";
 
-export const getReward = (rewards: T_ContentRewardConfig[]) => {
+export const getReward = (rewards: T_ContentReward[]) => {
   const random = _.random(0, 1, true);
   let cumulativeProbability = 0;
   return _.find(rewards, (reward) => {

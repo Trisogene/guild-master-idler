@@ -10,7 +10,7 @@ import {
 } from "../../styles/PageStyles";
 import { T_ReduxState } from "../../types/types.d";
 
-const Guild = () => {
+const GuildView = () => {
   const players = useSelector((state: T_ReduxState) => state.players.players);
   const currentlySelectedPlayer = useSelector(
     (state: T_ReduxState) => state.players.currentlySelectedPlayer
@@ -49,4 +49,4 @@ const Guild = () => {
   );
 };
 
-export default Guild;
+export default GuildView;

@@ -9,22 +9,7 @@ import stone_icon from "../assets/items/stone.svg";
 import temp_armor_icon from "../assets/items/temp_armor.svg";
 import temp_weapon_icon from "../assets/items/temp_weapon.svg";
 import wood_icon from "../assets/items/wood.svg";
-
-/* -------------------------------------------------------------------------- */
-/*                                    Types                                   */
-/* -------------------------------------------------------------------------- */
-export type T_Items = {
-  [key: string]: T_Item;
-};
-
-export type T_Item = {
-  id: string;
-  label: string;
-  description: string;
-  type: string;
-  subType: string;
-  img: string;
-};
+import { T_Items } from "./config";
 
 /* -------------------------------------------------------------------------- */
 /*                                    Enums                                   */

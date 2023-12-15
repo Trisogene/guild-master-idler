@@ -1,4 +1,4 @@
-import { I_PlayerCard, T_ReduxState } from "../../types/types.d";
+import { T_ReduxState } from "../../types/types.d";
 
 import { Card, Divider, LinearProgress, Typography } from "@mui/joy";
 import Avatar from "@mui/joy/Avatar";
@@ -7,9 +7,15 @@ import { useAnimate } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
 import { CONTENTS } from "../../config/CONTENTS";
 import { RACES } from "../../config/RACES";
+import { T_PlayerConfig } from "../../config/config";
 import { setCurrentlySelectedPlayer } from "../../lib/redux/player/players_slice";
 import { AppDispatch } from "../../lib/redux/store";
 import { advancePlayerContent } from "../../lib/redux/timer/timer_thunks";
+
+interface I_PlayerCard {
+  player: T_PlayerConfig;
+  isSelected: boolean;
+}
 
 const PlayerCard = ({ player, isSelected }: I_PlayerCard) => {
   const [progressRef, animate] = useAnimate();
