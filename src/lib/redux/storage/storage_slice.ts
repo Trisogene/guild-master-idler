@@ -6,7 +6,7 @@ export const storage_slice = createSlice({
   name: "storage",
   initialState: {
     storage: {},
-    currentFilter: ITEM_CATEGORIES.resource,
+    currentFilter: ITEM_CATEGORIES.resource.id,
   },
   reducers: storageActions,
 });

@@ -5,7 +5,7 @@ import Tabs from "@mui/joy/Tabs";
 import { useDispatch, useSelector } from "react-redux";
 import { LINKS } from "../../config/LINKS";
 import { setPage } from "../../lib/redux/navigation/navigation_slice";
-import { T_ReduxState } from "../../types/types.d";
+import { T_ReduxState } from "../../lib/redux/store.d";
 
 interface I_NavigatorProps {
   currentPage: string;
@@ -24,7 +24,7 @@ const Navigator = ({ currentPage }: I_NavigatorProps) => {
     <Tabs
       orientation="vertical"
       defaultValue={0}
-      sx={{ bgcolor: "transparent" }}
+      sx={{ bgcolor: "transparent", userSelect: "none" }}
       onChange={onChangeHandler}
       value={Object.values(LINKS).findIndex((link) => link.id === currentPage)}
     >

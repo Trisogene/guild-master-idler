@@ -1,7 +1,8 @@
 import { Avatar, Box, Card, CardContent, Chip, Divider } from "@mui/joy";
 import { memo } from "react";
-import { ITEMS, T_Item } from "../../config/ITEMS";
-import { RECIPES, T_Recipe } from "../../config/RECIPES";
+import { ITEMS } from "../../config/ITEMS";
+import { RECIPES } from "../../config/RECIPES";
+import { T_Item, T_Recipe } from "../../config/config";
 import useSelectItemsFromStorage from "../../lib/hooks/useSelectItemsFromStorage";
 
 interface I_CraftableItemCard {
@@ -25,6 +26,7 @@ const CraftableItemCard = ({ item, isSelected }: I_CraftableItemCard) => {
   return (
     <Card
       sx={{
+        alignItems: "center",
         bgcolor: isSelected ? "background.level2" : "background.level1",
       }}
     >
@@ -32,7 +34,6 @@ const CraftableItemCard = ({ item, isSelected }: I_CraftableItemCard) => {
         sx={{
           display: "flex",
           gap: 1,
-          width: "100%",
         }}
       >
         <Avatar className="PlayerCard-avatar" src={itemConfig.img} />
@@ -48,7 +49,10 @@ const CraftableItemCard = ({ item, isSelected }: I_CraftableItemCard) => {
           <Box sx={{ height: 12, fontSize: 10 }}>{itemConfig.label}</Box>
         </Box>
       </Box>
-      <Divider orientation="horizontal" />
+      <Divider
+        orientation="horizontal"
+        sx={{ width: "90%", alignSelf: "center" }}
+      />
       <CardContent>
         {Object.entries(itemRecipe.ingredients).map(
           ([ingredientName, igredientQuantity]) => {
@@ -56,7 +60,7 @@ const CraftableItemCard = ({ item, isSelected }: I_CraftableItemCard) => {
               <Chip
                 sx={{ minWidth: "100%" }}
                 variant="solid"
-                color={isCraftable ? "warning" : "neutral"}
+                color={isCraftable ? "success" : "neutral"}
                 key={ingredientName}
                 startDecorator={<Avatar src={ITEMS[ingredientName].img} />}
               >

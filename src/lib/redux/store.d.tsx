@@ -17,6 +17,7 @@ export type T_ReduxState = {
 /* -------------------------------------------------------------------------- */
 export type T_CraftingSlice = {
   currentFilter: string;
+  currentSelectedCraft: string | null;
 };
 
 /* -------------------------------------------------------------------------- */
@@ -46,6 +47,7 @@ export type T_PlayersSlice = {
 export type T_RecruitSlice = {
   recruits: T_PlayersConfigs;
   currentlySelectedRecruit: string | null;
+  avaialablePicks: number;
 };
 
 /* -------------------------------------------------------------------------- */
@@ -63,4 +65,7 @@ export type T_StorageSlice = {
 /* -------------------------------------------------------------------------- */
 export type T_NavigationSlice = {
   currentPage: string;
+  notifications: {
+    [key: string]: number;
+  };
 };

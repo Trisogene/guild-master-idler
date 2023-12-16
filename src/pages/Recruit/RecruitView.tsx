@@ -3,13 +3,13 @@ import { useSelector } from "react-redux";
 import RecruitCard from "../../components/Cards/RecruitCard";
 import RecruitInfo from "../../components/Info/RecruitInfo/RecruitInfo";
 import RecruitTimer from "../../components/RecruitTimer/RecruitTimer";
+import { T_ReduxState } from "../../lib/redux/store.d";
 import {
   Page,
   PageBody,
   PageBottom,
   PageHeader,
 } from "../../styles/PageStyles";
-import { T_ReduxState } from "../../types/types.d";
 
 const RecruitView = () => {
   const recruits = useSelector((state: T_ReduxState) => state.recruit.recruits);
@@ -38,7 +38,7 @@ const RecruitView = () => {
 
         <Grid container spacing={1}>
           {Object.values(recruits).map((recruit) => (
-            <Grid xs={6} key={recruit.id}>
+            <Grid key={recruit.id} xs={6} sm={4} md={3} lg={2}>
               <RecruitCard
                 key={recruit.id}
                 recruit={recruit}
@@ -53,7 +53,7 @@ const RecruitView = () => {
         {currentSelectedRecruit && recruits[currentSelectedRecruit] ? (
           <RecruitInfo recruit={recruits[currentSelectedRecruit]} />
         ) : (
-          <>??</>
+          <></>
         )}
       </PageBottom>
     </Page>

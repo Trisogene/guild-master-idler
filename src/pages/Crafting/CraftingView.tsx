@@ -1,17 +1,22 @@
-import { Box, Chip, Grid } from "@mui/joy";
+import { Avatar, Button, Grid } from "@mui/joy";
 import { useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CraftableItemCard from "../../components/Cards/CraftableItemCard";
 import CraftingInfo from "../../components/Info/CraftingInfo/CraftingInfo";
-import { CRAFTABLE_CATEGORIES, ITEMS } from "../../config/ITEMS";
+import { ITEMS, ITEM_CATEGORIES } from "../../config/ITEMS";
 import { RECIPES } from "../../config/RECIPES";
 import { T_Recipes } from "../../config/config";
 import {
   setCurrentFilter,
   setCurrentSelectedCraft,
 } from "../../lib/redux/crafting/crafting_slice";
-import { PageBody, PageBottom, PageHeader } from "../../styles/PageStyles";
-import { T_ReduxState } from "../../types/types.d";
+import { T_ReduxState } from "../../lib/redux/store.d";
+import {
+  Page,
+  PageBody,
+  PageBottom,
+  PageHeader,
+} from "../../styles/PageStyles";
 
 const CraftingView = () => {
   const dispatch = useDispatch();
@@ -37,32 +42,26 @@ const CraftingView = () => {
   );
 
   return (
-    <Box
-      sx={{ display: "flex", flexDirection: "column", height: "100%", gap: 1 }}
-    >
+    <Page>
       <PageHeader
         sx={{
-          display: "flex",
-          gap: 1,
-          p: 1,
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "space-evenly",
         }}
       >
-        {Object.values(CRAFTABLE_CATEGORIES).map((filter) => (
-          <Chip
-            key={filter}
-            variant={currentFilter === filter ? "solid" : "plain"}
-            onClick={() => dispatch(setCurrentFilter(filter))}
-            sx={{
-              minWidth: 80,
-              textAlign: "center",
-              height: 16,
-              textTransform: "uppercase",
-              fontSize: 12,
-            }}
-          >
-            {filter}
-          </Chip>
-        ))}
+        {Object.values(ITEM_CATEGORIES).map((category) => {
+          return category.craftable ? (
+            <Button
+              fullWidth
+              onClick={() => dispatch(setCurrentFilter(category.id))}
+              variant={currentFilter === category.id ? "solid" : "plain"}
+              color="neutral"
+              key={category.label}
+              startDecorator={<Avatar src={category.icon} />}
+            />
+          ) : null;
+        })}
       </PageHeader>
 
       <PageBody
@@ -78,6 +77,9 @@ const CraftingView = () => {
             <Grid
               key={item.id}
               xs={6}
+              sm={4}
+              md={3}
+              lg={2}
               onClick={() => dispatch(setCurrentSelectedCraft(item.id))}
             >
               <CraftableItemCard
@@ -97,7 +99,7 @@ const CraftingView = () => {
       >
         {currentSelectedItem && <CraftingInfo itemId={currentSelectedItem} />}
       </PageBottom>
-    </Box>
+    </Page>
   );
 };
 

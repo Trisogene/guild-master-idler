@@ -2,7 +2,8 @@ import { Avatar, Box, Button, Typography } from "@mui/joy";
 import { useMemo } from "react";
 import { useDispatch } from "react-redux";
 import { ITEMS } from "../../../config/ITEMS";
-import { RECIPES, T_Recipe } from "../../../config/RECIPES";
+import { RECIPES } from "../../../config/RECIPES";
+import { T_Recipe } from "../../../config/config";
 import useSelectItemsFromStorage from "../../../lib/hooks/useSelectItemsFromStorage";
 import { craftItem } from "../../../lib/redux/crafting/crafting_thunks";
 
@@ -73,6 +74,7 @@ const CraftingInfo = ({ itemId }: I_CraftingInfo) => {
       >
         <Button
           variant="solid"
+          color="success"
           fullWidth
           disabled={!canBeCrafted}
           sx={{ height: "100%" }}

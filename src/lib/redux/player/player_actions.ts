@@ -1,6 +1,6 @@
-import { T_PlayerConfig, T_PlayersSlice } from "../../../types/types.d";
-
 import { PayloadAction } from "@reduxjs/toolkit";
+import { T_PlayerConfig } from "../../../config/config";
+import { T_PlayersSlice } from "../store.d";
 
 const addPlayer = (
   state: T_PlayersSlice,

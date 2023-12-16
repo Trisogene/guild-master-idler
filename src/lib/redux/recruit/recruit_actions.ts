@@ -1,9 +1,10 @@
 import { PayloadAction } from "@reduxjs/toolkit";
-import { T_PlayersConfig, T_RecruitSlice } from "../../../types/types.d";
+import { T_PlayersConfigs } from "../../../config/config";
 import { getRandomCharacter } from "../../utils";
+import { T_RecruitSlice } from "../store.d";
 
 const updateRecruits = (state: T_RecruitSlice) => {
-  const randomRecruits: T_PlayersConfig = {};
+  const randomRecruits: T_PlayersConfigs = {};
   for (let i = 0; i < 5; i++) {
     const randomRecruit = getRandomCharacter();
     randomRecruits[randomRecruit.id] = randomRecruit;

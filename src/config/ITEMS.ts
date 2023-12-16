@@ -16,10 +16,30 @@ import { T_Items } from "./config";
 /* -------------------------------------------------------------------------- */
 
 export const ITEM_CATEGORIES = {
-  resource: "resource",
-  drop: "drop",
-  material: "material",
-  equip: "equip",
+  resource: {
+    id: "resource",
+    label: "Resource",
+    icon: fiber_icon,
+    craftable: false,
+  },
+  drop: {
+    id: "drop",
+    label: "Drop",
+    icon: artifact_icon,
+    craftable: false,
+  },
+  material: {
+    id: "material",
+    label: "Material",
+    icon: fiber_icon,
+    craftable: true,
+  },
+  equip: {
+    id: "equip",
+    label: "Equip",
+    icon: temp_weapon_icon,
+    craftable: true,
+  },
 };
 
 export const CRAFTABLE_CATEGORIES = {
@@ -39,7 +59,7 @@ export const ITEMS_RESOURCES = {
     img: fiber_icon,
     label: "Fiber",
     subType: "",
-    type: ITEM_CATEGORIES.resource,
+    type: ITEM_CATEGORIES.resource.id,
   },
   hide: {
     description: "A bundle of hide.",
@@ -47,7 +67,7 @@ export const ITEMS_RESOURCES = {
     img: hide_icon,
     label: "Hide",
     subType: "",
-    type: ITEM_CATEGORIES.resource,
+    type: ITEM_CATEGORIES.resource.id,
   },
   ore: {
     description: "A bundle of ore.",
@@ -55,7 +75,7 @@ export const ITEMS_RESOURCES = {
     img: ore_icon,
     label: "Ore",
     subType: "",
-    type: ITEM_CATEGORIES.resource,
+    type: ITEM_CATEGORIES.resource.id,
   },
   stone: {
     description: "A bundle of stone.",
@@ -63,7 +83,7 @@ export const ITEMS_RESOURCES = {
     img: stone_icon,
     label: "Stone",
     subType: "",
-    type: ITEM_CATEGORIES.resource,
+    type: ITEM_CATEGORIES.resource.id,
   },
   wood: {
     description: "A bundle of wood.",
@@ -71,7 +91,7 @@ export const ITEMS_RESOURCES = {
     img: wood_icon,
     label: "Wood",
     subType: "",
-    type: ITEM_CATEGORIES.resource,
+    type: ITEM_CATEGORIES.resource.id,
   },
 };
 
@@ -81,7 +101,7 @@ export const ITEMS_MATERIALS = {
     id: "cloth",
     label: "Cloth",
     description: "A bundle of cloth.",
-    type: ITEM_CATEGORIES.material,
+    type: ITEM_CATEGORIES.material.id,
     subType: "",
     img: fiber_icon,
   },
@@ -89,7 +109,7 @@ export const ITEMS_MATERIALS = {
     id: "plank",
     label: "Plank",
     description: "A bundle of planks.",
-    type: ITEM_CATEGORIES.material,
+    type: ITEM_CATEGORIES.material.id,
     subType: "",
     img: wood_icon,
   },
@@ -97,7 +117,7 @@ export const ITEMS_MATERIALS = {
     id: "stoneBlock",
     label: "Stone Block",
     description: "A bundle of stone blocks.",
-    type: ITEM_CATEGORIES.material,
+    type: ITEM_CATEGORIES.material.id,
     subType: "",
     img: stone_icon,
   },
@@ -105,7 +125,7 @@ export const ITEMS_MATERIALS = {
     id: "metalBar",
     label: "Metal Bar",
     description: "A bundle of metal bars.",
-    type: ITEM_CATEGORIES.material,
+    type: ITEM_CATEGORIES.material.id,
     subType: "",
     img: ore_icon,
   },
@@ -113,7 +133,7 @@ export const ITEMS_MATERIALS = {
     id: "leather",
     label: "Leather",
     description: "A bundle of leather.",
-    type: ITEM_CATEGORIES.material,
+    type: ITEM_CATEGORIES.material.id,
     subType: "",
     img: hide_icon,
   },
@@ -127,7 +147,7 @@ export const ITEMS_DROP = {
     img: artifact_icon,
     label: "Artifact",
     subType: "",
-    type: "drop",
+    type: ITEM_CATEGORIES.drop.id,
   },
   relic: {
     description: "A relic.",
@@ -135,7 +155,7 @@ export const ITEMS_DROP = {
     img: relic_icon,
     label: "Relic",
     subType: "",
-    type: "drop",
+    type: ITEM_CATEGORIES.drop.id,
   },
   rune: {
     description: "A rune.",
@@ -143,7 +163,7 @@ export const ITEMS_DROP = {
     img: rune_icon,
     label: "Rune",
     subType: "",
-    type: "drop",
+    type: ITEM_CATEGORIES.drop.id,
   },
   soul: {
     description: "A soul.",
@@ -151,7 +171,7 @@ export const ITEMS_DROP = {
     img: soul_icon,
     label: "Soul",
     subType: "",
-    type: "drop",
+    type: ITEM_CATEGORIES.drop.id,
   },
 };
 
@@ -163,7 +183,7 @@ export const ITEMS_EQUIP = {
     img: temp_weapon_icon,
     label: "Arcane Staff",
     subType: "weapon",
-    type: "equip",
+    type: ITEM_CATEGORIES.equip.id,
   },
   axe: {
     description: "An axe.",
@@ -171,7 +191,7 @@ export const ITEMS_EQUIP = {
     img: temp_weapon_icon,
     label: "Axe",
     subType: "weapon",
-    type: "equip",
+    type: ITEM_CATEGORIES.equip.id,
   },
   bow: {
     description: "A bow.",
@@ -179,7 +199,7 @@ export const ITEMS_EQUIP = {
     img: temp_weapon_icon,
     label: "Bow",
     subType: "weapon",
-    type: "equip",
+    type: ITEM_CATEGORIES.equip.id,
   },
   clothBoots: {
     description: "Cloth boots.",
@@ -187,7 +207,7 @@ export const ITEMS_EQUIP = {
     img: temp_armor_icon,
     label: "Cloth Boots",
     subType: "armor",
-    type: "equip",
+    type: ITEM_CATEGORIES.equip.id,
   },
   clothChest: {
     description: "A cloth chest.",
@@ -195,7 +215,7 @@ export const ITEMS_EQUIP = {
     img: temp_armor_icon,
     label: "Cloth Chest",
     subType: "armor",
-    type: "equip",
+    type: ITEM_CATEGORIES.equip.id,
   },
   clothHelmet: {
     description: "A cloth helmet.",
@@ -203,7 +223,7 @@ export const ITEMS_EQUIP = {
     img: temp_armor_icon,
     label: "Cloth Helmet",
     subType: "armor",
-    type: "equip",
+    type: ITEM_CATEGORIES.equip.id,
   },
   fireStaff: {
     description: "A fire staff.",
@@ -211,7 +231,7 @@ export const ITEMS_EQUIP = {
     img: temp_weapon_icon,
     label: "Fire Staff",
     subType: "weapon",
-    type: "equip",
+    type: ITEM_CATEGORIES.equip.id,
   },
   hammer: {
     description: "A hammer.",
@@ -219,7 +239,7 @@ export const ITEMS_EQUIP = {
     img: temp_weapon_icon,
     label: "Hammer",
     subType: "weapon",
-    type: "equip",
+    type: ITEM_CATEGORIES.equip.id,
   },
   holyStaff: {
     description: "A holy staff.",
@@ -227,7 +247,7 @@ export const ITEMS_EQUIP = {
     img: temp_weapon_icon,
     label: "Holy Staff",
     subType: "weapon",
-    type: "equip",
+    type: ITEM_CATEGORIES.equip.id,
   },
   ironBoots: {
     description: "Iron boots.",
@@ -235,7 +255,7 @@ export const ITEMS_EQUIP = {
     img: temp_armor_icon,
     label: "Iron Boots",
     subType: "armor",
-    type: "equip",
+    type: ITEM_CATEGORIES.equip.id,
   },
   ironChest: {
     description: "An iron chest.",
@@ -243,7 +263,7 @@ export const ITEMS_EQUIP = {
     img: temp_armor_icon,
     label: "Iron Chest",
     subType: "armor",
-    type: "equip",
+    type: ITEM_CATEGORIES.equip.id,
   },
   ironHelmet: {
     description: "An iron helmet.",
@@ -251,7 +271,7 @@ export const ITEMS_EQUIP = {
     img: temp_armor_icon,
     label: "Iron Helmet",
     subType: "armor",
-    type: "equip",
+    type: ITEM_CATEGORIES.equip.id,
   },
   leatherBoots: {
     description: "Leather boots.",
@@ -259,7 +279,7 @@ export const ITEMS_EQUIP = {
     img: temp_armor_icon,
     label: "Leather Boots",
     subType: "armor",
-    type: "equip",
+    type: ITEM_CATEGORIES.equip.id,
   },
   leatherChest: {
     description: "A leather chest.",
@@ -267,7 +287,7 @@ export const ITEMS_EQUIP = {
     img: temp_armor_icon,
     label: "Leather Chest",
     subType: "armor",
-    type: "equip",
+    type: ITEM_CATEGORIES.equip.id,
   },
   leatherHelmet: {
     description: "A leather helmet.",
@@ -275,7 +295,7 @@ export const ITEMS_EQUIP = {
     img: temp_armor_icon,
     label: "Leather Helmet",
     subType: "armor",
-    type: "equip",
+    type: ITEM_CATEGORIES.equip.id,
   },
   mace: {
     description: "A mace.",
@@ -283,7 +303,7 @@ export const ITEMS_EQUIP = {
     img: temp_weapon_icon,
     label: "Mace",
     subType: "weapon",
-    type: "equip",
+    type: ITEM_CATEGORIES.equip.id,
   },
   shield: {
     description: "A shield.",
@@ -291,7 +311,7 @@ export const ITEMS_EQUIP = {
     img: temp_armor_icon,
     label: "Shield",
     subType: "armor",
-    type: "equip",
+    type: ITEM_CATEGORIES.equip.id,
   },
   spear: {
     description: "A spear.",
@@ -299,7 +319,7 @@ export const ITEMS_EQUIP = {
     img: temp_weapon_icon,
     label: "Spear",
     subType: "weapon",
-    type: "equip",
+    type: ITEM_CATEGORIES.equip.id,
   },
   sword: {
     description: "A sword.",
@@ -307,7 +327,7 @@ export const ITEMS_EQUIP = {
     img: temp_weapon_icon,
     label: "Sword",
     subType: "weapon",
-    type: "equip",
+    type: ITEM_CATEGORIES.equip.id,
   },
 };
 

@@ -1,12 +1,17 @@
-import { Box, Chip, Grid } from "@mui/joy";
+import { Avatar, Button, Grid } from "@mui/joy";
 import { useDispatch, useSelector } from "react-redux";
 import ItemCard from "../../components/Cards/ItemCard";
-import { ITEM_CATEGORIES } from "../../config/ITEMS";
 import useFilteredItems from "../../lib/hooks/useFilteredItems";
 
+import { ITEM_CATEGORIES } from "../../config/ITEMS";
 import { setCurrentStorageFilter } from "../../lib/redux/storage/storage_slice";
-import { PageBody, PageBottom, PageHeader } from "../../styles/PageStyles";
-import { T_ReduxState } from "../../types/types.d";
+import { T_ReduxState } from "../../lib/redux/store.d";
+import {
+  Page,
+  PageBody,
+  PageBottom,
+  PageHeader,
+} from "../../styles/PageStyles";
 
 const StorageView = () => {
   const dispatch = useDispatch();
@@ -16,47 +21,34 @@ const StorageView = () => {
   );
 
   return (
-    <Box
-      sx={{ display: "flex", flexDirection: "column", gap: 1, height: "100%" }}
-    >
+    <Page>
       <PageHeader
         sx={{
-          display: "flex",
-          gap: 0.5,
-          border: (theme) => `1px solid ${theme.palette.background.level2}`,
-          borderRadius: (theme) => theme.spacing(1),
-          p: 1,
-          bgcolor: "background.level1",
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "space-evenly",
         }}
       >
-        {Object.values(ITEM_CATEGORIES).map((filter) => (
-          <Chip
-            key={filter}
-            variant={currentFilter === filter ? "solid" : "plain"}
-            onClick={() => dispatch(setCurrentStorageFilter(filter))}
-            sx={{
-              textAlign: "center",
-              height: 16,
-              textTransform: "uppercase",
-              fontSize: 12,
-            }}
-          >
-            {filter}
-          </Chip>
+        {Object.values(ITEM_CATEGORIES).map((category) => (
+          <Button
+            fullWidth
+            onClick={() => dispatch(setCurrentStorageFilter(category.id))}
+            variant={currentFilter === category.id ? "solid" : "plain"}
+            color="neutral"
+            key={category.label}
+            startDecorator={<Avatar src={category.icon} />}
+          />
         ))}
       </PageHeader>
 
       <PageBody
         sx={{
-          border: (theme) => `1px solid ${theme.palette.background.level2}`,
-          borderRadius: (theme) => theme.spacing(1),
           p: 1,
-          bgcolor: "background.level1",
         }}
       >
         <Grid container spacing={1}>
           {Object.values(filteredItems).map((itemStack) => (
-            <Grid key={itemStack.id} xs={6}>
+            <Grid key={itemStack.id} xs={6} sm={4} md={3} lg={2}>
               <ItemCard key={itemStack.id} itemStack={itemStack} />
             </Grid>
           ))}
@@ -64,7 +56,7 @@ const StorageView = () => {
       </PageBody>
 
       <PageBottom sx={{ bgcolor: "background.level1" }}></PageBottom>
-    </Box>
+    </Page>
   );
 };
 

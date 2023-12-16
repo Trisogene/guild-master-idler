@@ -1,5 +1,5 @@
 import { LINKS } from "../../../config/LINKS";
-import { T_PlayerConfig } from "../../../types/types.d";
+import { T_PlayerConfig } from "../../../config/config";
 import { sendNotification } from "../navigation/navigation_slice";
 import { addPlayer } from "../player/players_slice";
 import { AppDispatch } from "../store";

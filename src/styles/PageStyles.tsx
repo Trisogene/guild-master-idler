@@ -1,4 +1,4 @@
-import { Box, styled } from "@mui/joy";
+import { Box, Card, styled } from "@mui/joy";
 
 export const Page = styled(Box)(({ theme }) => ({
   display: "flex",
@@ -9,7 +9,7 @@ export const Page = styled(Box)(({ theme }) => ({
   overflow: "hidden",
 }));
 
-export const PageHeader = styled(Box)(({ theme }) => ({
+export const PageHeader = styled(Card)(({ theme }) => ({
   minHeight: 40,
   maxHeight: 40,
   width: "100%",
@@ -18,7 +18,7 @@ export const PageHeader = styled(Box)(({ theme }) => ({
   background: theme.palette.background.level1,
 }));
 
-export const PageBody = styled(Box)(({ theme }) => ({
+export const PageBody = styled(Card)(({ theme }) => ({
   minHeight: "calc(50% - 32px)",
   maxHeight: "calc(50% - 32px)",
   overflowY: "auto",
@@ -27,7 +27,7 @@ export const PageBody = styled(Box)(({ theme }) => ({
   background: theme.palette.background.level1,
 }));
 
-export const PageBottom = styled(Box)(({ theme }) => ({
+export const PageBottom = styled(Card)(({ theme }) => ({
   minHeight: "calc(50% - 32px)",
   maxHeight: "calc(50% - 32px)",
   border: `1px solid ${theme.palette.background.level2}`,

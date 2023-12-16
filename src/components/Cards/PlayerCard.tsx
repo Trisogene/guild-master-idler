@@ -1,5 +1,3 @@
-import { T_ReduxState } from "../../types/types.d";
-
 import { Card, Divider, LinearProgress, Typography } from "@mui/joy";
 import Avatar from "@mui/joy/Avatar";
 import Box from "@mui/joy/Box";
@@ -10,6 +8,7 @@ import { RACES } from "../../config/RACES";
 import { T_PlayerConfig } from "../../config/config";
 import { setCurrentlySelectedPlayer } from "../../lib/redux/player/players_slice";
 import { AppDispatch } from "../../lib/redux/store";
+import { T_ReduxState } from "../../lib/redux/store.d";
 import { advancePlayerContent } from "../../lib/redux/timer/timer_thunks";
 
 interface I_PlayerCard {
@@ -28,56 +27,52 @@ const PlayerCard = ({ player, isSelected }: I_PlayerCard) => {
   const playerRace = RACES[player.race];
   const dispatch = useDispatch<AppDispatch>();
 
+  const handlePlayerClick = () => {
+    if (!isSelected) {
+      dispatch(setCurrentlySelectedPlayer(player.id));
+      return;
+    }
+    dispatch(advancePlayerContent(player.id));
+    animate(
+      progressRef.current,
+      {
+        scale: [1, 1.025, 1],
+        filter: ["brightness(1)", "brightness(2)", "brightness(1)"],
+      },
+      {
+        duration: 0.8,
+        ease: "easeOut",
+      }
+    );
+  };
+
   return (
     <>
       <Card
-        className="PlayerCard"
         sx={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
           bgcolor: isSelected ? "background.level2" : "background.level1",
+          alignItems: "center",
         }}
-        onClick={() => {
-          if (!isSelected) {
-            dispatch(setCurrentlySelectedPlayer(player.id));
-          }
-          dispatch(advancePlayerContent(player.id));
-          animate(
-            progressRef.current,
-            {
-              scale: [1, 1.1, 1],
-              filter: ["brightness(1)", "brightness(1.2)", "brightness(1)"],
-            },
-            {
-              duration: 0.5,
-              ease: "easeInOut",
-            }
-          );
-        }}
+        onClick={handlePlayerClick}
       >
         <Box
           sx={{
             display: "flex",
+            alignItems: "center",
             gap: 1,
-            width: "100%",
           }}
         >
           <Avatar className="PlayerCard-avatar" src={playerRace.img} />
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              gap: 1,
-              width: "100%",
-            }}
-          >
-            <Box sx={{ height: 12, fontSize: 10 }}>{playerRace.label}</Box>
-          </Box>
+
+          <Typography sx={{ height: 12, fontSize: 10 }}>
+            {player.name}
+          </Typography>
         </Box>
 
-        <Divider orientation="horizontal" />
+        <Divider
+          orientation="horizontal"
+          sx={{ width: "100%", alignSelf: "center" }}
+        />
 
         <Box
           ref={progressRef}

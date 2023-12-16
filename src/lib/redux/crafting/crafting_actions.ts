@@ -1,5 +1,5 @@
 import { PayloadAction } from "@reduxjs/toolkit";
-import { T_CraftingSlice } from "../../../types/types.d";
+import { T_CraftingSlice } from "../store.d";
 
 const setCurrentFilter = (
   state: T_CraftingSlice,

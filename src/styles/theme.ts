@@ -9,30 +9,22 @@ export const theme = extendTheme({
       styleOverrides: {
         root: ({ ownerState, theme }) => ({
           ...(ownerState.size === "sm" && {
-            width: 24,
-            height: 24,
+            width: 22,
+            height: 22,
           }),
         }),
       },
     },
     JoyCard: {
       defaultProps: {
+        variant: "outlined",
         size: "sm",
       },
       styleOverrides: {
         root: ({ ownerState, theme }) => ({
           ...(ownerState.size === "sm" && {
             padding: theme.spacing(0.5),
-            borderRadius: theme.vars.radius.md,
             userSelect: "none",
-            border: `1px solid ${theme.palette.background.level3}`,
-            background: theme.palette.background.level1,
-            overflow: "hidden",
-            gap: theme.spacing(0.5),
-            ":hover": {
-              cursor: "pointer",
-              background: theme.palette.background.level2,
-            },
           }),
         }),
       },

@@ -2,13 +2,13 @@ import { Grid } from "@mui/joy";
 import { useSelector } from "react-redux";
 import PlayerCard from "../../components/Cards/PlayerCard";
 import PlayerInfo from "../../components/Info/PlayerInfo/PlayerInfo";
+import { T_ReduxState } from "../../lib/redux/store.d";
 import {
   Page,
   PageBody,
   PageBottom,
   PageHeader,
 } from "../../styles/PageStyles";
-import { T_ReduxState } from "../../types/types.d";
 
 const GuildView = () => {
   const players = useSelector((state: T_ReduxState) => state.players.players);
@@ -29,7 +29,7 @@ const GuildView = () => {
       >
         <Grid container spacing={1}>
           {Object.values(players).map((player) => (
-            <Grid key={player.id} xs={6}>
+            <Grid key={player.id} xs={6} sm={4} md={3} lg={2}>
               <PlayerCard
                 key={player.id}
                 player={player}

@@ -1,6 +1,7 @@
 import { PayloadAction } from "@reduxjs/toolkit";
-import { T_StorageSlice } from "../../../types/types.d";
+import { T_StorageSlice } from "../store.d";
 
+/* ------------------------- setCurrentStorageFilter ------------------------ */
 const setCurrentStorageFilter = (
   state: T_StorageSlice,
   { payload: filter }: PayloadAction<string>
@@ -8,6 +9,7 @@ const setCurrentStorageFilter = (
   state.currentFilter = filter;
 };
 
+/* --------------------------------- AddItem -------------------------------- */
 type T_AddItemReq = {
   itemId: string;
   quantity: number;
@@ -27,6 +29,7 @@ const addItem = (
   }
 };
 
+/* ------------------------------- RemoveItem ------------------------------- */
 type T_RemoveItemReq = {
   itemId: string;
   quantity: number;

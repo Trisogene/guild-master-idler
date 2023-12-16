@@ -1,4 +1,4 @@
-import { Avatar, Box, Card, CardContent, Divider } from "@mui/joy";
+import { Avatar, Box, Card, CardContent, Divider, Typography } from "@mui/joy";
 import { ITEMS } from "../../config/ITEMS";
 import { T_Item_Stack } from "../../config/config";
 
@@ -10,31 +10,31 @@ const ItemCard = ({ itemStack }: I_ItemCard) => {
   const itemConfig = ITEMS[itemStack.id];
 
   return (
-    <Card>
+    <Card
+      sx={{
+        alignItems: "center",
+        bgcolor: false ? "background.level2" : "background.level1",
+      }}
+    >
       <Box
         sx={{
           display: "flex",
+          alignItems: "center",
           gap: 1,
-          width: "100%",
         }}
       >
         <Avatar className="PlayerCard-avatar" src={itemConfig.img} />
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            gap: 1,
-            width: "100%",
-          }}
-        >
-          <Box sx={{ height: 12, fontSize: 10 }}>{itemConfig.label}</Box>
-        </Box>
+
+        <Typography fontSize="sm">{itemConfig.label}</Typography>
       </Box>
 
-      <Divider orientation="horizontal" />
+      <Divider
+        orientation="horizontal"
+        sx={{ width: "90%", alignSelf: "center" }}
+      />
+
       <CardContent sx={{ alignItems: "center" }}>
-        <Box sx={{ flexGrow: 1 }}>x{itemStack.quantity}</Box>
+        <Typography fontSize="sm">x{itemStack.quantity}</Typography>
       </CardContent>
     </Card>
   );

@@ -7,8 +7,10 @@
     background:rgb(20, 20, 20);
 }
 
-.App {
-    width: 400px !important;
+/* .App {
+    max-width: 800px !important;
+    min-width: 350 !important;
     height: 800px !important;
     background: rgba(12,12, 12, 1);
-}
+
+} */
