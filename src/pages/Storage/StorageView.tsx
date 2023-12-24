@@ -1,11 +1,11 @@
 import { Avatar, Button, Grid } from "@mui/joy";
 import { useDispatch, useSelector } from "react-redux";
-import ItemCard from "../../components/Cards/ItemCard";
-import useFilteredItems from "../../lib/hooks/useFilteredItems";
+import Item from "../../components/Item/Item";
+import useFilterStorageByType from "../../hooks/useFilterStorageByType";
 
-import { ITEM_CATEGORIES } from "../../config/ITEMS";
-import { setCurrentStorageFilter } from "../../lib/redux/storage/storage_slice";
-import { T_ReduxState } from "../../lib/redux/store.d";
+import { ITEM_CATEGORIES } from "../../config/config";
+import { T_ReduxState } from "../../config/store.d";
+import { setCurrentStorageFilter } from "../../redux/storage/storage_slice";
 import {
   Page,
   PageBody,
@@ -14,11 +14,11 @@ import {
 } from "../../styles/PageStyles";
 
 const StorageView = () => {
-  const dispatch = useDispatch();
-  const filteredItems = useFilteredItems();
   const currentFilter = useSelector(
     (state: T_ReduxState) => state.storage.currentFilter
   );
+  const dispatch = useDispatch();
+  const filteredItems = useFilterStorageByType({ filter: currentFilter });
 
   return (
     <Page>
@@ -46,11 +46,15 @@ const StorageView = () => {
           p: 1,
         }}
       >
-        <Grid container spacing={1}>
+        <Grid
+          sx={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fill, minmax(128px, 1fr))",
+            gap: 1,
+          }}
+        >
           {Object.values(filteredItems).map((itemStack) => (
-            <Grid key={itemStack.id} xs={6} sm={4} md={3} lg={2}>
-              <ItemCard key={itemStack.id} itemStack={itemStack} />
-            </Grid>
+            <Item key={itemStack.id} itemStack={itemStack} />
           ))}
         </Grid>
       </PageBody>

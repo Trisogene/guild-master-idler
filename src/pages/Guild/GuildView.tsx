@@ -1,8 +1,8 @@
 import { Grid } from "@mui/joy";
 import { useSelector } from "react-redux";
-import PlayerCard from "../../components/Cards/PlayerCard";
-import PlayerInfo from "../../components/Info/PlayerInfo/PlayerInfo";
-import { T_ReduxState } from "../../lib/redux/store.d";
+import Player from "../../components/Player/Player";
+import PlayerInfo from "../../components/PlayerInfo/PlayerInfo";
+import { T_ReduxState } from "../../config/store.d";
 import {
   Page,
   PageBody,
@@ -17,30 +17,27 @@ const GuildView = () => {
   );
 
   return (
-    <Page className="Guild">
-      <PageHeader className="Guild-header" />
-
-      <PageBody
-        className="Guild-body"
-        sx={{
-          bgcolor: "background.level1",
-          p: 1,
-        }}
-      >
-        <Grid container spacing={1}>
+    <Page>
+      <PageHeader />
+      <PageBody>
+        <Grid
+          sx={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fill, minmax(256px, 1fr))",
+            gap: 0.5,
+          }}
+        >
           {Object.values(players).map((player) => (
-            <Grid key={player.id} xs={6} sm={4} md={3} lg={2}>
-              <PlayerCard
-                key={player.id}
-                player={player}
-                isSelected={player.id === currentlySelectedPlayer}
-              />
-            </Grid>
+            <Player
+              key={player.id}
+              player={player}
+              isSelected={player.id === currentlySelectedPlayer}
+            />
           ))}
         </Grid>
       </PageBody>
 
-      <PageBottom className="Guild-bottom">
+      <PageBottom>
         {currentlySelectedPlayer && (
           <PlayerInfo player={players[currentlySelectedPlayer]} />
         )}

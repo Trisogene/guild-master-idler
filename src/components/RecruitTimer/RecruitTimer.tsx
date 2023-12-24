@@ -1,8 +1,9 @@
 import { Typography } from "@mui/joy";
 import LinearProgress from "@mui/joy/LinearProgress";
 import { useSelector } from "react-redux";
-import { TIMERS } from "../../config/TIMERS";
-import { T_ReduxState } from "../../types/types.d";
+
+import { TIMERS } from "../../config/config";
+import { T_ReduxState } from "../../config/store.d";
 
 interface I_RecruitTimerProps {}
 

@@ -1,9 +1,11 @@
-import { Box, Grid } from "@mui/joy";
-import { useSelector } from "react-redux";
-import RecruitCard from "../../components/Cards/RecruitCard";
-import RecruitInfo from "../../components/Info/RecruitInfo/RecruitInfo";
+import { Grid } from "@mui/joy";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import Recruit from "../../components/Recruit/Recruit";
+import RecruitInfo from "../../components/RecruitInfo/RecruitInfo";
 import RecruitTimer from "../../components/RecruitTimer/RecruitTimer";
-import { T_ReduxState } from "../../lib/redux/store.d";
+import { T_ReduxState } from "../../config/store.d";
+import { updateRecruits } from "../../redux/recruit/recruit_slice";
 import {
   Page,
   PageBody,
@@ -13,43 +15,42 @@ import {
 
 const RecruitView = () => {
   const recruits = useSelector((state: T_ReduxState) => state.recruit.recruits);
+  const dispatch = useDispatch();
+
   const currentSelectedRecruit = useSelector(
     (state: T_ReduxState) => state.recruit.currentlySelectedRecruit
   );
 
+  useEffect(() => {
+    if (recruits && Object.keys(recruits).length === 0) {
+      dispatch(updateRecruits());
+    }
+  }, [dispatch, recruits]);
+
   return (
-    <Page className="Recruit">
-      <PageHeader
-        className="Recruit-header"
-        sx={{
-          display: "flex",
-          gap: 1,
-          overflow: "hidden",
-        }}
-      ></PageHeader>
-
-      <PageBody
-        className="Recruit-body"
-        sx={{ p: 1, display: "flex", flexDirection: "column", gap: 1 }}
-      >
-        <Box className="Recruit-body-timer-container">
-          <RecruitTimer />
-        </Box>
-
-        <Grid container spacing={1}>
+    <Page>
+      <PageHeader>
+        <RecruitTimer />
+      </PageHeader>
+      <PageBody sx={{ p: 1, display: "flex", flexDirection: "column", g: 1 }}>
+        <Grid
+          sx={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fill, minmax(125px, 1fr))",
+            gap: 1,
+          }}
+        >
           {Object.values(recruits).map((recruit) => (
-            <Grid key={recruit.id} xs={6} sm={4} md={3} lg={2}>
-              <RecruitCard
-                key={recruit.id}
-                recruit={recruit}
-                isSelected={recruit.id === currentSelectedRecruit}
-              />
-            </Grid>
+            <Recruit
+              key={recruit.id}
+              recruit={recruit}
+              isSelected={recruit.id === currentSelectedRecruit}
+            />
           ))}
         </Grid>
       </PageBody>
 
-      <PageBottom className="Recruit-bottom">
+      <PageBottom>
         {currentSelectedRecruit && recruits[currentSelectedRecruit] ? (
           <RecruitInfo recruit={recruits[currentSelectedRecruit]} />
         ) : (

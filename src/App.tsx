@@ -1,90 +1,44 @@
-import { Box } from "@mui/joy";
-import { useEffect, useState } from "react";
+import { Box, Divider } from "@mui/joy";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { version } from "../package.json";
 import "./App.css";
-import Navigator from "./components/Navigator/Navigator";
-import Topbar from "./components/Topbar/Topbar";
+import Sidebar from "./components/Sidebar/Sidebar";
 
-import { LINKS } from "./config/LINKS";
-import { updateRecruits } from "./lib/redux/recruit/recruit_slice";
-import { AppDispatch } from "./lib/redux/store";
-import { T_ReduxState } from "./lib/redux/store.d";
-import { startTimers } from "./lib/redux/timer/timer_thunks";
+import { Navigator } from "./components";
+import { LINKS } from "./config/config";
+import { T_ReduxState } from "./config/store.d";
+import { AppDispatch } from "./redux/store";
+import { startTimers } from "./redux/timer/timer_thunks";
+import { StyledApp } from "./styles/AppStyles";
 
 function App() {
   const currentPage = useSelector(
     (state: T_ReduxState) => state.navigation.currentPage
   );
-  const dispatch = useDispatch<AppDispatch>();
-  const [isModalOpen, setIsModalOpen] = useState(true);
+  const dispatch: AppDispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
-    handlePersistance();
-  }, [dispatch]);
-
-  const handlePersistance = () => {
     dispatch(startTimers());
-    const localStorageVersion = localStorage.getItem("version");
-    if (!localStorageVersion || localStorageVersion !== version) {
-      localStorage.clear();
-      localStorage.setItem("version", version);
-      dispatch(updateRecruits());
-    } else {
-      const state = localStorage.getItem("state");
-    }
-  };
+  }, [dispatch]);
 
   return (
     <>
-      <Box
-        className="App"
-        sx={{
-          height: "100vh",
-          width: "100vw",
-          display: "flex",
-          flexDirection: "column",
-        }}
-      >
+      <StyledApp className="App">
         <Box
-          className="App-Header"
-          sx={{
-            width: "100%",
-            minHeight: 48,
-            p: 1,
-          }}
-        >
-          <Topbar />
-        </Box>
-        <Box
-          className="App-Body"
           sx={{
             display: "flex",
-            minHeight: "calc(100% - 48px)",
-            maxHeight: "calc(100% - 48px)",
+            minHeight: "calc(100vh - 49px)",
+            maxHeight: "calc(100vh - 49px)",
+            p: 1,
+            gap: 1,
           }}
         >
-          <Box
-            className="App-Navigator"
-            sx={{
-              p: 1,
-            }}
-          >
-            <Navigator currentPage={currentPage} />
-          </Box>
-          <Box
-            className="App-Page"
-            sx={{
-              overflowY: "auto",
-              p: 1,
-              width: "100%",
-              height: "100%",
-            }}
-          >
-            {LINKS[currentPage].component}
-          </Box>
+          <Sidebar />
+          {LINKS[currentPage].component}
         </Box>
-      </Box>
+        <Divider />
+        <Navigator currentPage={currentPage} />
+      </StyledApp>
     </>
   );
 }

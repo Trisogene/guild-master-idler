@@ -10,8 +10,9 @@ export const Page = styled(Box)(({ theme }) => ({
 }));
 
 export const PageHeader = styled(Card)(({ theme }) => ({
-  minHeight: 40,
-  maxHeight: 40,
+  height: 32,
+  maxHeight: 32,
+  minHeight: 32,
   width: "100%",
   border: `1px solid ${theme.palette.background.level2}`,
   borderRadius: theme.vars.radius.md,
@@ -19,8 +20,8 @@ export const PageHeader = styled(Card)(({ theme }) => ({
 }));
 
 export const PageBody = styled(Card)(({ theme }) => ({
-  minHeight: "calc(50% - 32px)",
-  maxHeight: "calc(50% - 32px)",
+  height: "100%",
+
   overflowY: "auto",
   border: `1px solid ${theme.palette.background.level2}`,
   borderRadius: theme.spacing(1),
@@ -28,8 +29,7 @@ export const PageBody = styled(Card)(({ theme }) => ({
 }));
 
 export const PageBottom = styled(Card)(({ theme }) => ({
-  minHeight: "calc(50% - 32px)",
-  maxHeight: "calc(50% - 32px)",
+  height: "100%",
   border: `1px solid ${theme.palette.background.level2}`,
   borderRadius: theme.spacing(1),
   background: theme.palette.background.level1,

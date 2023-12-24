@@ -1,16 +1,12 @@
 import { Avatar, Button, Grid } from "@mui/joy";
 import { useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import CraftableItemCard from "../../components/Cards/CraftableItemCard";
-import CraftingInfo from "../../components/Info/CraftingInfo/CraftingInfo";
-import { ITEMS, ITEM_CATEGORIES } from "../../config/ITEMS";
-import { RECIPES } from "../../config/RECIPES";
-import { T_Recipes } from "../../config/config";
-import {
-  setCurrentFilter,
-  setCurrentSelectedCraft,
-} from "../../lib/redux/crafting/crafting_slice";
-import { T_ReduxState } from "../../lib/redux/store.d";
+
+import { Recipe, RecipeInfo } from "../../components";
+import { ITEMS, ITEM_CATEGORIES, RECIPES } from "../../config/config";
+import { T_Recipes } from "../../config/config.d";
+import { T_ReduxState } from "../../config/store.d";
+import { setCurrentFilter } from "../../redux/crafting/crafting_slice";
 import {
   Page,
   PageBody,
@@ -26,10 +22,10 @@ const CraftingView = () => {
   );
 
   const filteredRecipes = useMemo(() => {
-    let newFilteredRecipes: T_Recipes = {};
+    let newFilteredRecipes: Partial<T_Recipes> = {};
 
     Object.values(RECIPES).forEach((recipe) => {
-      if (ITEMS[recipe.id].type === currentFilter) {
+      if (ITEMS[recipe.id].category === currentFilter) {
         newFilteredRecipes[recipe.id] = recipe;
       }
     });
@@ -66,38 +62,28 @@ const CraftingView = () => {
 
       <PageBody
         sx={{
-          border: (theme) => `1px solid ${theme.palette.background.level2}`,
-          borderRadius: (theme) => theme.spacing(1),
           p: 1,
-          bgcolor: "background.level1",
         }}
       >
-        <Grid container spacing={1}>
+        <Grid
+          sx={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fill, minmax(128px, 1fr))",
+            gap: 1,
+          }}
+        >
           {Object.values(filteredRecipes).map((item) => (
-            <Grid
+            <Recipe
               key={item.id}
-              xs={6}
-              sm={4}
-              md={3}
-              lg={2}
-              onClick={() => dispatch(setCurrentSelectedCraft(item.id))}
-            >
-              <CraftableItemCard
-                key={item.id}
-                item={item.id}
-                isSelected={currentSelectedItem === item.id}
-              />
-            </Grid>
+              item={item.id}
+              isSelected={currentSelectedItem === item.id}
+            />
           ))}
         </Grid>
       </PageBody>
 
-      <PageBottom
-        sx={{
-          bgcolor: "background.level1",
-        }}
-      >
-        {currentSelectedItem && <CraftingInfo itemId={currentSelectedItem} />}
+      <PageBottom>
+        {currentSelectedItem && <RecipeInfo itemId={currentSelectedItem} />}
       </PageBottom>
     </Page>
   );
