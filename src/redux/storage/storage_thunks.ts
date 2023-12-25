@@ -1,6 +1,5 @@
-import { CONTENTS, LINKS } from "../../config/config";
+import { CONTENTS } from "../../config/config";
 import { getReward } from "../../utils";
-import { sendNotification } from "../navigation/navigation_slice";
 import { AppDispatch } from "../store";
 import { addItem } from "./storage_slice";
 
@@ -12,6 +11,5 @@ export const giveContentReward =
     if (reward) {
       const quantity = Math.floor(Math.random() * 10) + 1;
       dispatch(addItem({ itemId: reward.item, quantity: quantity }));
-      dispatch(sendNotification(LINKS.storage.id));
     }
   };

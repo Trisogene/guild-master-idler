@@ -1,6 +1,5 @@
-import { LINKS, RECIPES } from "../../config/config";
+import { RECIPES } from "../../config/config";
 import { E_Recipe } from "../../config/config.d";
-import { sendNotification } from "../navigation/navigation_slice";
 import { addItem, removeItem } from "../storage/storage_slice";
 import { AppDispatch } from "../store";
 
@@ -16,5 +15,4 @@ export const craftItem =
       }
     );
     dispatch(addItem({ itemId, quantity: 1 }));
-    dispatch(sendNotification(LINKS.storage.id));
   };

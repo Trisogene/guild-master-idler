@@ -9,15 +9,15 @@ export const theme = extendTheme({
       styleOverrides: {
         root: ({ ownerState, theme }) => ({
           ...(ownerState.size === "sm" && {
-            width: 22,
-            height: 22,
+            width: 16,
+            height: 16,
           }),
         }),
       },
     },
     JoyCard: {
       defaultProps: {
-        variant: "outlined",
+        variant: "soft",
         size: "sm",
       },
       styleOverrides: {
@@ -25,6 +25,7 @@ export const theme = extendTheme({
           ...(ownerState.size === "sm" && {
             padding: theme.spacing(0.5),
             userSelect: "none",
+            border: `1px solid ${theme.palette.background.level2}`,
           }),
         }),
       },

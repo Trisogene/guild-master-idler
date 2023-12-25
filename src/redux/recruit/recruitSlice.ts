@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { recruitActions } from "./recruit_actions";
+import { recruitActions } from "./recruitActions";
 
 export const recruit_slice = createSlice({
   name: "recruit",

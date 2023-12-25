@@ -12,17 +12,34 @@ import {
   default as temp_material_icon,
   default as wood_icon,
 } from "../assets/items/wood.svg";
-import CraftingView from "../pages/Crafting/CraftingView";
-import Guild from "../pages/Guild/GuildView";
-import Recruit from "../pages/Recruit/RecruitView";
-import Storage from "../pages/Storage/StorageView";
+import CraftingView from "../pages/CraftingView";
+import Guild from "../pages/GuildView";
+import Recruit from "../pages/RecruitView";
+import Storage from "../pages/StorageView";
 import temp_race from "./../assets/race.svg";
+
+import archerIcon from "../assets/roles/archer.svg";
+import bruiserIcon from "../assets/roles/bruiser.svg";
+import defensiveTankIcon from "../assets/roles/defensiveTank.svg";
+import healerIcon from "../assets/roles/healer.svg";
+import mageIcon from "../assets/roles/mage.svg";
+import offensiveTankIcon from "../assets/roles/offensiveTank.svg";
+import piercerIcon from "../assets/roles/piercer.svg";
+import supportIcon from "../assets/roles/support.svg";
+
+import circleIcon from "../assets/pages/circle.svg";
+import craftingIcon from "../assets/pages/crafting.svg";
+import guildIcon from "../assets/pages/guild.svg";
+import recruitIcon from "../assets/pages/recruit.svg";
+import storageIcon from "../assets/pages/storage.svg";
+
 import {
   E_Content,
   E_Item,
   E_Item_Category,
   E_Race,
   E_Recipe,
+  E_Role,
   T_Contents,
   T_Items,
   T_Items_Category_Ext,
@@ -30,29 +47,92 @@ import {
   T_Players,
   T_Races,
   T_Recipes,
+  T_Roles,
   T_Timers,
 } from "./config.d";
+
+export const ROLES: T_Roles = {
+  archer: {
+    id: E_Role.archer,
+    label: "Archer",
+    description: "Shoots arrows",
+    icon: archerIcon,
+  },
+  mage: {
+    id: E_Role.mage,
+    label: "Mage",
+    description: "Casts spells",
+    icon: mageIcon,
+  },
+  offensiveTank: {
+    id: E_Role.offensiveTank,
+    label: "Offensive Tank",
+    description: "Tanks and deals damage",
+    icon: offensiveTankIcon,
+  },
+  defensiveTank: {
+    id: E_Role.defensiveTank,
+    label: "Defensive Tank",
+    description: "Tanks and protects allies",
+    icon: defensiveTankIcon,
+  },
+  healer: {
+    id: E_Role.healer,
+    label: "Healer",
+    description: "Heals allies",
+    icon: healerIcon,
+  },
+  bruiser: {
+    id: E_Role.bruiser,
+    label: "Bruiser",
+    description: "Deals damage",
+    icon: bruiserIcon,
+  },
+  piercer: {
+    id: E_Role.piercer,
+    label: "Piercer",
+    description: "Deals damage",
+    icon: piercerIcon,
+  },
+  support: {
+    id: E_Role.support,
+    label: "Support",
+    description: "Supports allies",
+    icon: supportIcon,
+  },
+};
 
 export const LINKS: T_Links = {
   guild: {
     id: "guild",
     label: "Guild",
     component: <Guild />,
+    icon: guildIcon,
   },
   recruit: {
     id: "recruit",
     label: "Recruit",
     component: <Recruit />,
+    icon: recruitIcon,
   },
   storage: {
     id: "storage",
     label: "Storage",
     component: <Storage />,
+    icon: storageIcon,
   },
   crafting: {
     id: "crafting",
     label: "Crafting",
     component: <CraftingView />,
+    icon: craftingIcon,
+  },
+
+  events: {
+    id: "events",
+    label: "Events",
+    component: <></>,
+    icon: circleIcon,
   },
 };
 
@@ -284,6 +364,7 @@ export const RECRUITS: T_Players = {
       bow: 0,
     },
     lore: "A Young adventurer, ready to explore the world, and make a name for himself.",
+    role: E_Role.archer,
   },
 };
 
@@ -412,14 +493,7 @@ export const ITEMS_DROP = {
   },
 };
 
-export const ITEMS_EQUIP = {
-  bow: {
-    category: E_Item_Category.equip,
-    description: "A bow.",
-    id: E_Item.bow,
-    img: temp_weapon_icon,
-    label: "Bow",
-  },
+export const ITEMS_EQUIP_ARMOR = {
   clothBoots: {
     category: E_Item_Category.equip,
     description: "Cloth boots.",
@@ -440,20 +514,6 @@ export const ITEMS_EQUIP = {
     id: E_Item.clothHelmet,
     img: temp_armor_icon,
     label: "Cloth Helmet",
-  },
-  fireStaff: {
-    category: E_Item_Category.equip,
-    description: "A fire staff.",
-    id: E_Item.fireStaff,
-    img: temp_weapon_icon,
-    label: "Fire Staff",
-  },
-  holyStaff: {
-    category: E_Item_Category.equip,
-    description: "A holy staff.",
-    id: E_Item.holyStaff,
-    img: temp_weapon_icon,
-    label: "Holy Staff",
   },
   ironBoots: {
     category: E_Item_Category.equip,
@@ -497,6 +557,30 @@ export const ITEMS_EQUIP = {
     img: temp_armor_icon,
     label: "Leather Helmet",
   },
+};
+
+const ITEMS_EQUIP_WEAPONS = {
+  bow: {
+    category: E_Item_Category.equip,
+    description: "A bow.",
+    id: E_Item.bow,
+    img: temp_weapon_icon,
+    label: "Bow",
+  },
+  fireStaff: {
+    category: E_Item_Category.equip,
+    description: "A fire staff.",
+    id: E_Item.fireStaff,
+    img: temp_weapon_icon,
+    label: "Fire Staff",
+  },
+  holyStaff: {
+    category: E_Item_Category.equip,
+    description: "A holy staff.",
+    id: E_Item.holyStaff,
+    img: temp_weapon_icon,
+    label: "Holy Staff",
+  },
   mace: {
     category: E_Item_Category.equip,
     description: "A mace.",
@@ -524,7 +608,8 @@ export const ITEMS: T_Items = {
   ...ITEMS_RESOURCES,
   ...ITEMS_MATERIALS,
   ...ITEMS_DROP,
-  ...ITEMS_EQUIP,
+  ...ITEMS_EQUIP_ARMOR,
+  ...ITEMS_EQUIP_WEAPONS,
 };
 
 export const ITEM_CATEGORIES: T_Items_Category_Ext = {

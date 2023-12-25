@@ -1,17 +1,12 @@
 import { Avatar, Button, Grid } from "@mui/joy";
 import { useDispatch, useSelector } from "react-redux";
-import Item from "../../components/Item/Item";
-import useFilterStorageByType from "../../hooks/useFilterStorageByType";
+import Item from "../components/Item/Item";
+import useFilterStorageByType from "../hooks/useFilterStorageByType";
 
-import { ITEM_CATEGORIES } from "../../config/config";
-import { T_ReduxState } from "../../config/store.d";
-import { setCurrentStorageFilter } from "../../redux/storage/storage_slice";
-import {
-  Page,
-  PageBody,
-  PageBottom,
-  PageHeader,
-} from "../../styles/PageStyles";
+import { ITEM_CATEGORIES } from "../config/config";
+import { T_ReduxState } from "../config/store.d";
+import { setCurrentStorageFilter } from "../redux/storage/storage_slice";
+import { Page, PageBody, PageBottom, PageHeader } from "../styles/PageStyles";
 
 const StorageView = () => {
   const currentFilter = useSelector(

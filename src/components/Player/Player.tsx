@@ -4,12 +4,12 @@ import Box from "@mui/joy/Box";
 import { useAnimate } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
 
-import { CONTENTS, RACES } from "../../config/config";
+import { CONTENTS, RACES, ROLES } from "../../config/config";
 import { T_Player } from "../../config/config.d";
 import { T_ReduxState } from "../../config/store.d";
-import { setCurrentlySelectedPlayer } from "../../redux/player/players_slice";
 import { AppDispatch } from "../../redux/store";
 import { advancePlayerContent } from "../../redux/timer/timer_thunks";
+import { setSelectedPlayer } from "../../redux/ui/uiSlice";
 
 interface I_PlayerCard {
   player: T_Player;
@@ -29,7 +29,7 @@ const Player = ({ player, isSelected }: I_PlayerCard) => {
 
   const handlePlayerClick = () => {
     if (!isSelected) {
-      dispatch(setCurrentlySelectedPlayer(player.id));
+      dispatch(setSelectedPlayer(player.id));
       return;
     }
     dispatch(advancePlayerContent(player.id));
@@ -59,11 +59,12 @@ const Player = ({ player, isSelected }: I_PlayerCard) => {
           sx={{
             display: "flex",
             alignItems: "center",
-            gap: 1,
+            gap: 0.5,
             maxWidth: "100%",
           }}
         >
-          <Avatar className="PlayerCard-avatar" src={playerRace.img} />
+          <Avatar src={ROLES[player.role].icon} />
+          <Avatar src={playerRace.img} />
 
           <Typography
             sx={{

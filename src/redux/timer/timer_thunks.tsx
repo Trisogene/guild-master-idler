@@ -1,11 +1,10 @@
 import _ from "lodash";
 
-import { CONTENTS, LINKS, TIMERS } from "../../config/config";
+import { CONTENTS, TIMERS } from "../../config/config";
 import { E_Content } from "../../config/config.d";
 import { T_ReduxState } from "../../config/store.d";
-import { sendNotification } from "../navigation/navigation_slice";
-import { changePlayerContent } from "../player/players_slice";
-import { updateRecruits } from "../recruit/recruit_slice";
+import { changePlayerContent } from "../player/playerSlice";
+import { updateRecruits } from "../recruit/recruitSlice";
 import { giveContentReward } from "../storage/storage_thunks";
 import { AppDispatch } from "../store";
 import { reset, tick } from "./timer_slice";
@@ -28,7 +27,6 @@ export const startTimers =
       } else {
         dispatch(updateRecruits());
         dispatch(reset({ timerName: "recruit" }));
-        dispatch(sendNotification(LINKS.recruit.id));
       }
 
       /* ------------------------------ playersTimers ----------------------------- */

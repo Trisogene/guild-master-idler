@@ -1,10 +1,22 @@
-import { Box, Grid, LinearProgress, Typography } from "@mui/joy";
+import {
+  Avatar,
+  Box,
+  Button,
+  Grid,
+  LinearProgress,
+  Tooltip,
+  Typography,
+} from "@mui/joy";
+import { useDispatch } from "react-redux";
+import { ROLES } from "../../../config/config";
 import { T_Player } from "../../../config/config.d";
+import { setPlayerRole } from "../../../redux/player/playerSlice";
 
 interface I_PlayerInfoStats {
   player: T_Player;
 }
 const PlayerInfoStats = ({ player }: I_PlayerInfoStats) => {
+  const dispatch = useDispatch();
   return (
     <>
       <Box
@@ -12,10 +24,50 @@ const PlayerInfoStats = ({ player }: I_PlayerInfoStats) => {
           display: "flex",
           flexDirection: "column",
           width: "100%",
-          p: 2,
+          p: 0.5,
           gap: 3,
         }}
       >
+        {/* Role */}
+        <Grid
+          sx={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fill, minmax(32px, 1fr))",
+            gap: 1,
+          }}
+        >
+          {Object.values(ROLES).map((role) => (
+            <Tooltip
+              key={role.id}
+              placement="top"
+              disableInteractive
+              title={<Box sx={{ userSelect: "none" }}>{role.label}</Box>}
+            >
+              <Button
+                key={role.id}
+                onClick={() =>
+                  dispatch(
+                    setPlayerRole({ playerId: player.id, role: role.id })
+                  )
+                }
+                color="success"
+                sx={{
+                  borderRadius: 4,
+                  background: (theme) =>
+                    player.role === role.id
+                      ? theme.palette.success.mainChannel
+                      : theme.palette.background.level2,
+                  border: (theme) =>
+                    `1px solid ${theme.palette.background.level3}`,
+                }}
+              >
+                <Avatar src={role.icon} sx={{ width: 16, height: 16 }} />
+              </Button>
+            </Tooltip>
+          ))}
+        </Grid>
+
+        {/* Stats */}
         <Grid
           sx={{
             display: "grid",
@@ -24,7 +76,7 @@ const PlayerInfoStats = ({ player }: I_PlayerInfoStats) => {
           }}
         >
           {Object.entries(player.stats).map(([statId, statValue]) => (
-            <Box sx={{ display: "flex" }}>
+            <Box sx={{ display: "flex" }} key={statId}>
               <Box
                 sx={{
                   pl: 0.3,

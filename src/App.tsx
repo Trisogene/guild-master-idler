@@ -24,11 +24,12 @@ function App() {
   return (
     <>
       <StyledApp className="App">
+        <Navigator currentPage={currentPage} />
         <Box
           sx={{
             display: "flex",
-            minHeight: "calc(100vh - 49px)",
-            maxHeight: "calc(100vh - 49px)",
+            minHeight: "calc(100% - 49px)",
+            maxHeight: "calc(100% - 49px)",
             p: 1,
             gap: 1,
           }}
@@ -37,7 +38,6 @@ function App() {
           {LINKS[currentPage].component}
         </Box>
         <Divider />
-        <Navigator currentPage={currentPage} />
       </StyledApp>
     </>
   );

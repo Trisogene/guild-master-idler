@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { RACES } from "../../config/config";
 import { T_Player } from "../../config/config.d";
 import { T_ReduxState } from "../../config/store.d";
-import { setCurrentSelectedRecruit } from "../../redux/recruit/recruit_slice";
-import { recruitPlayer } from "../../redux/recruit/recruit_thunks";
+import { setCurrentSelectedRecruit } from "../../redux/recruit/recruitSlice";
+import { recruitPlayerThunk } from "../../redux/recruit/recruitThunk";
 import { AppDispatch } from "../../redux/store";
 
 interface I_RecruitCard {
@@ -50,7 +50,7 @@ export default function Recruit({ recruit, isSelected }: I_RecruitCard) {
         variant="solid"
         onClick={(e) => {
           e.stopPropagation();
-          dispatch(recruitPlayer(recruit));
+          dispatch(recruitPlayerThunk(recruit));
         }}
       >
         RECRUIT ({avaialablePicks}/2)

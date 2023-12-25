@@ -15,8 +15,8 @@ export type T_ReduxState = {
   navigation: T_NavigationSlice;
   timer: T_TimerSlice;
   recruit: T_RecruitSlice;
-  crafting: T_CraftingSlice;
   log: T_LogSlice;
+  ui: T_UiSlice;
 };
 
 /* -------------------------------------------------------------------------- */
@@ -24,14 +24,6 @@ export type T_ReduxState = {
 /* -------------------------------------------------------------------------- */
 export type T_LogSlice = {
   logs: string[];
-};
-
-/* -------------------------------------------------------------------------- */
-/*                                CraftingSlice                               */
-/* -------------------------------------------------------------------------- */
-export type T_CraftingSlice = {
-  currentFilter: string;
-  currentSelectedCraft: E_Recipe | null;
 };
 
 /* -------------------------------------------------------------------------- */
@@ -52,7 +44,6 @@ export type T_TimerSlice = {
 /* -------------------------------------------------------------------------- */
 export type T_PlayersSlice = {
   players: T_Players;
-  currentlySelectedPlayer: string | null;
 };
 
 /* -------------------------------------------------------------------------- */
@@ -79,7 +70,20 @@ export type T_StorageSlice = {
 /* -------------------------------------------------------------------------- */
 export type T_NavigationSlice = {
   currentPage: E_Link;
-  notifications: {
-    [key: string]: number;
+};
+
+/* -------------------------------------------------------------------------- */
+/*                                   UiSlice                                  */
+/* -------------------------------------------------------------------------- */
+export type T_UiSlice = {
+  [E_Link.crafting]: {
+    currentSelectedItem: E_Recipe | null;
+    currentFilter: E_Item_Category;
+  };
+  [E_Link.guild]: {
+    selectedPlayer: string | null;
+  };
+  [E_Link.recruit]: {
+    selectedPlayer: string | null;
   };
 };

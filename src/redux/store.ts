@@ -1,24 +1,24 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { throttle } from "lodash";
 import { loadState, saveState } from "../utils";
-import { crafting_slice } from "./crafting/crafting_slice";
 import { log_slice } from "./log/log_slice";
-import { navigation_slice } from "./navigation/navigation_slice";
-import { player_slice } from "./player/players_slice";
-import { recruit_slice } from "./recruit/recruit_slice";
+import { navigationSlice } from "./navigation/navigationSlice";
+import { playerSlice } from "./player/playerSlice";
+import { recruit_slice } from "./recruit/recruitSlice";
 import { storage_slice } from "./storage/storage_slice";
 import { timer_slice } from "./timer/timer_slice";
+import { uiSlice } from "./ui/uiSlice";
 
 const persistedState = loadState();
 
 const reducer = {
-  players: player_slice.reducer,
+  players: playerSlice.reducer,
   storage: storage_slice.reducer,
-  navigation: navigation_slice.reducer,
+  navigation: navigationSlice.reducer,
   timer: timer_slice.reducer,
   recruit: recruit_slice.reducer,
-  crafting: crafting_slice.reducer,
   log: log_slice.reducer,
+  ui: uiSlice.reducer,
 };
 
 const store = configureStore({
@@ -35,8 +35,9 @@ store.subscribe(
       navigation: store.getState().navigation,
       timer: store.getState().timer,
       recruit: store.getState().recruit,
-      crafting: store.getState().crafting,
+
       log: store.getState().log,
+      ui: store.getState().ui,
     });
   }, 5000)
 );

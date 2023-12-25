@@ -1,8 +1,10 @@
-import { Box, Button, Typography } from "@mui/joy";
+import { Avatar, Box, Button, Typography } from "@mui/joy";
+import { useWindowSize } from "@uidotdev/usehooks";
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { LINKS } from "../../config/config";
 import { E_Link } from "../../config/config.d";
-import { setPage } from "../../redux/navigation/navigation_slice";
+import { setPage } from "../../redux/navigation/navigationSlice";
 
 interface I_NavigatorProps {
   currentPage: E_Link;
@@ -10,6 +12,13 @@ interface I_NavigatorProps {
 
 const Navigator = ({ currentPage }: I_NavigatorProps) => {
   const dispatch = useDispatch();
+
+  const { width } = useWindowSize();
+  const isDesktop = width && width > 600;
+
+  useEffect(() => {
+    console.log(width);
+  }, [width]);
 
   return (
     <Box
@@ -30,7 +39,6 @@ const Navigator = ({ currentPage }: I_NavigatorProps) => {
             onClick={() => dispatch(setPage(linkId as E_Link))}
             key={linkId}
             sx={{
-              transition: "all 0.2s ease-in-out",
               ">* ": {
                 fontWeight: linkId === currentPage ? 800 : 200,
                 transform: linkId === currentPage ? "scale(1.1)" : "scale(1)",
@@ -43,14 +51,17 @@ const Navigator = ({ currentPage }: I_NavigatorProps) => {
               },
             }}
           >
-            <Typography
-              sx={{
-                transition: "all 0.2s ease-in-out",
-                fontWeight: linkId === currentPage ? 800 : 200,
-              }}
-            >
-              {link.label}
-            </Typography>
+            <Box sx={{ display: "flex", gap: 1, alignItems: "center" }}>
+              <Avatar
+                src={link.icon}
+                sx={{ transition: "all 0.2s ease-in-out" }}
+              />
+              {isDesktop && (
+                <Typography sx={{ transition: "all 0.1s ease-in-out" }}>
+                  {link.label}
+                </Typography>
+              )}
+            </Box>
           </Button>
         );
       })}

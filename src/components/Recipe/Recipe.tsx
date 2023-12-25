@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { ITEMS, RECIPES } from "../../config/config";
 import { E_Item, E_Recipe, T_Item, T_Recipe } from "../../config/config.d";
 import useSelectItemsFromStorage from "../../hooks/useSelectItemsFromStorage";
-import { setCurrentSelectedCraft } from "../../redux/crafting/crafting_slice";
+import { setCurrentCraftingItem } from "../../redux/ui/uiSlice";
 
 interface I_CraftableItemCard {
   item: E_Recipe;
@@ -31,7 +31,7 @@ const Recipe = ({ item, isSelected }: I_CraftableItemCard) => {
 
   return (
     <Card
-      onClick={() => dispatch(setCurrentSelectedCraft(item))}
+      onClick={() => dispatch(setCurrentCraftingItem(item))}
       sx={{
         alignItems: "center",
         bgcolor: isSelected ? "background.level2" : "background.paper",

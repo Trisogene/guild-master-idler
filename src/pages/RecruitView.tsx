@@ -1,17 +1,12 @@
 import { Grid } from "@mui/joy";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Recruit from "../../components/Recruit/Recruit";
-import RecruitInfo from "../../components/RecruitInfo/RecruitInfo";
-import RecruitTimer from "../../components/RecruitTimer/RecruitTimer";
-import { T_ReduxState } from "../../config/store.d";
-import { updateRecruits } from "../../redux/recruit/recruit_slice";
-import {
-  Page,
-  PageBody,
-  PageBottom,
-  PageHeader,
-} from "../../styles/PageStyles";
+import Recruit from "../components/Recruit/Recruit";
+import RecruitInfo from "../components/RecruitInfo/RecruitInfo";
+import RecruitTimer from "../components/RecruitTimer/RecruitTimer";
+import { T_ReduxState } from "../config/store.d";
+import { updateRecruits } from "../redux/recruit/recruitSlice";
+import { Page, PageBody, PageBottom, PageHeader } from "../styles/PageStyles";
 
 const RecruitView = () => {
   const recruits = useSelector((state: T_ReduxState) => state.recruit.recruits);
@@ -32,7 +27,7 @@ const RecruitView = () => {
       <PageHeader>
         <RecruitTimer />
       </PageHeader>
-      <PageBody sx={{ p: 1, display: "flex", flexDirection: "column", g: 1 }}>
+      <PageBody sx={{ p: 0.5, display: "flex", flexDirection: "column", g: 1 }}>
         <Grid
           sx={{
             display: "grid",

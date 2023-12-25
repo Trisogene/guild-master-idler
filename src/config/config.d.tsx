@@ -51,7 +51,7 @@ export type T_Item_Stack = {
 };
 
 export type T_Item_Category = {
-  id: string;
+  id: E_Item_Category;
   label: string;
   craftable: boolean;
   icon: string;
@@ -87,12 +87,14 @@ export enum E_Link {
   guild = "guild",
   storage = "storage",
   crafting = "crafting",
+  events = "events",
 }
 
 export type T_Link = {
   id: string;
   label: string;
   component: JSX.Element;
+  icon: string;
 };
 
 export type T_Links = Record<E_Link, T_Link>;
@@ -156,6 +158,7 @@ export type T_Player = {
   stats: T_Player_Stat;
   masteries: T_Player_Mastery;
   lore: string;
+  role: E_Role;
 };
 
 type T_Player_Stat = {
@@ -192,4 +195,24 @@ export type T_Race = {
   description: string;
   perks: string[];
   img: string;
+};
+
+export enum E_Role {
+  archer = "archer",
+  bruiser = "bruiser",
+  defensiveTank = "defensiveTank",
+  offensiveTank = "offensiveTank",
+  mage = "mage",
+  healer = "healer",
+  piercer = "piercer",
+  support = "support",
+}
+
+export type T_Roles = Record<E_Role, T_Role>;
+
+export type T_Role = {
+  id: E_Role;
+  label: string;
+  description: string;
+  icon: string;
 };

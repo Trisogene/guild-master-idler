@@ -1,5 +1,5 @@
 import { PayloadAction } from "@reduxjs/toolkit";
-import { E_Content, T_Player } from "../../config/config.d";
+import { E_Content, E_Role, T_Player } from "../../config/config.d";
 import { T_PlayersSlice } from "../../config/store.d";
 
 const addPlayer = (
@@ -7,9 +7,6 @@ const addPlayer = (
   { payload: player }: PayloadAction<T_Player>
 ) => {
   state.players[player.id] = player;
-  if (!state.currentlySelectedPlayer) {
-    state.currentlySelectedPlayer = player.id;
-  }
 };
 
 const changePlayerContent = (
@@ -23,15 +20,17 @@ const changePlayerContent = (
   }
 };
 
-const setCurrentlySelectedPlayer = (
+const setPlayerRole = (
   state: T_PlayersSlice,
-  { payload: playerId }: PayloadAction<string>
+  {
+    payload: { playerId, role },
+  }: PayloadAction<{ playerId: string; role: E_Role }>
 ) => {
-  state.currentlySelectedPlayer = playerId;
+  state.players[playerId].role = role;
 };
 
 export const playerActions = {
   addPlayer,
   changePlayerContent,
-  setCurrentlySelectedPlayer,
+  setPlayerRole,
 };

@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { ITEMS, RECIPES } from "../../config/config";
 import { E_Item, E_Recipe, T_Recipe } from "../../config/config.d";
 import useSelectItemsFromStorage from "../../hooks/useSelectItemsFromStorage";
-import { craftItem } from "../../redux/crafting/crafting_thunks";
+import { craftItem } from "../../redux/crafting/craftingThunk";
 
 interface I_CraftingInfo {
   itemId: E_Recipe;

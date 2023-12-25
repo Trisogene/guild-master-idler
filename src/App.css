@@ -1,16 +1,19 @@
 /* #root {
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background:rgb(20, 20, 20);
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgb(20, 20, 20);
+}
+
+.App {
+  width: 390px !important;
+  max-height: 663px !important;
+  min-height: 663px !important;
+  background: rgba(12, 12, 12, 1);
 } */
 
-/* .App {
-    max-width: 800px !important;
-    min-width: 350 !important;
-    height: 800px !important;
-    background: rgba(12,12, 12, 1);
-
-} */
+.App {
+  min-width: 350px;
+}

@@ -1,4 +1,4 @@
-import { Box, Card, Chip } from "@mui/joy";
+import { Avatar, Box, Card } from "@mui/joy";
 import { useSelector } from "react-redux";
 import clockIcon from "../../assets/utils/clock.svg";
 import { T_ReduxState } from "../../config/store.d";
@@ -21,24 +21,30 @@ const Sidebar = () => {
         gap: 1,
         overflowY: "overlay",
         minWidth: 80,
-        maxWidth: 80,
+        maxWidth: 200,
+        flexGrow: 1,
       }}
     >
-      <Chip
-        variant="solid"
-        startDecorator={
-          <Box
-            component={"img"}
-            src={clockIcon}
-            sx={{ width: 24, height: 32 }}
-          />
-        }
-        sx={{ minWidth: 80 }}
+      <Card
+        variant="soft"
+        sx={{
+          flexDirection: "row",
+          alignItems: "center",
+          width: "100%",
+          border: (theme) => `1px solid ${theme.palette.background.level2}`,
+        }}
       >
+        <Avatar src={clockIcon} />
         {formattedTime}
-      </Chip>
+      </Card>
 
-      <Card variant="soft" sx={{ flexGrow: 1 }}></Card>
+      <Card
+        variant="soft"
+        sx={{
+          flexGrow: 1,
+          border: (theme) => `1px solid ${theme.palette.background.level2}`,
+        }}
+      ></Card>
     </Box>
   );
 };
