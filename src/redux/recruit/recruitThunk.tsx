@@ -22,7 +22,7 @@ export const recruitPlayerThunk =
       addLog({
         type: E_Log_Type.recruit,
         timestamp: state.timer.timers.clock,
-        player: recruit,
+        playerName: recruit.name,
       })
     );
   };

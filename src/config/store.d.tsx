@@ -4,7 +4,6 @@ import {
   E_Link,
   E_Recipe,
   T_Item_Stack,
-  T_Player,
   T_Players,
 } from "./config.d";
 
@@ -38,7 +37,7 @@ export type T_Log = T_Log_Recruit | T_Log_Reward;
 export type T_Log_Recruit = {
   timestamp: number;
   type: E_Log_Type.recruit;
-  player: T_Player;
+  playerName: string;
 };
 
 export type T_Log_Reward = {

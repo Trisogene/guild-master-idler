@@ -7,7 +7,7 @@ interface I_RewardLogProps {
 }
 const RewardLog = ({ log }: I_RewardLogProps) => {
   return (
-    <Card sx={{ gap: 0.5 }}>
+    <Card sx={{ gap: 0.5, p: 1 }}>
       <Box sx={{ display: "flex", justifyContent: "space-between" }}>
         <Typography fontSize={12}>{log.playerName}</Typography>
         <Chip variant="solid" color="success">
@@ -19,9 +19,14 @@ const RewardLog = ({ log }: I_RewardLogProps) => {
 
       <Box sx={{ display: "flex", gap: 0.5, alignItems: "center" }}>
         <Tooltip disableInteractive arrow title={log.reward.id} placement="top">
-          <Avatar size="md" src={ITEMS[log.reward.id].img} />
+          <Chip
+            variant="solid"
+            sx={{ p: 0, pl: 1, pr: 1 }}
+            startDecorator={<Avatar src={ITEMS[log.reward.id].img} />}
+          >
+            <Typography fontSize={14}>{log.reward.quantity}</Typography>
+          </Chip>
         </Tooltip>
-        <Typography fontSize={14}>{log.reward.quantity}</Typography>
       </Box>
 
       <Box
