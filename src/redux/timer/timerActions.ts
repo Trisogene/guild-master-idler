@@ -1,5 +1,5 @@
 import { PayloadAction } from "@reduxjs/toolkit";
-import { T_TimerSlice } from "../../../types/types.d";
+import { T_TimerSlice } from "../../config/store.d";
 
 type T_TimerAction = {
   timerName: string;

@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { RACES } from "../../config/config";
 import { T_Player } from "../../config/config.d";
 import { T_ReduxState } from "../../config/store.d";
-import { setCurrentSelectedRecruit } from "../../redux/recruit/recruitSlice";
 import { recruitPlayerThunk } from "../../redux/recruit/recruitThunk";
 import { AppDispatch } from "../../redux/store";
+import { setSelectedRecruitPlayer } from "../../redux/ui/uiSlice";
 
 interface I_RecruitCard {
   recruit: T_Player;
@@ -26,7 +26,7 @@ export default function Recruit({ recruit, isSelected }: I_RecruitCard) {
         alignItems: "center",
       }}
       onClick={() => {
-        dispatch(setCurrentSelectedRecruit(recruit.id));
+        dispatch(setSelectedRecruitPlayer(recruit.id));
       }}
     >
       <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>

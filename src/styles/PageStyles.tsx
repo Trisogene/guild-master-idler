@@ -3,10 +3,11 @@ import { Box, Card, styled } from "@mui/joy";
 export const Page = styled(Box)(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
-  flexGrow: 2,
+  flexGrow: 3,
   height: "100%",
   gap: theme.spacing(1),
   overflow: "hidden",
+  minWidth: 200,
 }));
 
 export const PageHeader = styled(Card)(({ theme }) => ({

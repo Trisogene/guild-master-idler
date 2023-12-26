@@ -1,6 +1,5 @@
 import { Avatar, Box, Button, Typography } from "@mui/joy";
 import { useWindowSize } from "@uidotdev/usehooks";
-import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { LINKS } from "../../config/config";
 import { E_Link } from "../../config/config.d";
@@ -15,10 +14,6 @@ const Navigator = ({ currentPage }: I_NavigatorProps) => {
 
   const { width } = useWindowSize();
   const isDesktop = width && width > 600;
-
-  useEffect(() => {
-    console.log(width);
-  }, [width]);
 
   return (
     <Box

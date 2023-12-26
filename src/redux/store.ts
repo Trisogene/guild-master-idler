@@ -1,12 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { throttle } from "lodash";
 import { loadState, saveState } from "../utils";
-import { log_slice } from "./log/log_slice";
+import { logSlice } from "./log/logSlice";
 import { navigationSlice } from "./navigation/navigationSlice";
 import { playerSlice } from "./player/playerSlice";
 import { recruit_slice } from "./recruit/recruitSlice";
-import { storage_slice } from "./storage/storage_slice";
-import { timer_slice } from "./timer/timer_slice";
+import { storage_slice } from "./storage/storageSlice";
+import { timer_slice } from "./timer/timerSlice";
 import { uiSlice } from "./ui/uiSlice";
 
 const persistedState = loadState();
@@ -17,7 +17,7 @@ const reducer = {
   navigation: navigationSlice.reducer,
   timer: timer_slice.reducer,
   recruit: recruit_slice.reducer,
-  log: log_slice.reducer,
+  log: logSlice.reducer,
   ui: uiSlice.reducer,
 };
 

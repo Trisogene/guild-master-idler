@@ -8,8 +8,8 @@ import { CONTENTS, RACES, ROLES } from "../../config/config";
 import { T_Player } from "../../config/config.d";
 import { T_ReduxState } from "../../config/store.d";
 import { AppDispatch } from "../../redux/store";
-import { advancePlayerContent } from "../../redux/timer/timer_thunks";
-import { setSelectedPlayer } from "../../redux/ui/uiSlice";
+import { advancePlayerContent } from "../../redux/timer/timerThunks";
+import { setSelectedGuildPlayer } from "../../redux/ui/uiSlice";
 
 interface I_PlayerCard {
   player: T_Player;
@@ -29,7 +29,7 @@ const Player = ({ player, isSelected }: I_PlayerCard) => {
 
   const handlePlayerClick = () => {
     if (!isSelected) {
-      dispatch(setSelectedPlayer(player.id));
+      dispatch(setSelectedGuildPlayer(player.id));
       return;
     }
     dispatch(advancePlayerContent(player.id));

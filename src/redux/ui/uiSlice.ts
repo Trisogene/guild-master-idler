@@ -12,11 +12,22 @@ export const uiSlice = createSlice({
     guild: {
       selectedPlayer: null,
     },
+    recruit: {
+      selectedPlayer: null,
+    },
+    storage: {
+      currentFilter: E_Item_Category.material,
+    },
   },
   reducers: uiActions,
 });
 
-export const { setCraftingFilter, setCurrentCraftingItem, setSelectedPlayer } =
-  uiSlice.actions;
+export const {
+  setCraftingFilter,
+  setCurrentCraftingItem,
+  setSelectedGuildPlayer,
+  setSelectedRecruitPlayer,
+  setStorageFilter,
+} = uiSlice.actions;
 
 export default uiSlice.reducer;

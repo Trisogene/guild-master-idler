@@ -1,8 +1,10 @@
 import {
+  E_Content,
   E_Item_Category,
   E_Link,
   E_Recipe,
   T_Item_Stack,
+  T_Player,
   T_Players,
 } from "./config.d";
 
@@ -23,7 +25,28 @@ export type T_ReduxState = {
 /*                                  LogSlice                                  */
 /* -------------------------------------------------------------------------- */
 export type T_LogSlice = {
-  logs: string[];
+  logs: T_Log[];
+};
+
+export enum E_Log_Type {
+  recruit = "recruit",
+  reward = "reward",
+}
+
+export type T_Log = T_Log_Recruit | T_Log_Reward;
+
+export type T_Log_Recruit = {
+  timestamp: number;
+  type: E_Log_Type.recruit;
+  player: T_Player;
+};
+
+export type T_Log_Reward = {
+  timestamp: number;
+  type: E_Log_Type.reward;
+  playerName: string;
+  contentId: E_Content;
+  reward: T_Item_Stack;
 };
 
 /* -------------------------------------------------------------------------- */
@@ -51,7 +74,6 @@ export type T_PlayersSlice = {
 /* -------------------------------------------------------------------------- */
 export type T_RecruitSlice = {
   recruits: T_Players;
-  currentlySelectedRecruit: string | null;
   avaialablePicks: number;
 };
 
@@ -62,7 +84,6 @@ export type T_StorageSlice = {
   storage: {
     [key: string]: T_Item_Stack;
   };
-  currentFilter: E_Item_Category;
 };
 
 /* -------------------------------------------------------------------------- */
@@ -85,5 +106,8 @@ export type T_UiSlice = {
   };
   [E_Link.recruit]: {
     selectedPlayer: string | null;
+  };
+  [E_Link.storage]: {
+    currentFilter: E_Item_Category;
   };
 };

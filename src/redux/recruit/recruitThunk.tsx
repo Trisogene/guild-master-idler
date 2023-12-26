@@ -1,15 +1,28 @@
 import { T_Player } from "../../config/config.d";
+import { E_Log_Type, T_ReduxState } from "../../config/store.d";
+import { addLog } from "../log/logSlice";
 import { addPlayerThunk } from "../player/playerThunk";
 import { AppDispatch } from "../store";
-import { initPlayerTimer } from "../timer/timer_slice";
+import { initPlayerTimer } from "../timer/timerSlice";
+import { setSelectedRecruitPlayer } from "../ui/uiSlice";
 
-import { decreaseAvailablePicks, removeRecruit } from "./recruitSlice";
+import { removeRecruit } from "./recruitSlice";
 
 export const recruitPlayerThunk =
   (recruit: T_Player): any =>
-  (dispatch: AppDispatch) => {
+  (dispatch: AppDispatch, getState: () => T_ReduxState) => {
+    const state = getState();
     dispatch(removeRecruit(recruit.id));
-    dispatch(decreaseAvailablePicks());
+    if (state.ui.recruit.selectedPlayer === recruit.id) {
+      dispatch(setSelectedRecruitPlayer(null));
+    }
     dispatch(addPlayerThunk(recruit));
     dispatch(initPlayerTimer(recruit.id));
+    dispatch(
+      addLog({
+        type: E_Log_Type.recruit,
+        timestamp: state.timer.timers.clock,
+        player: recruit,
+      })
+    );
   };

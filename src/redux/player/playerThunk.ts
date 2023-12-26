@@ -1,7 +1,7 @@
 import { T_Player } from "../../config/config.d";
 import { T_ReduxState } from "../../config/store.d";
 import { AppDispatch } from "../store";
-import { setSelectedPlayer } from "../ui/uiSlice";
+import { setSelectedGuildPlayer } from "../ui/uiSlice";
 import { addPlayer } from "./playerSlice";
 
 export const addPlayerThunk =
@@ -11,6 +11,6 @@ export const addPlayerThunk =
 
     const ui = getState().ui;
     if (!ui.guild.selectedPlayer) {
-      dispatch(setSelectedPlayer(player.id));
+      dispatch(setSelectedGuildPlayer(player.id));
     }
   };

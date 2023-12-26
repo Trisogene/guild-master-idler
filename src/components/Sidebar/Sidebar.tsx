@@ -1,7 +1,9 @@
 import { Avatar, Box, Card } from "@mui/joy";
 import { useSelector } from "react-redux";
 import clockIcon from "../../assets/utils/clock.svg";
-import { T_ReduxState } from "../../config/store.d";
+import { E_Log_Type, T_ReduxState } from "../../config/store.d";
+import RecruitLog from "../Log/RecruitLog";
+import RewardLog from "../Log/RewardLog";
 
 const Sidebar = () => {
   const clock = useSelector((state: T_ReduxState) => state.timer.timers.clock);
@@ -16,13 +18,14 @@ const Sidebar = () => {
   return (
     <Box
       sx={{
+        maxHeight: "100%",
         display: "flex",
         flexDirection: "column",
         gap: 1,
-        overflowY: "overlay",
         minWidth: 80,
         maxWidth: 200,
         flexGrow: 1,
+        // overflowY: "overlay",
       }}
     >
       <Card
@@ -41,10 +44,31 @@ const Sidebar = () => {
       <Card
         variant="soft"
         sx={{
+          maxHeight: "100%",
+          overflowY: "auto",
           flexGrow: 1,
           border: (theme) => `1px solid ${theme.palette.background.level2}`,
         }}
-      ></Card>
+      >
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column-reverse",
+            gap: 0.5,
+          }}
+        >
+          {logs.map((log, index) => {
+            switch (log.type) {
+              case E_Log_Type.recruit:
+                return <RecruitLog key={log.timestamp + index} log={log} />;
+              case E_Log_Type.reward:
+                return <RewardLog key={log.timestamp + index} log={log} />;
+              default:
+                return null;
+            }
+          })}
+        </Box>
+      </Card>
     </Box>
   );
 };

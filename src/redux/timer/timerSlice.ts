@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { timerActions } from "./timer_action";
+import { timerActions } from "./timerActions";
 
 export const timer_slice = createSlice({
   name: "timer",

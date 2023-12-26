@@ -12,6 +12,10 @@ export const theme = extendTheme({
             width: 16,
             height: 16,
           }),
+          ...(ownerState.size === "md" && {
+            width: 24,
+            height: 24,
+          }),
         }),
       },
     },

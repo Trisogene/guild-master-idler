@@ -8,7 +8,7 @@ import { Navigator } from "./components";
 import { LINKS } from "./config/config";
 import { T_ReduxState } from "./config/store.d";
 import { AppDispatch } from "./redux/store";
-import { startTimers } from "./redux/timer/timer_thunks";
+import { startTimers } from "./redux/timer/timerThunks";
 import { StyledApp } from "./styles/AppStyles";
 
 function App() {

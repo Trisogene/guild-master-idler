@@ -5,12 +5,12 @@ import useFilterStorageByType from "../hooks/useFilterStorageByType";
 
 import { ITEM_CATEGORIES } from "../config/config";
 import { T_ReduxState } from "../config/store.d";
-import { setCurrentStorageFilter } from "../redux/storage/storage_slice";
+import { setStorageFilter } from "../redux/ui/uiSlice";
 import { Page, PageBody, PageBottom, PageHeader } from "../styles/PageStyles";
 
 const StorageView = () => {
   const currentFilter = useSelector(
-    (state: T_ReduxState) => state.storage.currentFilter
+    (state: T_ReduxState) => state.ui.storage.currentFilter
   );
   const dispatch = useDispatch();
   const filteredItems = useFilterStorageByType({ filter: currentFilter });
@@ -27,7 +27,7 @@ const StorageView = () => {
         {Object.values(ITEM_CATEGORIES).map((category) => (
           <Button
             fullWidth
-            onClick={() => dispatch(setCurrentStorageFilter(category.id))}
+            onClick={() => dispatch(setStorageFilter(category.id))}
             variant={currentFilter === category.id ? "solid" : "plain"}
             color="neutral"
             key={category.label}
@@ -44,8 +44,8 @@ const StorageView = () => {
         <Grid
           sx={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fill, minmax(128px, 1fr))",
-            gap: 1,
+            gridTemplateColumns: "repeat(auto-fill, minmax(48px, 1fr))",
+            gap: 2,
           }}
         >
           {Object.values(filteredItems).map((itemStack) => (

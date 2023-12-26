@@ -1,6 +1,6 @@
 import { RECIPES } from "../../config/config";
 import { E_Recipe } from "../../config/config.d";
-import { addItem, removeItem } from "../storage/storage_slice";
+import { addItem, removeItem } from "../storage/storageSlice";
 import { AppDispatch } from "../store";
 
 export const craftItem =

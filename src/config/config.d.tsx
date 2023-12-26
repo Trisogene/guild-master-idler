@@ -43,6 +43,7 @@ export type T_Item = {
   label: string;
   description: string;
   img: string;
+  tier: number;
 };
 
 export type T_Item_Stack = {
@@ -76,7 +77,7 @@ export type T_Content = {
 };
 
 export type T_ContentReward = {
-  item: string;
+  item: E_Item;
   possibility: number;
 };
 

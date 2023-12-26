@@ -1,4 +1,4 @@
-import { Avatar, Box, Card, CardContent, Divider, Typography } from "@mui/joy";
+import { Avatar, Box, Card, Tooltip, Typography } from "@mui/joy";
 import { ITEMS } from "../../config/config";
 import { T_Item_Stack } from "../../config/config.d";
 
@@ -10,33 +10,56 @@ const Item: React.FC<I_ItemCard> = ({ itemStack }) => {
   const itemConfig = ITEMS[itemStack.id];
 
   return (
-    <Card
-      sx={{
-        alignItems: "center",
-      }}
-    >
-      <Box
+    <Tooltip disableInteractive title={itemConfig.label} placement="top">
+      <Card
         sx={{
-          display: "flex",
+          position: "relative",
+          height: 48,
+          width: 48,
           alignItems: "center",
-          gap: 1,
-          p: 0.5,
+          justifyContent: "center",
         }}
       >
-        <Avatar className="PlayerCard-avatar" src={itemConfig.img} />
+        <Avatar size="md" className="PlayerCard-avatar" src={itemConfig.img} />
+        <Box
+          sx={{
+            position: "absolute",
+            bottom: -4,
+            right: -4,
+            bgcolor: "background.level2",
+            borderRadius: (theme) => theme.vars.radius.sm,
+            width: 20,
+            height: 20,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            border: (theme) => `1px solid ${theme.palette.background.level3}`,
+            p: 0.5,
+          }}
+        >
+          <Typography fontSize={10}>{itemStack.quantity}</Typography>
+        </Box>
 
-        <Typography fontSize="sm">{itemConfig.label}</Typography>
-      </Box>
-
-      <Divider
-        orientation="horizontal"
-        sx={{ width: "90%", alignSelf: "center" }}
-      />
-
-      <CardContent sx={{ alignItems: "center" }}>
-        <Typography fontSize="sm">x{itemStack.quantity}</Typography>
-      </CardContent>
-    </Card>
+        <Box
+          sx={{
+            position: "absolute",
+            top: -4,
+            left: -4,
+            bgcolor: "background.level2",
+            borderRadius: (theme) => theme.vars.radius.sm,
+            width: 20,
+            height: 20,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            border: (theme) => `1px solid ${theme.palette.background.level3}`,
+            p: 0.5,
+          }}
+        >
+          <Typography fontSize={10}>T{ITEMS[itemStack.id].tier}</Typography>
+        </Box>
+      </Card>
+    </Tooltip>
   );
 };
 

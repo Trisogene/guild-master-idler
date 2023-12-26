@@ -12,8 +12,8 @@ const RecruitView = () => {
   const recruits = useSelector((state: T_ReduxState) => state.recruit.recruits);
   const dispatch = useDispatch();
 
-  const currentSelectedRecruit = useSelector(
-    (state: T_ReduxState) => state.recruit.currentlySelectedRecruit
+  const selectedPlayer = useSelector(
+    (state: T_ReduxState) => state.ui.recruit.selectedPlayer
   );
 
   useEffect(() => {
@@ -39,15 +39,15 @@ const RecruitView = () => {
             <Recruit
               key={recruit.id}
               recruit={recruit}
-              isSelected={recruit.id === currentSelectedRecruit}
+              isSelected={recruit.id === selectedPlayer}
             />
           ))}
         </Grid>
       </PageBody>
 
       <PageBottom>
-        {currentSelectedRecruit && recruits[currentSelectedRecruit] ? (
-          <RecruitInfo recruit={recruits[currentSelectedRecruit]} />
+        {selectedPlayer && recruits[selectedPlayer] ? (
+          <RecruitInfo recruit={recruits[selectedPlayer]} />
         ) : (
           <></>
         )}

@@ -16,15 +16,31 @@ const setCurrentCraftingItem = (
   state.crafting.currentSelectedItem = item;
 };
 
-const setSelectedPlayer = (
+const setSelectedGuildPlayer = (
   state: T_UiSlice,
   { payload: playerId }: PayloadAction<string>
 ) => {
   state.guild.selectedPlayer = playerId;
 };
 
+const setSelectedRecruitPlayer = (
+  state: T_UiSlice,
+  { payload: playerId }: PayloadAction<string | null>
+) => {
+  state.recruit.selectedPlayer = playerId;
+};
+
+const setStorageFilter = (
+  state: T_UiSlice,
+  { payload: filter }: PayloadAction<E_Item_Category>
+) => {
+  state.storage.currentFilter = filter;
+};
+
 export const uiActions = {
   setCraftingFilter,
   setCurrentCraftingItem,
-  setSelectedPlayer,
+  setSelectedGuildPlayer,
+  setSelectedRecruitPlayer,
+  setStorageFilter,
 };

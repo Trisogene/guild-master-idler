@@ -341,7 +341,7 @@ export const RECRUITS: T_Players = {
   human: {
     id: "",
     currentContent: E_Content.dungeoning,
-    name: "Marco the human",
+    name: "Marco",
     race: E_Race.human,
     stats: {
       hp: 50,
@@ -393,6 +393,7 @@ export const ITEMS_RESOURCES = {
     id: E_Item.fiber,
     img: fiber_icon,
     label: "Fiber",
+    tier: 1,
   },
   hide: {
     category: E_Item_Category.resource,
@@ -400,6 +401,7 @@ export const ITEMS_RESOURCES = {
     id: E_Item.hide,
     img: hide_icon,
     label: "Hide",
+    tier: 1,
   },
   ore: {
     category: E_Item_Category.resource,
@@ -407,6 +409,7 @@ export const ITEMS_RESOURCES = {
     id: E_Item.ore,
     img: ore_icon,
     label: "Ore",
+    tier: 1,
   },
   stone: {
     category: E_Item_Category.resource,
@@ -414,6 +417,7 @@ export const ITEMS_RESOURCES = {
     id: E_Item.stone,
     img: stone_icon,
     label: "Stone",
+    tier: 1,
   },
   wood: {
     category: E_Item_Category.resource,
@@ -421,6 +425,7 @@ export const ITEMS_RESOURCES = {
     id: E_Item.wood,
     img: wood_icon,
     label: "Wood",
+    tier: 1,
   },
 };
 
@@ -431,6 +436,7 @@ export const ITEMS_MATERIALS = {
     id: E_Item.cloth,
     img: fiber_icon,
     label: "Cloth",
+    tier: 1,
   },
   leather: {
     category: E_Item_Category.material,
@@ -438,6 +444,7 @@ export const ITEMS_MATERIALS = {
     id: E_Item.leather,
     img: hide_icon,
     label: "Leather",
+    tier: 1,
   },
   metalBar: {
     category: E_Item_Category.material,
@@ -445,6 +452,7 @@ export const ITEMS_MATERIALS = {
     id: E_Item.metalBar,
     img: ore_icon,
     label: "Metal Bar",
+    tier: 1,
   },
   plank: {
     category: E_Item_Category.material,
@@ -452,6 +460,7 @@ export const ITEMS_MATERIALS = {
     id: E_Item.plank,
     img: wood_icon,
     label: "Plank",
+    tier: 1,
   },
   stoneBlock: {
     category: E_Item_Category.material,
@@ -459,6 +468,7 @@ export const ITEMS_MATERIALS = {
     id: E_Item.stoneBlock,
     img: stone_icon,
     label: "Stone Block",
+    tier: 1,
   },
 };
 
@@ -469,6 +479,7 @@ export const ITEMS_DROP = {
     id: E_Item.artifact,
     img: artifact_icon,
     label: "Artifact",
+    tier: 1,
   },
   relic: {
     category: E_Item_Category.drop,
@@ -476,6 +487,7 @@ export const ITEMS_DROP = {
     id: E_Item.relic,
     img: relic_icon,
     label: "Relic",
+    tier: 1,
   },
   rune: {
     category: E_Item_Category.drop,
@@ -483,6 +495,7 @@ export const ITEMS_DROP = {
     id: E_Item.rune,
     img: rune_icon,
     label: "Rune",
+    tier: 1,
   },
   soul: {
     category: E_Item_Category.drop,
@@ -490,6 +503,7 @@ export const ITEMS_DROP = {
     id: E_Item.soul,
     img: soul_icon,
     label: "Soul",
+    tier: 1,
   },
 };
 
@@ -500,6 +514,7 @@ export const ITEMS_EQUIP_ARMOR = {
     id: E_Item.clothBoots,
     img: temp_armor_icon,
     label: "Cloth Boots",
+    tier: 1,
   },
   clothChest: {
     category: E_Item_Category.equip,
@@ -507,6 +522,7 @@ export const ITEMS_EQUIP_ARMOR = {
     id: E_Item.clothChest,
     img: temp_armor_icon,
     label: "Cloth Chest",
+    tier: 1,
   },
   clothHelmet: {
     category: E_Item_Category.equip,
@@ -514,6 +530,7 @@ export const ITEMS_EQUIP_ARMOR = {
     id: E_Item.clothHelmet,
     img: temp_armor_icon,
     label: "Cloth Helmet",
+    tier: 1,
   },
   ironBoots: {
     category: E_Item_Category.equip,
@@ -521,6 +538,7 @@ export const ITEMS_EQUIP_ARMOR = {
     id: E_Item.ironBoots,
     img: temp_armor_icon,
     label: "Iron Boots",
+    tier: 1,
   },
   ironChest: {
     category: E_Item_Category.equip,
@@ -528,6 +546,7 @@ export const ITEMS_EQUIP_ARMOR = {
     id: E_Item.ironChest,
     img: temp_armor_icon,
     label: "Iron Chest",
+    tier: 1,
   },
   ironHelmet: {
     category: E_Item_Category.equip,
@@ -535,6 +554,7 @@ export const ITEMS_EQUIP_ARMOR = {
     id: E_Item.ironHelmet,
     img: temp_armor_icon,
     label: "Iron Helmet",
+    tier: 1,
   },
   leatherBoots: {
     category: E_Item_Category.equip,
@@ -542,6 +562,7 @@ export const ITEMS_EQUIP_ARMOR = {
     id: E_Item.leatherBoots,
     img: temp_armor_icon,
     label: "Leather Boots",
+    tier: 1,
   },
   leatherChest: {
     category: E_Item_Category.equip,
@@ -549,6 +570,7 @@ export const ITEMS_EQUIP_ARMOR = {
     id: E_Item.leatherChest,
     img: temp_armor_icon,
     label: "Leather Chest",
+    tier: 1,
   },
   leatherHelmet: {
     category: E_Item_Category.equip,
@@ -556,6 +578,7 @@ export const ITEMS_EQUIP_ARMOR = {
     id: E_Item.leatherHelmet,
     img: temp_armor_icon,
     label: "Leather Helmet",
+    tier: 1,
   },
 };
 
@@ -566,6 +589,7 @@ const ITEMS_EQUIP_WEAPONS = {
     id: E_Item.bow,
     img: temp_weapon_icon,
     label: "Bow",
+    tier: 1,
   },
   fireStaff: {
     category: E_Item_Category.equip,
@@ -573,6 +597,7 @@ const ITEMS_EQUIP_WEAPONS = {
     id: E_Item.fireStaff,
     img: temp_weapon_icon,
     label: "Fire Staff",
+    tier: 1,
   },
   holyStaff: {
     category: E_Item_Category.equip,
@@ -580,6 +605,7 @@ const ITEMS_EQUIP_WEAPONS = {
     id: E_Item.holyStaff,
     img: temp_weapon_icon,
     label: "Holy Staff",
+    tier: 1,
   },
   mace: {
     category: E_Item_Category.equip,
@@ -587,6 +613,7 @@ const ITEMS_EQUIP_WEAPONS = {
     id: E_Item.mace,
     img: temp_weapon_icon,
     label: "Mace",
+    tier: 1,
   },
   spear: {
     category: E_Item_Category.equip,
@@ -594,6 +621,7 @@ const ITEMS_EQUIP_WEAPONS = {
     id: E_Item.spear,
     img: temp_weapon_icon,
     label: "Spear",
+    tier: 1,
   },
   sword: {
     category: E_Item_Category.equip,
@@ -601,6 +629,7 @@ const ITEMS_EQUIP_WEAPONS = {
     id: E_Item.sword,
     img: temp_weapon_icon,
     label: "Sword",
+    tier: 1,
   },
 };
 

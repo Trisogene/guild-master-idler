@@ -1,13 +1,14 @@
 import _ from "lodash";
 
 import { CONTENTS, TIMERS } from "../../config/config";
-import { E_Content } from "../../config/config.d";
-import { T_ReduxState } from "../../config/store.d";
+import { E_Content, T_Item_Stack } from "../../config/config.d";
+import { E_Log_Type, T_ReduxState } from "../../config/store.d";
+import { addLog } from "../log/logSlice";
 import { changePlayerContent } from "../player/playerSlice";
 import { updateRecruits } from "../recruit/recruitSlice";
-import { giveContentReward } from "../storage/storage_thunks";
+import { giveContentReward } from "../storage/storageThunks";
 import { AppDispatch } from "../store";
-import { reset, tick } from "./timer_slice";
+import { reset, tick } from "./timerSlice";
 
 export const startTimers =
   () => (dispatch: AppDispatch, getState: () => T_ReduxState) => {
@@ -36,7 +37,7 @@ export const startTimers =
         const isContentComplete = playerTimer >= playerContent.timeToComplete;
 
         if (isContentComplete) {
-          completeContent(player.id, player.currentContent, dispatch);
+          completeContent(player.id, player.currentContent, dispatch, state);
         } else {
           dispatch(tick({ timerName: "players", timerId: player.id }));
         }
@@ -54,7 +55,7 @@ export const advancePlayerContent =
     const isContentComplete = playerTimer >= playerContent.timeToComplete;
 
     if (isContentComplete) {
-      completeContent(playerId, player.currentContent, dispatch);
+      completeContent(playerId, player.currentContent, dispatch, state);
     } else {
       dispatch(tick({ timerName: "players", timerId: playerId }));
     }
@@ -63,16 +64,30 @@ export const advancePlayerContent =
 /* ------------------------------ SubFunctions ------------------------------ */
 const completeContent = (
   playerId: string,
-  contentId: string,
-  dispatch: AppDispatch
+  contentId: E_Content,
+  dispatch: AppDispatch,
+  state: T_ReduxState
 ) => {
   dispatch(reset({ timerName: "players", timerId: playerId }));
-  dispatch(giveContentReward(contentId));
+  const reward: T_Item_Stack = dispatch(giveContentReward(contentId));
+  const newContent = _.sample(Object.keys(CONTENTS)) as E_Content;
+  const player = state.players.players[playerId];
   dispatch(
     changePlayerContent({
       playerId,
-      contentId:
-        (_.sample(Object.keys(CONTENTS)) as E_Content) || E_Content.sleeping,
+      contentId: newContent,
     })
   );
+
+  if (reward.quantity > 0) {
+    dispatch(
+      addLog({
+        type: E_Log_Type.reward,
+        timestamp: state.timer.timers.clock,
+        playerName: player.name,
+        contentId: contentId,
+        reward: reward,
+      })
+    );
+  }
 };
