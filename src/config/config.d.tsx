@@ -88,7 +88,7 @@ export enum E_Link {
   guild = "guild",
   storage = "storage",
   crafting = "crafting",
-  events = "events",
+  territory = "territory",
 }
 
 export type T_Link = {

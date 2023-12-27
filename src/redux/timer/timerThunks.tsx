@@ -79,7 +79,7 @@ const completeContent = (
     })
   );
 
-  if (reward.quantity > 0) {
+  if (reward?.quantity && reward.quantity > 0) {
     dispatch(
       addLog({
         type: E_Log_Type.reward,

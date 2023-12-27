@@ -67,7 +67,6 @@ const PlayerInfo = ({ player }: I_PlayerInfo) => {
           ))}
         </Box>
         <Divider orientation="vertical" />
-
         {tabs[currentTab].component({ player: player })}
       </Box>
     </Box>

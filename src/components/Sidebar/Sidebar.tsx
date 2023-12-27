@@ -22,8 +22,8 @@ const Sidebar = () => {
         display: "flex",
         flexDirection: "column",
         gap: 1,
-        minWidth: 80,
-        maxWidth: 200,
+        minWidth: 150,
+        maxWidth: 150,
         flexGrow: 1,
         // overflowY: "overlay",
       }}

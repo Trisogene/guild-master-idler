@@ -3,7 +3,7 @@ import { Box, Card, styled } from "@mui/joy";
 export const Page = styled(Box)(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
-  flexGrow: 3,
+  flexGrow: 1,
   height: "100%",
   gap: theme.spacing(1),
   overflow: "hidden",

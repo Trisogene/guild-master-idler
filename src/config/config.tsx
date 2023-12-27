@@ -33,6 +33,7 @@ import guildIcon from "../assets/pages/guild.svg";
 import recruitIcon from "../assets/pages/recruit.svg";
 import storageIcon from "../assets/pages/storage.svg";
 
+import TerritoryView from "../pages/TerritoryView";
 import {
   E_Content,
   E_Item,
@@ -127,11 +128,10 @@ export const LINKS: T_Links = {
     component: <CraftingView />,
     icon: craftingIcon,
   },
-
-  events: {
-    id: "events",
-    label: "Events",
-    component: <></>,
+  territory: {
+    id: "territory",
+    label: "Territory",
+    component: <TerritoryView />,
     icon: circleIcon,
   },
 };
@@ -724,5 +724,73 @@ export const CONTENTS: T_Contents = {
         possibility: 0.125,
       },
     ],
+  },
+};
+
+enum E_Territory {
+  starvale = "starvale",
+  frostwood = "frostwood",
+  shadowreach = "shadowreach",
+  emberstead = "emberstead",
+}
+
+export type T_Territory = {
+  id: E_Territory;
+  defenders: {
+    min: number;
+    max: number;
+  };
+  races: E_Race[];
+  unlocked: boolean;
+  vulnerable: number;
+  img: string;
+};
+
+type T_Territories = Record<E_Territory, T_Territory>;
+
+export const TERRITORIES: T_Territories = {
+  starvale: {
+    id: E_Territory.starvale,
+    defenders: {
+      min: 5,
+      max: 15,
+    },
+    races: [E_Race.human],
+    unlocked: true,
+    vulnerable: 1260,
+    img: "https://i0.wp.com/www.thecravetraveler.com/wp-content/uploads/2023/07/framlingham-castle-01.jpg?resize=980%2C600&ssl=1",
+  },
+  frostwood: {
+    id: E_Territory.frostwood,
+    defenders: {
+      min: 15,
+      max: 25,
+    },
+    races: [],
+    unlocked: false,
+    vulnerable: 0,
+    img: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Burg_Hohenzollern_ak.jpg/1200px-Burg_Hohenzollern_ak.jpg",
+  },
+  shadowreach: {
+    id: E_Territory.shadowreach,
+    defenders: {
+      min: 25,
+      max: 35,
+    },
+    races: [],
+    unlocked: false,
+    vulnerable: 0,
+    img: "https://img.freepik.com/free-photo/breathtaking-view-castles-fortresses-top-hill-surrounded-by-trees_181624-57449.jpg",
+  },
+  emberstead: {
+    id: E_Territory.emberstead,
+    defenders: {
+      min: 35,
+      max: 45,
+    },
+    races: [],
+    unlocked: false,
+    vulnerable: 0,
+    img: "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/25abe526-6c4c-4aa4-a7c3-79061e53b38a/de6vs3g-128afdf8-4845-4b6a-9cd8-99d742668913.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzI1YWJlNTI2LTZjNGMtNGFhNC1hN2MzLTc5MDYxZTUzYjM4YVwvZGU2dnMzZy0xMjhhZmRmOC00ODQ1LTRiNmEtOWNkOC05OWQ3NDI2Njg5MTMuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.jlXBbndF9PUq0HxMTkv9_Nr50p4qPmpXRnCdAo6MGUw",
   },
 };

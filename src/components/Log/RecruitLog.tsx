@@ -17,7 +17,7 @@ const RecruitLog = ({ log }: I_RecruitLogProps) => {
       </Box>
 
       <Box sx={{ display: "flex", gap: 0.5, alignItems: "center" }}>
-        <Typography fontSize={14}>Joined the guild!</Typography>
+        <Typography fontSize={10}>New Recruit</Typography>
       </Box>
 
       <Box

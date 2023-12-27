@@ -36,8 +36,12 @@ const Player = ({ player, isSelected }: I_PlayerCard) => {
     animate(
       progressRef.current,
       {
-        scale: [1, 1.025, 1],
-        filter: ["brightness(1)", "brightness(2)", "brightness(1)"],
+        filter: [
+          "brightness(1)",
+          "brightness(2)",
+          "brightness(2)",
+          "brightness(1)",
+        ],
       },
       {
         duration: 0.8,
