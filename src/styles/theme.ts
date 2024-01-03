@@ -49,10 +49,11 @@ export const theme = extendTheme({
       },
       styleOverrides: {
         root: ({ ownerState, theme }) => ({
-          ...(ownerState.size === "sm" && {
-            borderRadius: theme.vars.radius.md,
-            // background: theme.palette.background.level2,
-          }),
+          ...(ownerState.size === "sm" &&
+            {
+              // borderRadius: theme.vars.radius.md,
+              // background: theme.palette.background.level2,
+            }),
         }),
       },
     },
@@ -64,6 +65,7 @@ export const theme = extendTheme({
     JoyButton: {
       defaultProps: {
         size: "sm",
+        color: "neutral",
       },
       styleOverrides: {
         root: ({ ownerState, theme }) => ({

@@ -3,10 +3,10 @@ import uuid from "react-uuid";
 import _ from "lodash";
 import { version } from "../package.json";
 import { RECRUITS } from "./config/config";
-import { T_ContentReward } from "./config/config.d";
+import { ContentReward } from "./config/config.d";
 import { T_ReduxState } from "./config/store.d";
 
-export const getReward = (rewards: T_ContentReward[]) => {
+export const getReward = (rewards: ContentReward[]) => {
   const random = _.random(0, 1, true);
   let cumulativeProbability = 0;
   return _.find(rewards, (reward) => {

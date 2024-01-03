@@ -1,46 +1,55 @@
-import { Avatar, Box, Card, Chip, Tooltip, Typography } from "@mui/joy";
-import { ITEMS } from "../../config/config";
+import {
+  Avatar,
+  Box,
+  Card,
+  Chip,
+  Divider,
+  Tooltip,
+  Typography,
+} from "@mui/joy";
+import { CONTENTS, RACES } from "../../config/config";
 import { T_Log_Reward } from "../../config/store.d";
+import Item from "../Item/Item";
 
 interface I_RewardLogProps {
   log: T_Log_Reward;
 }
 const RewardLog = ({ log }: I_RewardLogProps) => {
   return (
-    <Card sx={{ gap: 0.5, p: 1 }}>
-      <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-        <Typography fontSize={12}>{log.playerName}</Typography>
-        <Chip variant="solid" color="success">
-          <Typography fontSize={12} fontWeight="bold">
-            {log.type}
-          </Typography>
-        </Chip>
-      </Box>
-
-      <Box sx={{ display: "flex", gap: 0.5, alignItems: "center" }}>
-        <Tooltip disableInteractive arrow title={log.reward.id} placement="top">
-          <Chip
-            variant="solid"
-            sx={{ p: 0, pl: 1, pr: 1 }}
-            startDecorator={<Avatar src={ITEMS[log.reward.id].img} />}
-          >
-            <Typography fontSize={14}>{log.reward.quantity}</Typography>
-          </Chip>
-        </Tooltip>
-      </Box>
-
-      <Box
-        sx={{
-          position: "absolute",
-          right: 4,
-          bottom: 4,
-          fontSize: 10,
-          color: "grey",
-        }}
-      >
-        <Typography fontSize={10}>
+    <Card sx={{ gap: 0.25, p: 1 }}>
+      <Box sx={{ display: "flex", gap: 0.5 }}>
+        <Typography
+          fontSize={12}
+          sx={{
+            minWidth: 35,
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
           {new Date(log.timestamp * 1000).toISOString().substr(14, 5)}
         </Typography>
+
+        <Divider orientation="vertical" sx={{ height: "100%" }} />
+
+        <Tooltip
+          disableInteractive
+          arrow
+          title={log.playerName}
+          placement="top"
+        >
+          <Chip variant="outlined">
+            <Avatar src={RACES[log.playerRace]?.img} />
+          </Chip>
+        </Tooltip>
+
+        <Tooltip disableInteractive arrow title={log.contentId} placement="top">
+          <Chip variant="outlined">
+            <Avatar src={CONTENTS[log.contentId].icon} />
+          </Chip>
+        </Tooltip>
+
+        <Item itemStack={log.reward} size="sm" />
       </Box>
     </Card>
   );

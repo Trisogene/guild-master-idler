@@ -1,10 +1,10 @@
 import { PayloadAction } from "@reduxjs/toolkit";
-import { E_Item } from "../../config/config.d";
+import { ID_Item } from "../../config/config.d";
 import { T_StorageSlice } from "../../config/store.d";
 
 /* --------------------------------- AddItem -------------------------------- */
 type T_AddItemReq = {
-  itemId: E_Item;
+  itemId: ID_Item;
   quantity: number;
 };
 const addItem = (

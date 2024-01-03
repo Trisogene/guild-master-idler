@@ -32,7 +32,9 @@ const StorageView = () => {
             color="neutral"
             key={category.label}
             startDecorator={<Avatar src={category.icon} />}
-          />
+          >
+            {category.label}
+          </Button>
         ))}
       </PageHeader>
 
@@ -45,7 +47,7 @@ const StorageView = () => {
           sx={{
             display: "grid",
             gridTemplateColumns: "repeat(auto-fill, minmax(48px, 1fr))",
-            gap: 2,
+            gap: 1,
           }}
         >
           {Object.values(filteredItems).map((itemStack) => (

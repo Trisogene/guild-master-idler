@@ -3,12 +3,12 @@ import { useMemo } from "react";
 import { useDispatch } from "react-redux";
 
 import { ITEMS, RECIPES } from "../../config/config";
-import { E_Item, E_Recipe, T_Recipe } from "../../config/config.d";
+import { ID_Item, ID_Recipe, T_Recipe } from "../../config/config.d";
 import useSelectItemsFromStorage from "../../hooks/useSelectItemsFromStorage";
 import { craftItem } from "../../redux/crafting/craftingThunk";
 
 interface I_CraftingInfo {
-  itemId: E_Recipe;
+  itemId: ID_Recipe;
 }
 
 const RecipeInfo = ({ itemId }: I_CraftingInfo) => {
@@ -16,13 +16,13 @@ const RecipeInfo = ({ itemId }: I_CraftingInfo) => {
   const dispatch = useDispatch();
 
   const ingredientsInStorage = useSelectItemsFromStorage(
-    Object.keys(recipe.ingredients) as E_Item[]
+    Object.keys(recipe.ingredients) as ID_Item[]
   );
   const canBeCrafted = useMemo(() => {
     return Object.entries(recipe.ingredients).every(
       ([ingredientName, igredientQuantity]) => {
         return (
-          ingredientsInStorage[ingredientName as E_Recipe]?.quantity >=
+          ingredientsInStorage[ingredientName as ID_Recipe]?.quantity >=
           igredientQuantity
         );
       }

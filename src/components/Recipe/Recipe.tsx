@@ -3,27 +3,27 @@ import { memo } from "react";
 
 import { useDispatch } from "react-redux";
 import { ITEMS, RECIPES } from "../../config/config";
-import { E_Item, E_Recipe, T_Item, T_Recipe } from "../../config/config.d";
+import { ID_Item, ID_Recipe, Item, T_Recipe } from "../../config/config.d";
 import useSelectItemsFromStorage from "../../hooks/useSelectItemsFromStorage";
 import { setCurrentCraftingItem } from "../../redux/ui/uiSlice";
 
 interface I_CraftableItemCard {
-  item: E_Recipe;
+  item: ID_Item;
   isSelected: boolean;
 }
 
 const Recipe = ({ item, isSelected }: I_CraftableItemCard) => {
   const dispatch = useDispatch();
-  const itemConfig: T_Item = ITEMS[item];
-  const itemRecipe: T_Recipe = RECIPES[item];
+  const itemConfig: Item = ITEMS[item];
+  const itemRecipe: T_Recipe = RECIPES[item as unknown as ID_Recipe];
   const igredientsInStorage = useSelectItemsFromStorage(
-    Object.keys(itemRecipe.ingredients) as E_Item[]
+    Object.keys(itemRecipe.ingredients) as ID_Item[]
   );
 
   const isCraftable = Object.entries(itemRecipe.ingredients).every(
     ([ingredientName, igredientQuantity]) => {
       return (
-        igredientsInStorage[ingredientName as E_Item]?.quantity >=
+        igredientsInStorage[ingredientName as ID_Item]?.quantity >=
         igredientQuantity
       );
     }
@@ -31,7 +31,7 @@ const Recipe = ({ item, isSelected }: I_CraftableItemCard) => {
 
   return (
     <Card
-      onClick={() => dispatch(setCurrentCraftingItem(item))}
+      onClick={() => dispatch(setCurrentCraftingItem(itemRecipe.id))}
       sx={{
         alignItems: "center",
         bgcolor: isSelected ? "background.level2" : "background.paper",
@@ -70,11 +70,11 @@ const Recipe = ({ item, isSelected }: I_CraftableItemCard) => {
                 color={isCraftable ? "success" : "neutral"}
                 key={ingredientName}
                 startDecorator={
-                  <Avatar src={ITEMS[ingredientName as E_Item].img} />
+                  <Avatar src={ITEMS[ingredientName as ID_Item].img} />
                 }
               >
-                {igredientsInStorage[ingredientName as E_Item]?.quantity || 0} /{" "}
-                {igredientQuantity}
+                {igredientsInStorage[ingredientName as ID_Item]?.quantity || 0}{" "}
+                / {igredientQuantity}
               </Chip>
             );
           }

@@ -1,9 +1,10 @@
 import {
-  E_Content,
-  E_Item_Category,
-  E_Link,
-  E_Recipe,
-  T_Item_Stack,
+  ID_Content,
+  ID_Item_Category,
+  ID_Link,
+  ID_Race,
+  ID_Recipe,
+  ItemStack,
   T_Players,
 } from "./config.d";
 
@@ -35,17 +36,20 @@ export enum E_Log_Type {
 export type T_Log = T_Log_Recruit | T_Log_Reward;
 
 export type T_Log_Recruit = {
+  id: string;
   timestamp: number;
   type: E_Log_Type.recruit;
   playerName: string;
 };
 
 export type T_Log_Reward = {
+  id: string;
   timestamp: number;
   type: E_Log_Type.reward;
   playerName: string;
-  contentId: E_Content;
-  reward: T_Item_Stack;
+  playerRace: ID_Race;
+  contentId: ID_Content;
+  reward: ItemStack;
 };
 
 /* -------------------------------------------------------------------------- */
@@ -81,7 +85,7 @@ export type T_RecruitSlice = {
 /* -------------------------------------------------------------------------- */
 export type T_StorageSlice = {
   storage: {
-    [key: string]: T_Item_Stack;
+    [key: string]: ItemStack;
   };
 };
 
@@ -89,24 +93,24 @@ export type T_StorageSlice = {
 /*                               NavigationSlice                              */
 /* -------------------------------------------------------------------------- */
 export type T_NavigationSlice = {
-  currentPage: E_Link;
+  currentPage: ID_Link;
 };
 
 /* -------------------------------------------------------------------------- */
 /*                                   UiSlice                                  */
 /* -------------------------------------------------------------------------- */
 export type T_UiSlice = {
-  [E_Link.crafting]: {
-    currentSelectedItem: E_Recipe | null;
-    currentFilter: E_Item_Category;
+  [ID_Link.crafting]: {
+    currentSelectedItem: ID_Recipe | null;
+    currentFilter: ID_Item_Category;
   };
-  [E_Link.guild]: {
+  [ID_Link.guild]: {
     selectedPlayer: string | null;
   };
-  [E_Link.recruit]: {
+  [ID_Link.recruit]: {
     selectedPlayer: string | null;
   };
-  [E_Link.storage]: {
-    currentFilter: E_Item_Category;
+  [ID_Link.storage]: {
+    currentFilter: ID_Item_Category;
   };
 };

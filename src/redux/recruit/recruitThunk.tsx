@@ -1,3 +1,4 @@
+import uuid from "react-uuid";
 import { T_Player } from "../../config/config.d";
 import { E_Log_Type, T_ReduxState } from "../../config/store.d";
 import { addLog } from "../log/logSlice";
@@ -20,6 +21,7 @@ export const recruitPlayerThunk =
     dispatch(initPlayerTimer(recruit.id));
     dispatch(
       addLog({
+        id: uuid(),
         type: E_Log_Type.recruit,
         timestamp: state.timer.timers.clock,
         playerName: recruit.name,

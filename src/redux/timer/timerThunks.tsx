@@ -1,7 +1,8 @@
 import _ from "lodash";
 
+import uuid from "react-uuid";
 import { CONTENTS, TIMERS } from "../../config/config";
-import { E_Content, T_Item_Stack } from "../../config/config.d";
+import { ID_Content, ItemStack } from "../../config/config.d";
 import { E_Log_Type, T_ReduxState } from "../../config/store.d";
 import { addLog } from "../log/logSlice";
 import { changePlayerContent } from "../player/playerSlice";
@@ -64,13 +65,13 @@ export const advancePlayerContent =
 /* ------------------------------ SubFunctions ------------------------------ */
 const completeContent = (
   playerId: string,
-  contentId: E_Content,
+  contentId: ID_Content,
   dispatch: AppDispatch,
   state: T_ReduxState
 ) => {
   dispatch(reset({ timerName: "players", timerId: playerId }));
-  const reward: T_Item_Stack = dispatch(giveContentReward(contentId));
-  const newContent = _.sample(Object.keys(CONTENTS)) as E_Content;
+  const reward: ItemStack = dispatch(giveContentReward(contentId));
+  const newContent = _.sample(Object.keys(CONTENTS)) as ID_Content;
   const player = state.players.players[playerId];
   dispatch(
     changePlayerContent({
@@ -82,9 +83,11 @@ const completeContent = (
   if (reward?.quantity && reward.quantity > 0) {
     dispatch(
       addLog({
+        id: uuid(),
         type: E_Log_Type.reward,
         timestamp: state.timer.timers.clock,
         playerName: player.name,
+        playerRace: player.race,
         contentId: contentId,
         reward: reward,
       })

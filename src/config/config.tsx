@@ -1,3 +1,6 @@
+import dungeoningIcon from "../assets/contents/dungeoning.svg";
+import gatheringIcon from "../assets/contents/gathering.svg";
+import sleepingIcon from "../assets/contents/sleeping.svg";
 import artifact_icon from "../assets/items/artifact.svg";
 import fiber_icon from "../assets/items/fiber.svg";
 import hide_icon from "../assets/items/hide.svg";
@@ -12,12 +15,11 @@ import {
   default as temp_material_icon,
   default as wood_icon,
 } from "../assets/items/wood.svg";
-import CraftingView from "../pages/CraftingView";
-import Guild from "../pages/GuildView";
-import Recruit from "../pages/RecruitView";
-import Storage from "../pages/StorageView";
-import temp_race from "./../assets/race.svg";
-
+import circleIcon from "../assets/pages/circle.svg";
+import craftingIcon from "../assets/pages/crafting.svg";
+import guildIcon from "../assets/pages/guild.svg";
+import recruitIcon from "../assets/pages/recruit.svg";
+import storageIcon from "../assets/pages/storage.svg";
 import archerIcon from "../assets/roles/archer.svg";
 import bruiserIcon from "../assets/roles/bruiser.svg";
 import defensiveTankIcon from "../assets/roles/defensiveTank.svg";
@@ -26,24 +28,24 @@ import mageIcon from "../assets/roles/mage.svg";
 import offensiveTankIcon from "../assets/roles/offensiveTank.svg";
 import piercerIcon from "../assets/roles/piercer.svg";
 import supportIcon from "../assets/roles/support.svg";
-
-import circleIcon from "../assets/pages/circle.svg";
-import craftingIcon from "../assets/pages/crafting.svg";
-import guildIcon from "../assets/pages/guild.svg";
-import recruitIcon from "../assets/pages/recruit.svg";
-import storageIcon from "../assets/pages/storage.svg";
+import CraftingView from "../pages/CraftingView";
+import Guild from "../pages/GuildView";
+import Recruit from "../pages/RecruitView";
+import Storage from "../pages/StorageView";
+import temp_race from "./../assets/race.svg";
+import faceImg from "./../assets/recruits/face.png";
 
 import TerritoryView from "../pages/TerritoryView";
 import {
-  E_Content,
-  E_Item,
-  E_Item_Category,
-  E_Race,
-  E_Recipe,
-  E_Role,
+  ID_Content,
+  ID_Item,
+  ID_Item_Category,
+  ID_Race,
+  ID_Recipe,
+  ID_Role,
+  Item,
+  ItemCategory,
   T_Contents,
-  T_Items,
-  T_Items_Category_Ext,
   T_Links,
   T_Players,
   T_Races,
@@ -54,49 +56,49 @@ import {
 
 export const ROLES: T_Roles = {
   archer: {
-    id: E_Role.archer,
+    id: ID_Role.archer,
     label: "Archer",
     description: "Shoots arrows",
     icon: archerIcon,
   },
   mage: {
-    id: E_Role.mage,
+    id: ID_Role.mage,
     label: "Mage",
     description: "Casts spells",
     icon: mageIcon,
   },
   offensiveTank: {
-    id: E_Role.offensiveTank,
+    id: ID_Role.offensiveTank,
     label: "Offensive Tank",
     description: "Tanks and deals damage",
     icon: offensiveTankIcon,
   },
   defensiveTank: {
-    id: E_Role.defensiveTank,
+    id: ID_Role.defensiveTank,
     label: "Defensive Tank",
     description: "Tanks and protects allies",
     icon: defensiveTankIcon,
   },
   healer: {
-    id: E_Role.healer,
+    id: ID_Role.healer,
     label: "Healer",
     description: "Heals allies",
     icon: healerIcon,
   },
   bruiser: {
-    id: E_Role.bruiser,
+    id: ID_Role.bruiser,
     label: "Bruiser",
     description: "Deals damage",
     icon: bruiserIcon,
   },
   piercer: {
-    id: E_Role.piercer,
+    id: ID_Role.piercer,
     label: "Piercer",
     description: "Deals damage",
     icon: piercerIcon,
   },
   support: {
-    id: E_Role.support,
+    id: ID_Role.support,
     label: "Support",
     description: "Supports allies",
     icon: supportIcon,
@@ -138,7 +140,7 @@ export const LINKS: T_Links = {
 
 export const RACES: T_Races = {
   human: {
-    id: E_Race.human,
+    id: ID_Race.human,
     label: "Human",
     description: "Basic Humans",
     img: temp_race,
@@ -150,46 +152,46 @@ const RECIPES_MATERIAL = {
   cloth: {
     description: "A piece of cloth",
     icon: temp_material_icon,
-    id: E_Recipe.cloth,
+    id: ID_Recipe.cloth,
     label: "Cloth",
     ingredients: {
-      [E_Item.fiber]: 2,
+      [ID_Item.fiber]: 2,
     },
   },
   plank: {
     description: "A piece of wood",
     icon: temp_material_icon,
-    id: E_Recipe.plank,
+    id: ID_Recipe.plank,
     label: "Plank",
     ingredients: {
-      [E_Item.wood]: 2,
+      [ID_Item.wood]: 2,
     },
   },
   metalBar: {
     description: "A piece of metal",
     icon: temp_material_icon,
-    id: E_Recipe.metalBar,
+    id: ID_Recipe.metalBar,
     label: "Metal",
     ingredients: {
-      [E_Item.ore]: 2,
+      [ID_Item.ore]: 2,
     },
   },
   stoneBlock: {
     description: "A block of stone",
     icon: temp_material_icon,
-    id: E_Recipe.stoneBlock,
+    id: ID_Recipe.stoneBlock,
     label: "Stone Block",
     ingredients: {
-      [E_Item.stone]: 2,
+      [ID_Item.stone]: 2,
     },
   },
   leather: {
     description: "A piece of leather",
     icon: temp_material_icon,
-    id: E_Recipe.leather,
+    id: ID_Recipe.leather,
     label: "Leather",
     ingredients: {
-      [E_Item.hide]: 2,
+      [ID_Item.hide]: 2,
     },
   },
 };
@@ -198,135 +200,135 @@ const RECIPE_EQUIPS = {
   fireStaff: {
     description: "A staff",
     icon: temp_material_icon,
-    id: E_Recipe.fireStaff,
+    id: ID_Recipe.fireStaff,
     ingredients: {
-      [E_Item.metalBar]: 2,
+      [ID_Item.metalBar]: 2,
     },
     label: "Fire Staff",
   },
   holyStaff: {
     description: "A staff",
     icon: temp_material_icon,
-    id: E_Recipe.holyStaff,
+    id: ID_Recipe.holyStaff,
     ingredients: {
-      [E_Item.plank]: 2,
+      [ID_Item.plank]: 2,
     },
     label: "Holy Staff",
   },
   mace: {
     description: "A mace",
     icon: temp_material_icon,
-    id: E_Recipe.mace,
+    id: ID_Recipe.mace,
     ingredients: {
-      [E_Item.metalBar]: 2,
+      [ID_Item.metalBar]: 2,
     },
     label: "Mace",
   },
   spear: {
     description: "A spear",
     icon: temp_material_icon,
-    id: E_Recipe.spear,
+    id: ID_Recipe.spear,
     ingredients: {
-      [E_Item.metalBar]: 2,
+      [ID_Item.metalBar]: 2,
     },
     label: "Spear",
   },
   sword: {
     description: "A sword",
     icon: temp_material_icon,
-    id: E_Recipe.sword,
+    id: ID_Recipe.sword,
     ingredients: {
-      [E_Item.metalBar]: 2,
+      [ID_Item.metalBar]: 2,
     },
     label: "Sword",
   },
   clothHelmet: {
     description: "A helmet",
     icon: temp_material_icon,
-    id: E_Recipe.clothHelmet,
+    id: ID_Recipe.clothHelmet,
     ingredients: {
-      [E_Item.cloth]: 2,
+      [ID_Item.cloth]: 2,
     },
     label: "Cloth Helmet",
   },
   clothChest: {
     description: "A chest",
     icon: temp_material_icon,
-    id: E_Recipe.clothChest,
+    id: ID_Recipe.clothChest,
     ingredients: {
-      [E_Item.cloth]: 2,
+      [ID_Item.cloth]: 2,
     },
     label: "Cloth Chest",
   },
   clothBoots: {
     description: "A boots",
     icon: temp_material_icon,
-    id: E_Recipe.clothBoots,
+    id: ID_Recipe.clothBoots,
     ingredients: {
-      [E_Item.cloth]: 2,
+      [ID_Item.cloth]: 2,
     },
     label: "Cloth Boots",
   },
   leatherHelmet: {
     description: "A helmet",
     icon: temp_material_icon,
-    id: E_Recipe.leatherHelmet,
+    id: ID_Recipe.leatherHelmet,
     ingredients: {
-      [E_Item.leather]: 2,
+      [ID_Item.leather]: 2,
     },
     label: "Leather Helmet",
   },
   leatherChest: {
     description: "A chest",
     icon: temp_material_icon,
-    id: E_Recipe.leatherChest,
+    id: ID_Recipe.leatherChest,
     ingredients: {
-      [E_Item.leather]: 2,
+      [ID_Item.leather]: 2,
     },
     label: "Leather Chest",
   },
   leatherBoots: {
     description: "A boots",
     icon: temp_material_icon,
-    id: E_Recipe.leatherBoots,
+    id: ID_Recipe.leatherBoots,
     ingredients: {
-      [E_Item.leather]: 2,
+      [ID_Item.leather]: 2,
     },
     label: "Leather Boots",
   },
   ironHelmet: {
     description: "A helmet",
     icon: temp_material_icon,
-    id: E_Recipe.ironHelmet,
+    id: ID_Recipe.ironHelmet,
     ingredients: {
-      [E_Item.metalBar]: 2,
+      [ID_Item.metalBar]: 2,
     },
     label: "Iron Helmet",
   },
   ironChest: {
     description: "A chest",
     icon: temp_material_icon,
-    id: E_Recipe.ironChest,
+    id: ID_Recipe.ironChest,
     ingredients: {
-      [E_Item.metalBar]: 2,
+      [ID_Item.metalBar]: 2,
     },
     label: "Iron Chest",
   },
   ironBoots: {
     description: "A boots",
     icon: temp_material_icon,
-    id: E_Recipe.ironBoots,
+    id: ID_Recipe.ironBoots,
     ingredients: {
-      [E_Item.metalBar]: 2,
+      [ID_Item.metalBar]: 2,
     },
     label: "Iron Boots",
   },
   bow: {
     description: "A bow",
     icon: temp_material_icon,
-    id: E_Recipe.bow,
+    id: ID_Recipe.bow,
     ingredients: {
-      [E_Item.plank]: 2,
+      [ID_Item.plank]: 2,
     },
     label: "Bow",
   },
@@ -338,11 +340,11 @@ export const RECIPES: T_Recipes = {
 };
 
 export const RECRUITS: T_Players = {
-  human: {
+  marco: {
     id: "",
-    currentContent: E_Content.dungeoning,
+    currentContent: ID_Content.dungeoning,
     name: "Marco",
-    race: E_Race.human,
+    race: ID_Race.human,
     stats: {
       hp: 50,
       mp: 10,
@@ -364,7 +366,37 @@ export const RECRUITS: T_Players = {
       bow: 0,
     },
     lore: "A Young adventurer, ready to explore the world, and make a name for himself.",
-    role: E_Role.archer,
+    role: ID_Role.archer,
+    img: faceImg,
+  },
+  luca: {
+    id: "",
+    currentContent: ID_Content.dungeoning,
+    name: "Luca",
+    race: ID_Race.human,
+    stats: {
+      hp: 50,
+      mp: 10,
+      atk: 50,
+      ap: 20,
+      def: 60,
+    },
+    masteries: {
+      gathering: 0,
+      crafting: 0,
+      clothArmor: 0,
+      leatherArmor: 0,
+      metalArmor: 0,
+      fireStaff: 0,
+      holyStaff: 0,
+      mace: 0,
+      spear: 0,
+      sword: 0,
+      bow: 0,
+    },
+    lore: "A Young adventurer, ready to explore the world, and make a name for himself.",
+    role: ID_Role.archer,
+    img: faceImg,
   },
 };
 
@@ -388,41 +420,41 @@ export const TIMERS: T_Timers = {
 
 export const ITEMS_RESOURCES = {
   fiber: {
-    category: E_Item_Category.resource,
+    category: ID_Item_Category.resource,
     description: "A bundle of fiber.",
-    id: E_Item.fiber,
+    id: ID_Item.fiber,
     img: fiber_icon,
     label: "Fiber",
     tier: 1,
   },
   hide: {
-    category: E_Item_Category.resource,
+    category: ID_Item_Category.resource,
     description: "A bundle of hide.",
-    id: E_Item.hide,
+    id: ID_Item.hide,
     img: hide_icon,
     label: "Hide",
     tier: 1,
   },
   ore: {
-    category: E_Item_Category.resource,
+    category: ID_Item_Category.resource,
     description: "A bundle of ore.",
-    id: E_Item.ore,
+    id: ID_Item.ore,
     img: ore_icon,
     label: "Ore",
     tier: 1,
   },
   stone: {
-    category: E_Item_Category.resource,
+    category: ID_Item_Category.resource,
     description: "A bundle of stone.",
-    id: E_Item.stone,
+    id: ID_Item.stone,
     img: stone_icon,
     label: "Stone",
     tier: 1,
   },
   wood: {
-    category: E_Item_Category.resource,
+    category: ID_Item_Category.resource,
     description: "A bundle of wood.",
-    id: E_Item.wood,
+    id: ID_Item.wood,
     img: wood_icon,
     label: "Wood",
     tier: 1,
@@ -431,41 +463,41 @@ export const ITEMS_RESOURCES = {
 
 export const ITEMS_MATERIALS = {
   cloth: {
-    category: E_Item_Category.material,
+    category: ID_Item_Category.material,
     description: "A bundle of cloth.",
-    id: E_Item.cloth,
+    id: ID_Item.cloth,
     img: fiber_icon,
     label: "Cloth",
     tier: 1,
   },
   leather: {
-    category: E_Item_Category.material,
+    category: ID_Item_Category.material,
     description: "A bundle of leather.",
-    id: E_Item.leather,
+    id: ID_Item.leather,
     img: hide_icon,
     label: "Leather",
     tier: 1,
   },
   metalBar: {
-    category: E_Item_Category.material,
+    category: ID_Item_Category.material,
     description: "A bundle of metal bars.",
-    id: E_Item.metalBar,
+    id: ID_Item.metalBar,
     img: ore_icon,
     label: "Metal Bar",
     tier: 1,
   },
   plank: {
-    category: E_Item_Category.material,
+    category: ID_Item_Category.material,
     description: "A bundle of planks.",
-    id: E_Item.plank,
+    id: ID_Item.plank,
     img: wood_icon,
     label: "Plank",
     tier: 1,
   },
   stoneBlock: {
-    category: E_Item_Category.material,
+    category: ID_Item_Category.material,
     description: "A bundle of stone blocks.",
-    id: E_Item.stoneBlock,
+    id: ID_Item.stoneBlock,
     img: stone_icon,
     label: "Stone Block",
     tier: 1,
@@ -474,33 +506,33 @@ export const ITEMS_MATERIALS = {
 
 export const ITEMS_DROP = {
   artifact: {
-    category: E_Item_Category.drop,
+    category: ID_Item_Category.drop,
     description: "An artifact.",
-    id: E_Item.artifact,
+    id: ID_Item.artifact,
     img: artifact_icon,
     label: "Artifact",
     tier: 1,
   },
   relic: {
-    category: E_Item_Category.drop,
+    category: ID_Item_Category.drop,
     description: "A relic.",
-    id: E_Item.relic,
+    id: ID_Item.relic,
     img: relic_icon,
     label: "Relic",
     tier: 1,
   },
   rune: {
-    category: E_Item_Category.drop,
+    category: ID_Item_Category.drop,
     description: "A rune.",
-    id: E_Item.rune,
+    id: ID_Item.rune,
     img: rune_icon,
     label: "Rune",
     tier: 1,
   },
   soul: {
-    category: E_Item_Category.drop,
+    category: ID_Item_Category.drop,
     description: "A soul.",
-    id: E_Item.soul,
+    id: ID_Item.soul,
     img: soul_icon,
     label: "Soul",
     tier: 1,
@@ -509,73 +541,73 @@ export const ITEMS_DROP = {
 
 export const ITEMS_EQUIP_ARMOR = {
   clothBoots: {
-    category: E_Item_Category.equip,
+    category: ID_Item_Category.equip,
     description: "Cloth boots.",
-    id: E_Item.clothBoots,
+    id: ID_Item.clothBoots,
     img: temp_armor_icon,
     label: "Cloth Boots",
     tier: 1,
   },
   clothChest: {
-    category: E_Item_Category.equip,
+    category: ID_Item_Category.equip,
     description: "A cloth chest.",
-    id: E_Item.clothChest,
+    id: ID_Item.clothChest,
     img: temp_armor_icon,
     label: "Cloth Chest",
     tier: 1,
   },
   clothHelmet: {
-    category: E_Item_Category.equip,
+    category: ID_Item_Category.equip,
     description: "A cloth helmet.",
-    id: E_Item.clothHelmet,
+    id: ID_Item.clothHelmet,
     img: temp_armor_icon,
     label: "Cloth Helmet",
     tier: 1,
   },
   ironBoots: {
-    category: E_Item_Category.equip,
+    category: ID_Item_Category.equip,
     description: "Iron boots.",
-    id: E_Item.ironBoots,
+    id: ID_Item.ironBoots,
     img: temp_armor_icon,
     label: "Iron Boots",
     tier: 1,
   },
   ironChest: {
-    category: E_Item_Category.equip,
+    category: ID_Item_Category.equip,
     description: "An iron chest.",
-    id: E_Item.ironChest,
+    id: ID_Item.ironChest,
     img: temp_armor_icon,
     label: "Iron Chest",
     tier: 1,
   },
   ironHelmet: {
-    category: E_Item_Category.equip,
+    category: ID_Item_Category.equip,
     description: "An iron helmet.",
-    id: E_Item.ironHelmet,
+    id: ID_Item.ironHelmet,
     img: temp_armor_icon,
     label: "Iron Helmet",
     tier: 1,
   },
   leatherBoots: {
-    category: E_Item_Category.equip,
+    category: ID_Item_Category.equip,
     description: "Leather boots.",
-    id: E_Item.leatherBoots,
+    id: ID_Item.leatherBoots,
     img: temp_armor_icon,
     label: "Leather Boots",
     tier: 1,
   },
   leatherChest: {
-    category: E_Item_Category.equip,
+    category: ID_Item_Category.equip,
     description: "A leather chest.",
-    id: E_Item.leatherChest,
+    id: ID_Item.leatherChest,
     img: temp_armor_icon,
     label: "Leather Chest",
     tier: 1,
   },
   leatherHelmet: {
-    category: E_Item_Category.equip,
+    category: ID_Item_Category.equip,
     description: "A leather helmet.",
-    id: E_Item.leatherHelmet,
+    id: ID_Item.leatherHelmet,
     img: temp_armor_icon,
     label: "Leather Helmet",
     tier: 1,
@@ -584,56 +616,56 @@ export const ITEMS_EQUIP_ARMOR = {
 
 const ITEMS_EQUIP_WEAPONS = {
   bow: {
-    category: E_Item_Category.equip,
+    category: ID_Item_Category.equip,
     description: "A bow.",
-    id: E_Item.bow,
+    id: ID_Item.bow,
     img: temp_weapon_icon,
     label: "Bow",
     tier: 1,
   },
   fireStaff: {
-    category: E_Item_Category.equip,
+    category: ID_Item_Category.equip,
     description: "A fire staff.",
-    id: E_Item.fireStaff,
+    id: ID_Item.fireStaff,
     img: temp_weapon_icon,
     label: "Fire Staff",
     tier: 1,
   },
   holyStaff: {
-    category: E_Item_Category.equip,
+    category: ID_Item_Category.equip,
     description: "A holy staff.",
-    id: E_Item.holyStaff,
+    id: ID_Item.holyStaff,
     img: temp_weapon_icon,
     label: "Holy Staff",
     tier: 1,
   },
   mace: {
-    category: E_Item_Category.equip,
+    category: ID_Item_Category.equip,
     description: "A mace.",
-    id: E_Item.mace,
+    id: ID_Item.mace,
     img: temp_weapon_icon,
     label: "Mace",
     tier: 1,
   },
   spear: {
-    category: E_Item_Category.equip,
+    category: ID_Item_Category.equip,
     description: "A spear.",
-    id: E_Item.spear,
+    id: ID_Item.spear,
     img: temp_weapon_icon,
     label: "Spear",
     tier: 1,
   },
   sword: {
-    category: E_Item_Category.equip,
+    category: ID_Item_Category.equip,
     description: "A sword.",
-    id: E_Item.sword,
+    id: ID_Item.sword,
     img: temp_weapon_icon,
     label: "Sword",
     tier: 1,
   },
 };
 
-export const ITEMS: T_Items = {
+export const ITEMS: Record<ID_Item, Item> = {
   ...ITEMS_RESOURCES,
   ...ITEMS_MATERIALS,
   ...ITEMS_DROP,
@@ -641,71 +673,74 @@ export const ITEMS: T_Items = {
   ...ITEMS_EQUIP_WEAPONS,
 };
 
-export const ITEM_CATEGORIES: T_Items_Category_Ext = {
+export const ITEM_CATEGORIES: Record<ID_Item_Category, ItemCategory> = {
   drop: {
     craftable: false,
     icon: artifact_icon,
-    id: E_Item_Category.drop,
+    id: ID_Item_Category.drop,
     label: "Drop",
   },
   equip: {
     craftable: true,
     icon: temp_weapon_icon,
-    id: E_Item_Category.equip,
+    id: ID_Item_Category.equip,
     label: "Equip",
   },
   material: {
     craftable: true,
     icon: fiber_icon,
-    id: E_Item_Category.material,
+    id: ID_Item_Category.material,
     label: "Material",
   },
   resource: {
     craftable: false,
     icon: fiber_icon,
-    id: E_Item_Category.resource,
+    id: ID_Item_Category.resource,
     label: "Resource",
   },
 };
 
 export const CONTENTS: T_Contents = {
   sleeping: {
-    id: E_Content.sleeping,
+    id: ID_Content.sleeping,
     label: "Sleeping",
-    timeToComplete: 20,
+    timeToComplete: 60,
     rewards: [],
+    icon: sleepingIcon,
   },
   gathering: {
-    id: E_Content.gathering,
+    id: ID_Content.gathering,
+    icon: gatheringIcon,
     label: "Gathering",
-    timeToComplete: 10,
+    timeToComplete: 60,
     rewards: [
       {
-        item: E_Item.fiber,
+        item: ID_Item.fiber,
         possibility: 0.2,
       },
       {
-        item: E_Item.wood,
+        item: ID_Item.wood,
         possibility: 0.2,
       },
       {
-        item: E_Item.stone,
+        item: ID_Item.stone,
         possibility: 0.2,
       },
       {
-        item: E_Item.ore,
+        item: ID_Item.ore,
         possibility: 0.2,
       },
       {
-        item: E_Item.hide,
+        item: ID_Item.hide,
         possibility: 0.2,
       },
     ],
   },
   dungeoning: {
-    id: E_Content.dungeoning,
+    id: ID_Content.dungeoning,
+    icon: dungeoningIcon,
     label: "Dungeoning",
-    timeToComplete: 15,
+    timeToComplete: 60,
     rewards: [
       {
         item: ITEMS_DROP.rune.id,
@@ -740,7 +775,7 @@ export type T_Territory = {
     min: number;
     max: number;
   };
-  races: E_Race[];
+  races: ID_Race[];
   unlocked: boolean;
   vulnerable: number;
   img: string;
@@ -755,7 +790,7 @@ export const TERRITORIES: T_Territories = {
       min: 5,
       max: 15,
     },
-    races: [E_Race.human],
+    races: [ID_Race.human],
     unlocked: true,
     vulnerable: 1260,
     img: "https://i0.wp.com/www.thecravetraveler.com/wp-content/uploads/2023/07/framlingham-castle-01.jpg?resize=980%2C600&ssl=1",

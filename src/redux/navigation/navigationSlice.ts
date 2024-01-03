@@ -1,10 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { E_Link } from "../../config/config.d";
+import { ID_Link } from "../../config/config.d";
 import { navigationActions } from "./navigationActions";
 
 export const navigationSlice = createSlice({
   name: "navigation",
-  initialState: { currentPage: E_Link.guild },
+  initialState: { currentPage: ID_Link.guild },
   reducers: navigationActions,
 });
 

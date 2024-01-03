@@ -3,22 +3,20 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
 import { ITEMS } from "../config/config";
-import { E_Item_Category, T_Items_Stack } from "../config/config.d";
+import { ID_Item_Category, ItemStacks } from "../config/config.d";
 import { T_ReduxState } from "../config/store.d";
 
 interface I_UseFilterStorageByType {
-  filter: E_Item_Category;
+  filter: ID_Item_Category;
 }
 
 const useFilterStorageByType = ({ filter }: I_UseFilterStorageByType) => {
   const storage = useSelector((state: T_ReduxState) => state.storage.storage);
 
-  const [filteredItems, setFilteredItems] = useState<Partial<T_Items_Stack>>(
-    {}
-  );
+  const [filteredItems, setFilteredItems] = useState<Partial<ItemStacks>>({});
 
   useEffect(() => {
-    const newFilteredItems: Partial<T_Items_Stack> = {};
+    const newFilteredItems: Partial<ItemStacks> = {};
 
     Object.values(storage).forEach((itemStack) => {
       if (ITEMS[itemStack.id].category === filter) {

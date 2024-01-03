@@ -1,12 +1,12 @@
 import { CONTENTS } from "../../config/config";
-import { E_Content, T_Item_Stack } from "../../config/config.d";
+import { ID_Content, ItemStack } from "../../config/config.d";
 import { T_ReduxState } from "../../config/store.d";
 import { getReward } from "../../utils";
 import { AppDispatch } from "../store";
 import { addItem } from "./storageSlice";
 
 export const giveContentReward =
-  (contentId: E_Content): any =>
+  (contentId: ID_Content): any =>
   (dispatch: AppDispatch, getState: () => T_ReduxState) => {
     const rewards = CONTENTS[contentId].rewards;
     const reward = getReward(rewards);
@@ -16,7 +16,7 @@ export const giveContentReward =
       dispatch(addItem({ itemId: reward.item, quantity: quantity }));
     }
 
-    const result: T_Item_Stack | null = reward
+    const result: ItemStack | null = reward
       ? { id: reward.item, quantity: quantity }
       : null;
 

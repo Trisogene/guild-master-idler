@@ -2,11 +2,11 @@ import { Avatar, Box, Button, Typography } from "@mui/joy";
 import { useWindowSize } from "@uidotdev/usehooks";
 import { useDispatch } from "react-redux";
 import { LINKS } from "../../config/config";
-import { E_Link } from "../../config/config.d";
+import { ID_Link } from "../../config/config.d";
 import { setPage } from "../../redux/navigation/navigationSlice";
 
 interface I_NavigatorProps {
-  currentPage: E_Link;
+  currentPage: ID_Link;
 }
 
 const Navigator = ({ currentPage }: I_NavigatorProps) => {
@@ -31,7 +31,7 @@ const Navigator = ({ currentPage }: I_NavigatorProps) => {
           <Button
             fullWidth
             variant="plain"
-            onClick={() => dispatch(setPage(linkId as E_Link))}
+            onClick={() => dispatch(setPage(linkId as ID_Link))}
             key={linkId}
             sx={{
               ">* ": {

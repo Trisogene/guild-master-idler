@@ -1,12 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { E_Item_Category } from "../../config/config.d";
+import { ID_Item_Categories } from "../../config/config.d";
 import { uiActions } from "./uiActions";
 
 export const uiSlice = createSlice({
   name: "ui",
   initialState: {
     crafting: {
-      currentFilter: E_Item_Category.material,
+      currentFilter: "material" as ID_Item_Categories,
       currentSelectedItem: null,
     },
     guild: {
@@ -16,7 +16,7 @@ export const uiSlice = createSlice({
       selectedPlayer: null,
     },
     storage: {
-      currentFilter: E_Item_Category.material,
+      currentFilter: "material" as ID_Item_Categories,
     },
   },
   reducers: uiActions,

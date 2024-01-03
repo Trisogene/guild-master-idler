@@ -1,4 +1,8 @@
-export enum E_Item {
+/* -------------------------------------------------------------------------- */
+/*                                    Enums                                   */
+/* -------------------------------------------------------------------------- */
+
+export enum ID_Item {
   fiber = "fiber",
   hide = "hide",
   ore = "ore",
@@ -30,66 +34,112 @@ export enum E_Item {
   sword = "sword",
 }
 
-export enum E_Item_Category {
+export enum ID_Item_Category {
   resource = "resource",
   drop = "drop",
   material = "material",
   equip = "equip",
 }
 
-export type T_Item = {
-  id: E_Item;
-  category: E_Item_Category;
-  label: string;
-  description: string;
-  img: string;
-  tier: number;
-};
-
-export type T_Item_Stack = {
-  id: E_Item;
-  quantity: number;
-};
-
-export type T_Item_Category = {
-  id: E_Item_Category;
-  label: string;
-  craftable: boolean;
-  icon: string;
-};
-
-export type T_Items_Ingredient = Record<E_Item, number>;
-export type T_Items = Record<E_Item, T_Item>;
-export type T_Items_Category_Ext = Record<E_Item_Category, T_Item_Category>;
-export type T_Items_Stack = Record<E_Item, T_Item_Stack>;
-
-export enum E_Content {
+export enum ID_Content {
   sleeping = "sleeping",
   gathering = "gathering",
   dungeoning = "dungeoning",
 }
 
-export type T_Content = {
-  id: E_Content;
-  label: string;
-  timeToComplete: number;
-  rewards: T_ContentReward[];
-};
-
-export type T_ContentReward = {
-  item: E_Item;
-  possibility: number;
-};
-
-export type T_Contents = Record<E_Content, T_Content>;
-
-export enum E_Link {
+export enum ID_Link {
   recruit = "recruit",
   guild = "guild",
   storage = "storage",
   crafting = "crafting",
   territory = "territory",
 }
+
+export enum ID_Timer {
+  recruit = "recruit",
+  player = "player",
+  clock = "clock",
+}
+
+export enum ID_Race {
+  human = "human",
+}
+
+export enum ID_Role {
+  archer = "archer",
+  bruiser = "bruiser",
+  defensiveTank = "defensiveTank",
+  offensiveTank = "offensiveTank",
+  mage = "mage",
+  healer = "healer",
+  piercer = "piercer",
+  support = "support",
+}
+
+export enum ID_Recipe {
+  cloth = ID_Item.cloth,
+  plank = ID_Item.plank,
+  stoneBlock = ID_Item.stoneBlock,
+  metalBar = ID_Item.metalBar,
+  leather = ID_Item.leather,
+  clothBoots = ID_Item.clothBoots,
+  clothChest = ID_Item.clothChest,
+  clothHelmet = ID_Item.clothHelmet,
+  leatherBoots = ID_Item.leatherBoots,
+  leatherChest = ID_Item.leatherChest,
+  leatherHelmet = ID_Item.leatherHelmet,
+  ironBoots = ID_Item.ironBoots,
+  ironChest = ID_Item.ironChest,
+  ironHelmet = ID_Item.ironHelmet,
+  fireStaff = ID_Item.fireStaff,
+  holyStaff = ID_Item.holyStaff,
+  mace = ID_Item.mace,
+  spear = ID_Item.spear,
+  sword = ID_Item.sword,
+  bow = ID_Item.bow,
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                    Types                                   */
+/* -------------------------------------------------------------------------- */
+
+export type Item = {
+  id: ID_Item;
+  category: ID_Item_Category;
+  label: string;
+  description: string;
+  img: string;
+  tier: number;
+};
+
+export type ItemStack = {
+  id: ID_Item;
+  quantity: number;
+};
+
+export type ItemStacks = Record<ID_Item, ItemStack>;
+
+export type ItemCategory = {
+  id: ID_Item_Category;
+  label: string;
+  craftable: boolean;
+  icon: string;
+};
+
+export type Content = {
+  id: ID_Content;
+  label: string;
+  timeToComplete: number;
+  rewards: ContentReward[];
+  icon: string;
+};
+
+export type ContentReward = {
+  item: ID_Item;
+  possibility: number;
+};
+
+export type T_Contents = Record<ID_Content, Content>;
 
 export type T_Link = {
   id: string;
@@ -98,46 +148,17 @@ export type T_Link = {
   icon: string;
 };
 
-export type T_Links = Record<E_Link, T_Link>;
-
-export enum E_Recipe {
-  cloth = "cloth",
-  plank = "plank",
-  stoneBlock = "stoneBlock",
-  metalBar = "metalBar",
-  leather = "leather",
-  clothBoots = "clothBoots",
-  clothChest = "clothChest",
-  clothHelmet = "clothHelmet",
-  leatherBoots = "leatherBoots",
-  leatherChest = "leatherChest",
-  leatherHelmet = "leatherHelmet",
-  ironBoots = "ironBoots",
-  ironChest = "ironChest",
-  ironHelmet = "ironHelmet",
-  fireStaff = "fireStaff",
-  holyStaff = "holyStaff",
-  mace = "mace",
-  spear = "spear",
-  sword = "sword",
-  bow = "bow",
-}
+export type T_Links = Record<ID_Link, T_Link>;
 
 export type T_Recipe = {
   description: string;
   icon: string;
-  id: E_Recipe;
+  id: ID_Recipe;
   label: string;
-  ingredients: Partial<Record<E_Item, number>>;
+  ingredients: Partial<Record<ID_Item, number>>;
 };
 
-export type T_Recipes = Record<E_Recipe, T_Recipe>;
-
-export enum E_Timer {
-  recruit = "recruit",
-  player = "player",
-  clock = "clock",
-}
+export type T_Recipes = Record<ID_Recipe, T_Recipe>;
 
 export type T_Timer = {
   id: string;
@@ -145,7 +166,7 @@ export type T_Timer = {
   duration: number;
 };
 
-export type T_Timers = Record<E_Timer, T_Timer>;
+export type T_Timers = Record<ID_Timer, T_Timer>;
 
 export type T_Players = {
   [key: string]: T_Player;
@@ -154,12 +175,13 @@ export type T_Players = {
 export type T_Player = {
   id: string;
   name: string;
-  race: E_Race;
-  currentContent: E_Content;
+  race: ID_Race;
+  currentContent: ID_Content;
   stats: T_Player_Stat;
   masteries: T_Player_Mastery;
   lore: string;
-  role: E_Role;
+  role: ID_Role;
+  img: string;
 };
 
 type T_Player_Stat = {
@@ -184,11 +206,7 @@ type T_Player_Mastery = {
   bow: number;
 };
 
-export enum E_Race {
-  human = "human",
-}
-
-export type T_Races = Record<E_Race, T_Race>;
+export type T_Races = Record<ID_Race, T_Race>;
 
 export type T_Race = {
   id: string;
@@ -198,21 +216,10 @@ export type T_Race = {
   img: string;
 };
 
-export enum E_Role {
-  archer = "archer",
-  bruiser = "bruiser",
-  defensiveTank = "defensiveTank",
-  offensiveTank = "offensiveTank",
-  mage = "mage",
-  healer = "healer",
-  piercer = "piercer",
-  support = "support",
-}
-
-export type T_Roles = Record<E_Role, T_Role>;
+export type T_Roles = Record<ID_Role, T_Role>;
 
 export type T_Role = {
-  id: E_Role;
+  id: ID_Role;
   label: string;
   description: string;
   icon: string;
