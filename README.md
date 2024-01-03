@@ -10,7 +10,7 @@
     Lead your guild to victory!
     <br/>
     <br/>
-    <a href="https://github.com/Trisogene/guild-master-idler">View Demo</a> -
+    <a href="https://guild-master-idler.web.app/">View Demo</a> -
     <a href="https://github.com/Trisogene/guild-master-idler/issues">Report Bug</a> -
     <a href="https://github.com/Trisogene/guild-master-idler/issues">Request Feature</a>
   </p>
