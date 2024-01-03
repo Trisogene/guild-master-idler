@@ -40,7 +40,7 @@ An idle RPG game where you take on the role of a guild leader. Manage your guild
 
 ## Built With
 
-![Tech Stack](https://github-readme-tech-stack.vercel.app/api/cards?title=Tech+Stack&lineCount=2&hideBg=true&hideTitle=true&line1=React%2CReact%2C2900ff%3BTypeScript%2CTypeScript%2C0300ff%3BVite%2CVite%2C001aff%3B&line2=FRAMER%2CFRAMER%2C00f6ff%3BREDUX%2CREDUX%2Cffffff%3BMUI%2CMUI%2Cffffff%3B)
+![Tech Stack](https://github-readme-tech-stack.vercel.app/api/cards?title=Tech+Stack&fontSize=16&showBorder=false&lineCount=2&hideBg=true&hideTitle=true&line1=React%2CReact%2C2900ff%3BTypeScript%2CTypeScript%2C0300ff%3BVite%2CVite%2C001aff%3B&line2=FRAMER%2CFRAMER%2C00f6ff%3BREDUX%2CREDUX%2Cffffff%3BMUI%2CMUI%2Cffffff%3B)
 
 ## License
 
