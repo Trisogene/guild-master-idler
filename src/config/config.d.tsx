@@ -180,6 +180,7 @@ export type T_Player = {
   stats: T_Player_Stat;
   masteries: T_Player_Mastery;
   lore: string;
+  description: string;
   role: ID_Role;
   img: string;
 };

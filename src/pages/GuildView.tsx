@@ -17,7 +17,7 @@ const GuildView = () => {
         <Box
           sx={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
+            gridTemplateColumns: "repeat(auto-fill, minmax(230px, 1fr))",
             gap: 1,
             p: 0.5,
           }}

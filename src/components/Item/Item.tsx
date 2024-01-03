@@ -11,7 +11,7 @@ const Item = ({ itemStack, size = "md" }: I_ItemCard) => {
   const itemConfig = ITEMS[itemStack.id];
 
   const sizeMap = {
-    sm: 24,
+    sm: 12,
     md: 48,
     lg: 64,
   };
@@ -25,19 +25,20 @@ const Item = ({ itemStack, size = "md" }: I_ItemCard) => {
           width: sizeMap[size],
           alignItems: "center",
           justifyContent: "center",
-          p: 2,
+          p: 1,
         }}
       >
         <Avatar
           size={size}
+          // sx={{ width: sizeMap[size], height: sizeMap[size] }}
           className="PlayerCard-avatar"
           src={itemConfig.img}
         />
         <Box
           sx={{
             position: "absolute",
-            bottom: -4,
-            right: -4,
+            bottom: -8,
+            right: -8,
             bgcolor: "background.level2",
             borderRadius: (theme) => theme.vars.radius.sm,
             width: sizeMap[size] / 3,
@@ -55,8 +56,8 @@ const Item = ({ itemStack, size = "md" }: I_ItemCard) => {
         <Box
           sx={{
             position: "absolute",
-            top: -4,
-            left: -4,
+            top: -8,
+            left: -8,
             bgcolor: "background.level2",
             borderRadius: (theme) => theme.vars.radius.sm,
             width: sizeMap[size] / 3,

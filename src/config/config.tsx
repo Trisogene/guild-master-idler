@@ -368,6 +368,7 @@ export const RECRUITS: T_Players = {
     lore: "A Young adventurer, ready to explore the world, and make a name for himself.",
     role: ID_Role.archer,
     img: faceImg,
+    description: "the basic recruit",
   },
   luca: {
     id: "",
@@ -397,6 +398,7 @@ export const RECRUITS: T_Players = {
     lore: "A Young adventurer, ready to explore the world, and make a name for himself.",
     role: ID_Role.archer,
     img: faceImg,
+    description: "the basic recruit",
   },
 };
 

@@ -34,8 +34,8 @@ const Sidebar = () => {
         display: "flex",
         flexDirection: "column",
         gap: 1,
-        minWidth: 200,
-        maxWidth: 200,
+        minWidth: 180,
+        maxWidth: 180,
         flexGrow: 1,
       }}
     >

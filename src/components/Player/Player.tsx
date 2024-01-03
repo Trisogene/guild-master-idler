@@ -1,4 +1,4 @@
-import { Card, Chip, LinearProgress, Typography } from "@mui/joy";
+import { Card, Chip, Divider, LinearProgress, Typography } from "@mui/joy";
 import Avatar from "@mui/joy/Avatar";
 import Box from "@mui/joy/Box";
 import { useAnimate } from "framer-motion";
@@ -54,12 +54,11 @@ const Player = ({ player, isSelected }: I_PlayerCard) => {
     <>
       <Card
         sx={{
-          flexDirection: "row",
+          p: 1,
           border: (theme) =>
             isSelected
               ? `1px solid white`
               : `1px solid ${theme.palette.background.level2}`,
-          alignItems: "center",
           ":hover": {
             cursor: "pointer",
             border: (theme) =>
@@ -70,63 +69,75 @@ const Player = ({ player, isSelected }: I_PlayerCard) => {
         }}
         onClick={handlePlayerClick}
       >
-        <Avatar src={player.img} size="lg" />
-
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            gap: 1,
-            width: "100%",
-          }}
-        >
+        <Box>
+          <Typography fontSize="sm">
+            {player.name + " " + player.description}
+          </Typography>
+        </Box>
+        <Divider />
+        <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+          <Avatar
+            src={player.img}
+            size="lg"
+            sx={{
+              border: (theme) => `4px solid green`,
+            }}
+          />
           <Box
             sx={{
               display: "flex",
-              gap: 0.25,
-              p: 0.5,
-              flexGrow: 1,
-            }}
-          >
-            <Chip startDecorator={<Avatar />} variant="outlined">
-              <Typography fontSize={10}>{player.name}</Typography>
-            </Chip>
-            <Chip startDecorator={<Avatar />} variant="outlined">
-              <Typography fontSize={10}>{playerRace.label}</Typography>
-            </Chip>
-            <Chip startDecorator={<Avatar />} variant="outlined">
-              <Typography fontSize={10}>{ROLES[player.role].label}</Typography>
-            </Chip>
-          </Box>
-
-          <Box
-            ref={progressRef}
-            className="PlayerCard-timer"
-            sx={{
-              zIndex: 1,
+              flexDirection: "column",
+              gap: 1,
               width: "100%",
-              height: 18,
             }}
           >
-            <LinearProgress
-              color="neutral"
-              determinate
-              value={timerPerc}
-              variant="solid"
+            <Box
               sx={{
-                zIndex: -1,
-                borderColor: "white",
-                "--LinearProgress-radius": "4px",
-                "--LinearProgress-progressThickness": "100%",
-                "&::before": {
-                  transition: "width 0.2s ease-in-out",
-                },
+                display: "flex",
+                gap: 0.5,
+
+                flexGrow: 1,
               }}
             >
-              <Typography fontSize="xs" sx={{ color: "white", zIndex: 1 }}>
-                {player.currentContent}
-              </Typography>
-            </LinearProgress>
+              <Chip startDecorator={<Avatar />} variant="outlined">
+                <Typography fontSize={10}>{playerRace.label}</Typography>
+              </Chip>
+              <Chip startDecorator={<Avatar />} variant="outlined">
+                <Typography fontSize={10}>
+                  {ROLES[player.role].label}
+                </Typography>
+              </Chip>
+            </Box>
+
+            <Box
+              ref={progressRef}
+              className="PlayerCard-timer"
+              sx={{
+                zIndex: 1,
+                width: "100%",
+                height: 18,
+              }}
+            >
+              <LinearProgress
+                color="neutral"
+                determinate
+                value={timerPerc}
+                variant="solid"
+                sx={{
+                  zIndex: -1,
+                  borderColor: "white",
+                  "--LinearProgress-radius": "4px",
+                  "--LinearProgress-progressThickness": "100%",
+                  "&::before": {
+                    transition: "width 0.2s ease-in-out",
+                  },
+                }}
+              >
+                <Typography fontSize="xs" sx={{ color: "white", zIndex: 1 }}>
+                  {player.currentContent}
+                </Typography>
+              </LinearProgress>
+            </Box>
           </Box>
         </Box>
       </Card>
