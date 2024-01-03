@@ -80,7 +80,7 @@ const Player = ({ player, isSelected }: I_PlayerCard) => {
             src={player.img}
             size="lg"
             sx={{
-              border: (theme) => `4px solid green`,
+              border: (theme) => `4px solid ${theme.palette.success.solidBg}`,
             }}
           />
           <Box
