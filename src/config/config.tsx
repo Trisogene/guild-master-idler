@@ -38,6 +38,7 @@ import faceImg from "./../assets/recruits/face.png";
 import TerritoryView from "../pages/TerritoryView";
 import {
   ID_Content,
+  ID_Equip_Slot,
   ID_Item,
   ID_Item_Category,
   ID_Race,
@@ -420,7 +421,9 @@ export const TIMERS: T_Timers = {
   },
 };
 
-export const ITEMS_RESOURCES = {
+/* ---------------------------------- Items --------------------------------- */
+
+export const ITEMS: Record<ID_Item, Item> = {
   fiber: {
     category: ID_Item_Category.resource,
     description: "A bundle of fiber.",
@@ -461,9 +464,6 @@ export const ITEMS_RESOURCES = {
     label: "Wood",
     tier: 1,
   },
-};
-
-export const ITEMS_MATERIALS = {
   cloth: {
     category: ID_Item_Category.material,
     description: "A bundle of cloth.",
@@ -504,9 +504,6 @@ export const ITEMS_MATERIALS = {
     label: "Stone Block",
     tier: 1,
   },
-};
-
-export const ITEMS_DROP = {
   artifact: {
     category: ID_Item_Category.drop,
     description: "An artifact.",
@@ -539,9 +536,6 @@ export const ITEMS_DROP = {
     label: "Soul",
     tier: 1,
   },
-};
-
-export const ITEMS_EQUIP_ARMOR = {
   clothBoots: {
     category: ID_Item_Category.equip,
     description: "Cloth boots.",
@@ -549,6 +543,10 @@ export const ITEMS_EQUIP_ARMOR = {
     img: temp_armor_icon,
     label: "Cloth Boots",
     tier: 1,
+    slot: ID_Equip_Slot.boots,
+    statBonus: {
+      def: 1,
+    },
   },
   clothChest: {
     category: ID_Item_Category.equip,
@@ -557,6 +555,10 @@ export const ITEMS_EQUIP_ARMOR = {
     img: temp_armor_icon,
     label: "Cloth Chest",
     tier: 1,
+    slot: ID_Equip_Slot.chest,
+    statBonus: {
+      def: 1,
+    },
   },
   clothHelmet: {
     category: ID_Item_Category.equip,
@@ -565,6 +567,10 @@ export const ITEMS_EQUIP_ARMOR = {
     img: temp_armor_icon,
     label: "Cloth Helmet",
     tier: 1,
+    slot: ID_Equip_Slot.head,
+    statBonus: {
+      def: 1,
+    },
   },
   ironBoots: {
     category: ID_Item_Category.equip,
@@ -573,6 +579,10 @@ export const ITEMS_EQUIP_ARMOR = {
     img: temp_armor_icon,
     label: "Iron Boots",
     tier: 1,
+    slot: ID_Equip_Slot.boots,
+    statBonus: {
+      def: 1,
+    },
   },
   ironChest: {
     category: ID_Item_Category.equip,
@@ -581,6 +591,10 @@ export const ITEMS_EQUIP_ARMOR = {
     img: temp_armor_icon,
     label: "Iron Chest",
     tier: 1,
+    slot: ID_Equip_Slot.chest,
+    statBonus: {
+      def: 1,
+    },
   },
   ironHelmet: {
     category: ID_Item_Category.equip,
@@ -589,6 +603,10 @@ export const ITEMS_EQUIP_ARMOR = {
     img: temp_armor_icon,
     label: "Iron Helmet",
     tier: 1,
+    slot: ID_Equip_Slot.head,
+    statBonus: {
+      def: 1,
+    },
   },
   leatherBoots: {
     category: ID_Item_Category.equip,
@@ -597,6 +615,10 @@ export const ITEMS_EQUIP_ARMOR = {
     img: temp_armor_icon,
     label: "Leather Boots",
     tier: 1,
+    slot: ID_Equip_Slot.boots,
+    statBonus: {
+      def: 1,
+    },
   },
   leatherChest: {
     category: ID_Item_Category.equip,
@@ -605,6 +627,10 @@ export const ITEMS_EQUIP_ARMOR = {
     img: temp_armor_icon,
     label: "Leather Chest",
     tier: 1,
+    slot: ID_Equip_Slot.chest,
+    statBonus: {
+      def: 1,
+    },
   },
   leatherHelmet: {
     category: ID_Item_Category.equip,
@@ -613,10 +639,11 @@ export const ITEMS_EQUIP_ARMOR = {
     img: temp_armor_icon,
     label: "Leather Helmet",
     tier: 1,
+    slot: ID_Equip_Slot.head,
+    statBonus: {
+      def: 1,
+    },
   },
-};
-
-const ITEMS_EQUIP_WEAPONS = {
   bow: {
     category: ID_Item_Category.equip,
     description: "A bow.",
@@ -624,6 +651,10 @@ const ITEMS_EQUIP_WEAPONS = {
     img: temp_weapon_icon,
     label: "Bow",
     tier: 1,
+    slot: ID_Equip_Slot.weapon,
+    statBonus: {
+      atk: 1,
+    },
   },
   fireStaff: {
     category: ID_Item_Category.equip,
@@ -632,6 +663,10 @@ const ITEMS_EQUIP_WEAPONS = {
     img: temp_weapon_icon,
     label: "Fire Staff",
     tier: 1,
+    slot: ID_Equip_Slot.weapon,
+    statBonus: {
+      atk: 1,
+    },
   },
   holyStaff: {
     category: ID_Item_Category.equip,
@@ -640,6 +675,10 @@ const ITEMS_EQUIP_WEAPONS = {
     img: temp_weapon_icon,
     label: "Holy Staff",
     tier: 1,
+    slot: ID_Equip_Slot.weapon,
+    statBonus: {
+      atk: 1,
+    },
   },
   mace: {
     category: ID_Item_Category.equip,
@@ -648,6 +687,10 @@ const ITEMS_EQUIP_WEAPONS = {
     img: temp_weapon_icon,
     label: "Mace",
     tier: 1,
+    slot: ID_Equip_Slot.weapon,
+    statBonus: {
+      atk: 1,
+    },
   },
   spear: {
     category: ID_Item_Category.equip,
@@ -656,6 +699,10 @@ const ITEMS_EQUIP_WEAPONS = {
     img: temp_weapon_icon,
     label: "Spear",
     tier: 1,
+    slot: ID_Equip_Slot.weapon,
+    statBonus: {
+      atk: 1,
+    },
   },
   sword: {
     category: ID_Item_Category.equip,
@@ -664,15 +711,11 @@ const ITEMS_EQUIP_WEAPONS = {
     img: temp_weapon_icon,
     label: "Sword",
     tier: 1,
+    slot: ID_Equip_Slot.weapon,
+    statBonus: {
+      atk: 1,
+    },
   },
-};
-
-export const ITEMS: Record<ID_Item, Item> = {
-  ...ITEMS_RESOURCES,
-  ...ITEMS_MATERIALS,
-  ...ITEMS_DROP,
-  ...ITEMS_EQUIP_ARMOR,
-  ...ITEMS_EQUIP_WEAPONS,
 };
 
 export const ITEM_CATEGORIES: Record<ID_Item_Category, ItemCategory> = {
@@ -745,19 +788,19 @@ export const CONTENTS: T_Contents = {
     timeToComplete: 60,
     rewards: [
       {
-        item: ITEMS_DROP.rune.id,
+        item: ITEMS.rune.id,
         possibility: 0.5,
       },
       {
-        item: ITEMS_DROP.soul.id,
+        item: ITEMS.soul.id,
         possibility: 0.25,
       },
       {
-        item: ITEMS_DROP.relic.id,
+        item: ITEMS.relic.id,
         possibility: 0.125,
       },
       {
-        item: ITEMS_DROP.artifact.id,
+        item: ITEMS.artifact.id,
         possibility: 0.125,
       },
     ],

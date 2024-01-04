@@ -3,7 +3,7 @@ import { memo } from "react";
 
 import { useDispatch } from "react-redux";
 import { ITEMS, RECIPES } from "../../config/config";
-import { ID_Item, ID_Recipe, Item, T_Recipe } from "../../config/config.d";
+import { ID_Item, ID_Recipe, ItemBase, T_Recipe } from "../../config/config.d";
 import useSelectItemsFromStorage from "../../hooks/useSelectItemsFromStorage";
 import { setCurrentCraftingItem } from "../../redux/ui/uiSlice";
 
@@ -14,7 +14,7 @@ interface I_CraftableItemCard {
 
 const Recipe = ({ item, isSelected }: I_CraftableItemCard) => {
   const dispatch = useDispatch();
-  const itemConfig: Item = ITEMS[item];
+  const itemConfig: ItemBase = ITEMS[item];
   const itemRecipe: T_Recipe = RECIPES[item as unknown as ID_Recipe];
   const igredientsInStorage = useSelectItemsFromStorage(
     Object.keys(itemRecipe.ingredients) as ID_Item[]

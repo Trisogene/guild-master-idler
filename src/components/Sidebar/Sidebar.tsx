@@ -1,10 +1,10 @@
-import { Avatar, Box, Card } from "@mui/joy";
+import { Box, Card } from "@mui/joy";
 import { AnimatePresence, motion } from "framer-motion";
 import { useSelector } from "react-redux";
-import clockIcon from "../../assets/utils/clock.svg";
 import { E_Log_Type, T_Log, T_ReduxState } from "../../config/store.d";
 import RecruitLog from "../Log/RecruitLog";
 import RewardLog from "../Log/RewardLog";
+import Clock from "./components/Clock";
 
 const logToComponent = (log: T_Log) => {
   switch (log.type) {
@@ -18,17 +18,11 @@ const logToComponent = (log: T_Log) => {
 };
 
 const Sidebar = () => {
-  const clock = useSelector((state: T_ReduxState) => state.timer.timers.clock);
-  const hours = Math.floor(clock / 60);
-  const minutes = clock % 60;
-  const formattedTime = `${hours.toString().padStart(2, "0")}:${minutes
-    .toString()
-    .padStart(2, "0")}`;
-
   const logs = useSelector((state: T_ReduxState) => state.log.logs);
 
   return (
     <Box
+      className="Sidebar"
       sx={{
         maxHeight: "100%",
         display: "flex",
@@ -39,18 +33,7 @@ const Sidebar = () => {
         flexGrow: 1,
       }}
     >
-      <Card
-        variant="soft"
-        sx={{
-          flexDirection: "row",
-          alignItems: "center",
-          width: "100%",
-          border: (theme) => `1px solid ${theme.palette.background.level2}`,
-        }}
-      >
-        <Avatar src={clockIcon} />
-        {formattedTime}
-      </Card>
+      <Clock />
 
       <Card
         variant="soft"

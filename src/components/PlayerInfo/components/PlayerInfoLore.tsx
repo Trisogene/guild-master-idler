@@ -5,7 +5,7 @@ interface I_PlayerInfoLoreProps {
 }
 const PlayerInfoLore = ({ player }: I_PlayerInfoLoreProps) => {
   return (
-    <Box sx={{ display: "flex", flexDirection: "column", gap: 1, p: 0.5 }}>
+    <Box sx={{ display: "flex", flexDirection: "column", gap: 1, p: 1 }}>
       {player.lore}
     </Box>
   );
