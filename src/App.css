@@ -1,19 +1,6 @@
-/* #root {
-  height: 100vh;
-  width: 100vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: rgb(20, 20, 20);
-}
-
 .App {
-  width: 390px !important;
-  max-height: 663px !important;
-  min-height: 663px !important;
-  background: rgba(12, 12, 12, 1);
-} */
-
-.App {
-  min-width: 350px;
+  min-width: 800px !important;
+  min-height: 600px !important;
+  overflow-y: auto;
+  overflow-x: auto;
 }

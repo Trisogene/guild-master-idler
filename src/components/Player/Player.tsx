@@ -1,4 +1,4 @@
-import { Card, Chip, Divider, LinearProgress, Typography } from "@mui/joy";
+import { Card, Chip, LinearProgress, Typography } from "@mui/joy";
 import Avatar from "@mui/joy/Avatar";
 import Box from "@mui/joy/Box";
 import { useAnimate } from "framer-motion";
@@ -25,7 +25,7 @@ const Player = ({ player, isSelected }: I_PlayerCard) => {
   const timerPerc =
     (playerTimer / CONTENTS[player.currentContent].timeToComplete) * 100;
   const playerRace = RACES[player.race];
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch: AppDispatch = useDispatch<AppDispatch>();
 
   const handlePlayerClick = () => {
     if (!isSelected) {
@@ -69,12 +69,6 @@ const Player = ({ player, isSelected }: I_PlayerCard) => {
         }}
         onClick={handlePlayerClick}
       >
-        <Box>
-          <Typography fontSize="sm">
-            {player.name + " " + player.description}
-          </Typography>
-        </Box>
-        <Divider />
         <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
           <Avatar
             src={player.img}
@@ -95,10 +89,13 @@ const Player = ({ player, isSelected }: I_PlayerCard) => {
               sx={{
                 display: "flex",
                 gap: 0.5,
-
                 flexGrow: 1,
               }}
             >
+              <Box>
+                <Typography fontSize="sm">{player.name}</Typography>
+              </Box>
+
               <Chip startDecorator={<Avatar />} variant="outlined">
                 <Typography fontSize={10}>{playerRace.label}</Typography>
               </Chip>

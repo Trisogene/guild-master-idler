@@ -17,7 +17,7 @@ const root = document.getElementById("root");
             <GlobalStyles
               styles={{
                 "*::-webkit-scrollbar": {
-                  width: "2px",
+                  width: "4px",
                 },
                 "*::-webkit-scrollbar-track": {
                   background: "#222",
@@ -27,6 +27,13 @@ const root = document.getElementById("root");
                 },
                 "*::-webkit-scrollbar-thumb:hover": {
                   background: "#555",
+                },
+                //set width to 4 if vertical and height to 4 if horizontal
+                "*::-webkit-scrollbar:vertical": {
+                  width: "4px",
+                },
+                "*::-webkit-scrollbar:horizontal": {
+                  height: "4px",
                 },
               }}
             />

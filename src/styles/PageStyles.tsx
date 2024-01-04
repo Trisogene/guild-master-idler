@@ -4,14 +4,11 @@ export const Page = styled(Box)(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
   flexGrow: 1,
-  height: "100%",
   gap: theme.spacing(1),
   overflow: "hidden",
-  minWidth: 200,
 }));
 
 export const PageHeader = styled(Card)(({ theme }) => ({
-  height: 32,
   maxHeight: 32,
   minHeight: 32,
   width: "100%",
@@ -21,8 +18,7 @@ export const PageHeader = styled(Card)(({ theme }) => ({
 }));
 
 export const PageBody = styled(Card)(({ theme }) => ({
-  height: "100%",
-
+  height: "calc(50% - 24px)",
   overflowY: "auto",
   border: `1px solid ${theme.palette.background.level2}`,
   borderRadius: theme.spacing(1),
@@ -30,7 +26,7 @@ export const PageBody = styled(Card)(({ theme }) => ({
 }));
 
 export const PageBottom = styled(Card)(({ theme }) => ({
-  height: "100%",
+  height: "calc(50% - 24px)",
   border: `1px solid ${theme.palette.background.level2}`,
   borderRadius: theme.spacing(1),
   background: theme.palette.background.level1,

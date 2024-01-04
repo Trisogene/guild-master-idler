@@ -99,18 +99,53 @@ export enum ID_Recipe {
   bow = ID_Item.bow,
 }
 
+export enum ID_Equip_Slot {
+  head = "head",
+  chest = "chest",
+  boots = "boots",
+  weapon = "weapon",
+}
+
+export enum ID_Stat {
+  hp = "hp",
+  mp = "mp",
+  atk = "atk",
+  ap = "ap",
+  def = "def",
+}
+
 /* -------------------------------------------------------------------------- */
 /*                                    Types                                   */
 /* -------------------------------------------------------------------------- */
 
-export type Item = {
+/* ---------------------------------- Item ---------------------------------- */
+type ItemBase = {
   id: ID_Item;
-  category: ID_Item_Category;
   label: string;
   description: string;
   img: string;
   tier: number;
 };
+
+type Equip = ItemBase & {
+  category: ID_Item_Category.equip;
+  slot: ID_Equip_Slot;
+  statBonus: Partial<Record<ID_Stat, number>>;
+};
+
+type Resource = ItemBase & {
+  category: ID_Item_Category.resource;
+};
+
+type Material = ItemBase & {
+  category: ID_Item_Category.material;
+};
+
+type Drop = ItemBase & {
+  category: ID_Item_Category.drop;
+};
+
+export type Item = Equip | Resource | Material | Drop;
 
 export type ItemStack = {
   id: ID_Item;
@@ -177,20 +212,12 @@ export type T_Player = {
   name: string;
   race: ID_Race;
   currentContent: ID_Content;
-  stats: T_Player_Stat;
+  stats: Record<ID_Stat, number>;
   masteries: T_Player_Mastery;
   lore: string;
   description: string;
   role: ID_Role;
   img: string;
-};
-
-type T_Player_Stat = {
-  hp: number;
-  mp: number;
-  atk: number;
-  ap: number;
-  def: number;
 };
 
 type T_Player_Mastery = {

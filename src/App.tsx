@@ -1,4 +1,4 @@
-import { Box, Divider } from "@mui/joy";
+import { Box } from "@mui/joy";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./App.css";
@@ -9,7 +9,6 @@ import { LINKS } from "./config/config";
 import { T_ReduxState } from "./config/store.d";
 import { AppDispatch } from "./redux/store";
 import { startTimers } from "./redux/timer/timerThunks";
-import { StyledApp } from "./styles/AppStyles";
 
 function App() {
   const currentPage = useSelector(
@@ -23,22 +22,31 @@ function App() {
 
   return (
     <>
-      <StyledApp className="App">
+      <Box
+        className="App"
+        sx={{
+          height: "100vh",
+          width: "100vw",
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
         <Navigator currentPage={currentPage} />
         <Box
+          className="Body"
           sx={{
             display: "flex",
-            minHeight: "calc(100% - 49px)",
-            maxHeight: "calc(100% - 49px)",
+            flexGrow: 1,
             p: 1,
             gap: 1,
+
+            height: "calc(100vh - 45px)",
           }}
         >
           <Sidebar />
           {LINKS[currentPage].component}
         </Box>
-        <Divider />
-      </StyledApp>
+      </Box>
     </>
   );
 }
