@@ -1,12 +1,12 @@
-import { Grid } from "@mui/joy";
+import { Card, Grid } from "@mui/joy";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Recruit from "../components/Recruit/Recruit";
-import RecruitInfo from "../components/RecruitInfo/RecruitInfo";
-import RecruitTimer from "../components/RecruitTimer/RecruitTimer";
-import { T_ReduxState } from "../config/store.d";
-import { updateRecruits } from "../redux/recruit/recruitSlice";
-import { Page, PageBody, PageBottom, PageHeader } from "../styles/PageStyles";
+import RecruitInfo from "../../components/RecruitInfo/RecruitInfo";
+import RecruitTimer from "../../components/RecruitTimer/RecruitTimer";
+import { T_ReduxState } from "../../config/store.d";
+import { updateRecruits } from "../../redux/recruit/recruitSlice";
+import { Page } from "../../styles/PageStyles";
+import Recruit from "./components/Recruit";
 
 const RecruitView = () => {
   const recruits = useSelector((state: T_ReduxState) => state.recruit.recruits);
@@ -24,14 +24,23 @@ const RecruitView = () => {
 
   return (
     <Page>
-      <PageHeader>
+      <Card size="sm" variant="soft">
         <RecruitTimer />
-      </PageHeader>
-      <PageBody sx={{ p: 0.5, display: "flex", flexDirection: "column", g: 1 }}>
+      </Card>
+      <Card
+        variant="soft"
+        size="sm"
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          height: "50%",
+          overflowY: "auto",
+        }}
+      >
         <Grid
           sx={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fill, minmax(125px, 1fr))",
+            gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
             gap: 1,
           }}
         >
@@ -43,15 +52,15 @@ const RecruitView = () => {
             />
           ))}
         </Grid>
-      </PageBody>
+      </Card>
 
-      <PageBottom>
+      <Card variant="soft" size="sm" sx={{ height: "50%" }}>
         {selectedPlayer && recruits[selectedPlayer] ? (
           <RecruitInfo recruit={recruits[selectedPlayer]} />
         ) : (
           <></>
         )}
-      </PageBottom>
+      </Card>
     </Page>
   );
 };

@@ -1,4 +1,4 @@
-import { Avatar, Button, Grid } from "@mui/joy";
+import { Avatar, Button, Card, Grid } from "@mui/joy";
 import { useDispatch, useSelector } from "react-redux";
 import Item from "../components/Item/Item";
 import useFilterStorageByType from "../hooks/useFilterStorageByType";
@@ -6,7 +6,7 @@ import useFilterStorageByType from "../hooks/useFilterStorageByType";
 import { ITEM_CATEGORIES } from "../config/config";
 import { T_ReduxState } from "../config/store.d";
 import { setStorageFilter } from "../redux/ui/uiSlice";
-import { Page, PageBody, PageBottom, PageHeader } from "../styles/PageStyles";
+import { Page } from "../styles/PageStyles";
 
 const StorageView = () => {
   const currentFilter = useSelector(
@@ -17,7 +17,9 @@ const StorageView = () => {
 
   return (
     <Page>
-      <PageHeader
+      <Card
+        variant="soft"
+        size="sm"
         sx={{
           flexDirection: "row",
           alignItems: "center",
@@ -26,20 +28,22 @@ const StorageView = () => {
       >
         {Object.values(ITEM_CATEGORIES).map((category) => (
           <Button
+            size="sm"
             fullWidth
             onClick={() => dispatch(setStorageFilter(category.id))}
             variant={currentFilter === category.id ? "solid" : "plain"}
-            color="neutral"
             key={category.label}
-            startDecorator={<Avatar src={category.icon} />}
+            startDecorator={<Avatar src={category.icon} size="sm" />}
           >
             {category.label}
           </Button>
         ))}
-      </PageHeader>
+      </Card>
 
-      <PageBody
+      <Card
+        variant="soft"
         sx={{
+          height: "50%",
           p: 1,
         }}
       >
@@ -54,9 +58,9 @@ const StorageView = () => {
             <Item key={itemStack.id} itemStack={itemStack} />
           ))}
         </Grid>
-      </PageBody>
+      </Card>
 
-      <PageBottom sx={{ bgcolor: "background.level1" }}></PageBottom>
+      <Card variant="soft" sx={{ height: "50%" }}></Card>
     </Page>
   );
 };

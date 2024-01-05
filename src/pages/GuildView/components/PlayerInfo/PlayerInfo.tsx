@@ -1,7 +1,8 @@
 import { Avatar, Box, Button, Divider, Typography } from "@mui/joy";
 import { useState } from "react";
-import { RACES } from "../../config/config";
-import { T_Player } from "../../config/config.d";
+import { RACES } from "../../../../config/config";
+import { T_Player } from "../../../../config/config.d";
+import PlayerInfoEquip from "./components/PlayerInfoEquip";
 import PlayerInfoLore from "./components/PlayerInfoLore";
 import PlayerInfoRole from "./components/PlayerInfoRole";
 import PlayerInfoStats from "./components/PlayerInfoStats";
@@ -24,7 +25,7 @@ const tabs: T_Tabs = {
   equip: {
     id: E_TABS.equip,
     label: "Equip",
-    component: (props: any) => <div>Equip</div>,
+    component: (props: any) => <PlayerInfoEquip {...props} />,
   },
   role: {
     id: E_TABS.role,
@@ -44,11 +45,16 @@ interface I_PlayerInfo {
 
 const PlayerInfo = ({ player }: I_PlayerInfo) => {
   const race = RACES[player.race];
-  const [currentTab, setCurrentTab] = useState(E_TABS.role);
+  const [currentTab, setCurrentTab] = useState(E_TABS.equip);
   return (
     <Box
       className="PlayerInfo"
-      sx={{ display: "flex", flexDirection: "column", height: "100%" }}
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        height: "100%",
+        gap: 0.5,
+      }}
     >
       <Box
         sx={{
@@ -88,12 +94,10 @@ const PlayerInfo = ({ player }: I_PlayerInfo) => {
           ))}
         </Box>
         <Divider orientation="vertical" />
-        <Box sx={{ flexGrow: 1, maxHeight: "100%", overflowY: "auto" }}>
-          {tabs[currentTab].component({ player: player })}
-        </Box>
+        <PlayerInfoStats stats={player.stats} />
         <Divider orientation="vertical" />
 
-        <PlayerInfoStats stats={player.stats} />
+        {tabs[currentTab].component({ player: player })}
       </Box>
     </Box>
   );

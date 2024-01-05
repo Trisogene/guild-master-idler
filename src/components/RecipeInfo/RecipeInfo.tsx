@@ -1,4 +1,4 @@
-import { Avatar, Box, Button, Typography } from "@mui/joy";
+import { Avatar, Box, Button, Divider, Typography } from "@mui/joy";
 import { useMemo } from "react";
 import { useDispatch } from "react-redux";
 
@@ -36,28 +36,23 @@ const RecipeInfo = ({ itemId }: I_CraftingInfo) => {
         position: "relative",
         display: "flex",
         flexDirection: "column",
-        alignItems: "center",
+        gap: 1,
+
         height: "100%",
         width: "100%",
       }}
     >
       <Box
-        className="CraftingInfo-header"
         sx={{
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          p: 0.5,
 
           width: "100%",
           gap: 1,
         }}
       >
-        <Avatar
-          className="PlayerCard-avatar"
-          src={ITEMS[recipe.id].img}
-          size="sm"
-        />
+        <Avatar src={ITEMS[recipe.id].img} size="sm" />
         <Typography
           sx={{
             fontWeight: "bold",
@@ -67,16 +62,12 @@ const RecipeInfo = ({ itemId }: I_CraftingInfo) => {
         </Typography>
       </Box>
 
-      <Box className="CraftingInfo-body" sx={{ width: "100%", p: 1 }}></Box>
+      <Divider />
 
-      <Box
-        className="CraftingInfo-footer"
-        sx={{ position: "absolute", bottom: 0, width: "100%", p: 0.5 }}
-      >
+      <Box>
         <Button
           variant="solid"
           color="success"
-          fullWidth
           disabled={!canBeCrafted}
           sx={{ height: "100%" }}
           onClick={() => dispatch(craftItem(recipe.id))}

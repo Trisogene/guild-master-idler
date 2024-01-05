@@ -1,4 +1,4 @@
-import { Avatar, Box, Card, CardContent, Chip, Divider } from "@mui/joy";
+import { Avatar, Box, Card, Chip, Divider, Typography } from "@mui/joy";
 import { memo } from "react";
 
 import { useDispatch } from "react-redux";
@@ -8,14 +8,14 @@ import useSelectItemsFromStorage from "../../hooks/useSelectItemsFromStorage";
 import { setCurrentCraftingItem } from "../../redux/ui/uiSlice";
 
 interface I_CraftableItemCard {
-  item: ID_Item;
+  itemId: ID_Item;
   isSelected: boolean;
 }
 
-const Recipe = ({ item, isSelected }: I_CraftableItemCard) => {
+const Recipe = ({ itemId, isSelected }: I_CraftableItemCard) => {
   const dispatch = useDispatch();
-  const itemConfig: ItemBase = ITEMS[item];
-  const itemRecipe: T_Recipe = RECIPES[item as unknown as ID_Recipe];
+  const itemConfig: ItemBase = ITEMS[itemId];
+  const itemRecipe: T_Recipe = RECIPES[itemId as unknown as ID_Recipe];
   const igredientsInStorage = useSelectItemsFromStorage(
     Object.keys(itemRecipe.ingredients) as ID_Item[]
   );
@@ -31,10 +31,21 @@ const Recipe = ({ item, isSelected }: I_CraftableItemCard) => {
 
   return (
     <Card
+      size="sm"
+      variant="soft"
       onClick={() => dispatch(setCurrentCraftingItem(itemRecipe.id))}
       sx={{
-        alignItems: "center",
-        bgcolor: isSelected ? "background.level2" : "background.paper",
+        border: (theme) =>
+          isSelected
+            ? `1px solid white`
+            : `1px solid ${theme.palette.background.level2}`,
+        ":hover": {
+          cursor: "pointer",
+          border: (theme) =>
+            isSelected
+              ? `1px solid white`
+              : `1px solid ${theme.palette.background.level3}`,
+        },
       }}
     >
       <Box
@@ -60,26 +71,28 @@ const Recipe = ({ item, isSelected }: I_CraftableItemCard) => {
         orientation="horizontal"
         sx={{ width: "90%", alignSelf: "center" }}
       />
-      <CardContent>
-        {Object.entries(itemRecipe.ingredients).map(
-          ([ingredientName, igredientQuantity]) => {
-            return (
-              <Chip
-                sx={{ minWidth: "100%" }}
-                variant="solid"
-                color={isCraftable ? "success" : "neutral"}
-                key={ingredientName}
-                startDecorator={
-                  <Avatar src={ITEMS[ingredientName as ID_Item].img} />
-                }
-              >
+
+      {Object.entries(itemRecipe.ingredients).map(
+        ([ingredientName, igredientQuantity]) => {
+          return (
+            <Chip
+              color={isCraftable ? "success" : "neutral"}
+              variant={isCraftable ? "solid" : "soft"}
+              key={ingredientName}
+              sx={{}}
+              startDecorator={
+                <Avatar size="sm" src={ITEMS[ingredientName as ID_Item].img} />
+              }
+            >
+              <Typography fontSize="sm">
+                {ITEMS[ingredientName as ID_Item].label}{" "}
                 {igredientsInStorage[ingredientName as ID_Item]?.quantity || 0}{" "}
                 / {igredientQuantity}
-              </Chip>
-            );
-          }
-        )}
-      </CardContent>
+              </Typography>
+            </Chip>
+          );
+        }
+      )}
     </Card>
   );
 };

@@ -3,9 +3,6 @@ import { extendTheme } from "@mui/joy";
 export const theme = extendTheme({
   components: {
     JoyAvatar: {
-      defaultProps: {
-        size: "sm",
-      },
       styleOverrides: {
         root: ({ ownerState, theme }) => ({
           ...(ownerState.size === "sm" && {
@@ -20,51 +17,17 @@ export const theme = extendTheme({
       },
     },
     JoyCard: {
-      defaultProps: {
-        variant: "soft",
-        size: "sm",
-      },
-      styleOverrides: {
-        root: ({ ownerState, theme }) => ({
-          ...(ownerState.size === "sm" && {
-            padding: theme.spacing(0.5),
-            userSelect: "none",
-            border: `1px solid ${theme.palette.background.level2}`,
-          }),
-        }),
-      },
-    },
-    JoyCardContent: {
       styleOverrides: {
         root: ({ ownerState, theme }) => ({
           ...(ownerState && {
-            padding: theme.spacing(0.25),
+            userSelect: "none",
+            boxShadow: theme.shadow.sm,
           }),
         }),
-      },
-    },
-    JoyChip: {
-      defaultProps: {
-        size: "sm",
-      },
-      styleOverrides: {
-        root: ({ ownerState, theme }) => ({
-          ...(ownerState.size === "sm" &&
-            {
-              // borderRadius: theme.vars.radius.md,
-              // background: theme.palette.background.level2,
-            }),
-        }),
-      },
-    },
-    JoyBadge: {
-      defaultProps: {
-        size: "sm",
       },
     },
     JoyButton: {
       defaultProps: {
-        size: "sm",
         color: "neutral",
       },
       styleOverrides: {
@@ -72,6 +35,25 @@ export const theme = extendTheme({
           ...(ownerState.size === "sm" && {
             fontSize: 12,
             minHeight: 24,
+          }),
+        }),
+      },
+    },
+    JoyBadge: {
+      styleOverrides: {
+        root: ({ ownerState, theme }) => ({
+          ...(ownerState.size === "sm" && {
+            padding: 0,
+            margin: 0,
+          }),
+        }),
+      },
+    },
+    JoyChip: {
+      styleOverrides: {
+        root: ({ ownerState, theme }) => ({
+          ...(ownerState && {
+            border: `1px solid ${theme.palette.background.level2}`,
           }),
         }),
       },

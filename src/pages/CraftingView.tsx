@@ -1,14 +1,14 @@
-import { Avatar, Button, Grid } from "@mui/joy";
+import { Avatar, Button, Card, Grid } from "@mui/joy";
 import { useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { Recipe, RecipeInfo } from "../components";
 import { ITEMS, ITEM_CATEGORIES, RECIPES } from "../config/config";
-import { T_Recipes } from "../config/config.d";
+import { ID_Item, T_Recipes } from "../config/config.d";
 import { T_ReduxState } from "../config/store.d";
 
 import { setCraftingFilter } from "../redux/ui/uiSlice";
-import { Page, PageBody, PageBottom, PageHeader } from "../styles/PageStyles";
+import { Page } from "../styles/PageStyles";
 
 const CraftingView = () => {
   const dispatch = useDispatch();
@@ -35,7 +35,9 @@ const CraftingView = () => {
 
   return (
     <Page>
-      <PageHeader
+      <Card
+        variant="soft"
+        size="sm"
         sx={{
           flexDirection: "row",
           alignItems: "center",
@@ -45,20 +47,25 @@ const CraftingView = () => {
         {Object.values(ITEM_CATEGORIES).map((category) => {
           return category.craftable ? (
             <Button
+              size="sm"
               fullWidth
               onClick={() => dispatch(setCraftingFilter(category.id))}
               variant={craftingFilter === category.id ? "solid" : "plain"}
-              color="neutral"
               key={category.label}
-              startDecorator={<Avatar src={category.icon} />}
-            />
+              startDecorator={<Avatar src={category.icon} size="sm" />}
+            >
+              {category.label}
+            </Button>
           ) : null;
         })}
-      </PageHeader>
+      </Card>
 
-      <PageBody
+      <Card
+        variant="soft"
+        size="sm"
         sx={{
-          p: 1,
+          height: "50%",
+          overflowY: "auto",
         }}
       >
         <Grid
@@ -68,19 +75,22 @@ const CraftingView = () => {
             gap: 1,
           }}
         >
-          {Object.values(filteredRecipes).map((item) => (
-            <Recipe
-              key={item.id}
-              item={item.id}
-              isSelected={currentSelectedItem === item.id}
-            />
-          ))}
+          {Object.values(filteredRecipes).map((item) => {
+            const itemId = item.id as unknown as ID_Item;
+            return (
+              <Recipe
+                key={item.id}
+                itemId={itemId}
+                isSelected={currentSelectedItem === item.id}
+              />
+            );
+          })}
         </Grid>
-      </PageBody>
+      </Card>
 
-      <PageBottom>
+      <Card size="sm" variant="soft" sx={{ height: "50%" }}>
         {currentSelectedItem && <RecipeInfo itemId={currentSelectedItem} />}
-      </PageBottom>
+      </Card>
     </Page>
   );
 };

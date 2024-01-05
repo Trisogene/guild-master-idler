@@ -1,9 +1,9 @@
 import { Box, Card } from "@mui/joy";
 import { useSelector } from "react-redux";
-import Player from "../components/Player/Player";
-import PlayerInfo from "../components/PlayerInfo/PlayerInfo";
-import { T_ReduxState } from "../config/store.d";
-import { Page } from "../styles/PageStyles";
+import { T_ReduxState } from "../../config/store.d";
+import { Page } from "../../styles/PageStyles";
+import Player from "./components/Player/Player";
+import PlayerInfo from "./components/PlayerInfo/PlayerInfo";
 
 const GuildView = () => {
   const players = useSelector((state: T_ReduxState) => state.players.players);
@@ -14,6 +14,8 @@ const GuildView = () => {
   return (
     <Page className="Guild">
       <Card
+        size="sm"
+        variant="soft"
         sx={{
           height: "50%",
           overflowY: "auto",
@@ -38,6 +40,8 @@ const GuildView = () => {
       </Card>
 
       <Card
+        size="sm"
+        variant="soft"
         sx={{
           height: "50%",
           overflowY: "hidden",

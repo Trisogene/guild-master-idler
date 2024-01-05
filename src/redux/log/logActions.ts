@@ -1,9 +1,9 @@
 import { T_Log, T_LogSlice } from "../../config/store.d";
 
 const addLog = (state: T_LogSlice, { payload: log }: { payload: T_Log }) => {
-  state.logs.push(log);
+  state.logs.unshift(log);
   if (state.logs.length > 15) {
-    state.logs.splice(0, 1);
+    state.logs.pop();
   }
 };
 

@@ -1,5 +1,5 @@
 import { Box, Chip, Divider, Typography } from "@mui/joy";
-import { ID_Stat } from "../../../config/config.d";
+import { ID_Stat } from "../../../../../config/config.d";
 
 interface PlayerInfoStatsProps {
   stats: Record<ID_Stat, number>;

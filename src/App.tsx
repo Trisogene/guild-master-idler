@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import "./App.css";
 import Sidebar from "./components/Sidebar/Sidebar";
 
-import { Navigator } from "./components";
+import Topbar from "./components/Topbar/Topbar";
 import { LINKS } from "./config/config";
 import { T_ReduxState } from "./config/store.d";
 import { AppDispatch } from "./redux/store";
@@ -29,18 +29,19 @@ function App() {
           width: "100vw",
           display: "flex",
           flexDirection: "column",
+          p: 1,
+          gap: 1,
         }}
       >
-        <Navigator currentPage={currentPage} />
+        <Topbar currentPage={currentPage} />
         <Box
           className="Body"
           sx={{
             display: "flex",
             flexGrow: 1,
-            p: 1,
-            gap: 1,
 
-            height: "calc(100vh - 45px)",
+            gap: 1,
+            height: "calc(100vh - 85px)",
           }}
         >
           <Sidebar />

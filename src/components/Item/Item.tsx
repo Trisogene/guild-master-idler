@@ -1,78 +1,58 @@
-import { Avatar, Box, Card, Tooltip, Typography } from "@mui/joy";
+import { Avatar, Badge, Box, Card, Tooltip } from "@mui/joy";
 import { ITEMS } from "../../config/config";
 import { ItemStack } from "../../config/config.d";
 
 interface I_ItemCard {
   itemStack: ItemStack;
-  size?: "sm" | "md" | "lg";
 }
 
-const Item = ({ itemStack, size = "md" }: I_ItemCard) => {
+const Item: React.FC<I_ItemCard> = ({ itemStack }) => {
   const itemConfig = ITEMS[itemStack.id];
 
-  const sizeMap = {
-    sm: 12,
-    md: 48,
-    lg: 64,
-  };
+  const inset = "4px";
 
   return (
-    <Tooltip disableInteractive title={itemConfig.label} placement="top">
-      <Card
-        sx={{
-          position: "relative",
-          height: sizeMap[size],
-          width: sizeMap[size],
-          alignItems: "center",
-          justifyContent: "center",
-          p: 1,
-        }}
-      >
-        <Avatar
-          size={size}
-          // sx={{ width: sizeMap[size], height: sizeMap[size] }}
-          className="PlayerCard-avatar"
-          src={itemConfig.img}
-        />
-        <Box
+    <Box sx={{ p: "4px", maxWidth: 48, maxHeight: 48 }}>
+      <Tooltip disableInteractive title={itemConfig.label} placement="top">
+        <Badge
+          anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
+          badgeContent={"T" + itemConfig.tier}
+          badgeInset={inset}
+          size="sm"
+          variant="outlined"
+          color="neutral"
           sx={{
-            position: "absolute",
-            bottom: -8,
-            right: -8,
-            bgcolor: "background.level2",
-            borderRadius: (theme) => theme.vars.radius.sm,
-            width: sizeMap[size] / 3,
-            height: sizeMap[size] / 3,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            border: (theme) => `1px solid ${theme.palette.background.level3}`,
-            p: 0.75,
+            borderRadius: 0,
           }}
         >
-          <Typography fontSize={10}>{itemStack.quantity}</Typography>
-        </Box>
-
-        <Box
-          sx={{
-            position: "absolute",
-            top: -8,
-            left: -8,
-            bgcolor: "background.level2",
-            borderRadius: (theme) => theme.vars.radius.sm,
-            width: sizeMap[size] / 3,
-            height: sizeMap[size] / 3,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            border: (theme) => `1px solid ${theme.palette.background.level3}`,
-            p: 0.75,
-          }}
-        >
-          <Typography fontSize={10}>T{ITEMS[itemStack.id].tier}</Typography>
-        </Box>
-      </Card>
-    </Tooltip>
+          <Badge
+            badgeContent={itemStack.quantity}
+            badgeInset={inset}
+            size="sm"
+            variant="outlined"
+            color="neutral"
+          >
+            <Card
+              variant="soft"
+              size="sm"
+              sx={{
+                position: "relative",
+                alignItems: "center",
+                justifyContent: "center",
+                ":hover": {
+                  cursor: "pointer",
+                },
+                p: 1,
+                border: (theme) =>
+                  `1px solid ${theme.palette.background.level2}`,
+              }}
+            >
+              <Avatar src={itemConfig.img} sx={{}} />
+            </Card>
+          </Badge>
+        </Badge>
+      </Tooltip>
+    </Box>
   );
 };
 

@@ -1,8 +1,8 @@
 import { Avatar, Box, Chip, Typography } from "@mui/joy";
 import { useDispatch } from "react-redux";
-import { ROLES } from "../../../config/config";
-import { T_Player } from "../../../config/config.d";
-import { setPlayerRole } from "../../../redux/player/playerSlice";
+import { ROLES } from "../../../../../config/config";
+import { T_Player } from "../../../../../config/config.d";
+import { setPlayerRole } from "../../../../../redux/player/playerSlice";
 
 interface I_PlayerInfoRole {
   player: T_Player;
@@ -13,9 +13,10 @@ const PlayerInfoRole = ({ player }: I_PlayerInfoRole) => {
     <>
       <Box
         sx={{
+          overflowY: "auto",
+          flexGrow: 1,
           display: "flex",
           flexDirection: "column",
-
           height: "100%",
           p: 1,
           gap: 0.5,

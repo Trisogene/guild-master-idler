@@ -1,13 +1,15 @@
-import { Grid } from "@mui/joy";
+import { Card, Grid, Typography } from "@mui/joy";
 import Territory from "../components/Territory/Territory";
 import { TERRITORIES } from "../config/config";
-import { Page, PageBody, PageBottom, PageHeader } from "../styles/PageStyles";
+import { Page } from "../styles/PageStyles";
 
 const TerritoryView = () => {
   return (
     <Page>
-      <PageHeader></PageHeader>
-      <PageBody>
+      <Card size="sm" variant="soft" sx={{ height: "50%" }}>
+        <Typography fontSize="lg">
+          Territories are still working in progress
+        </Typography>
         <Grid
           sx={{
             display: "grid",
@@ -19,8 +21,8 @@ const TerritoryView = () => {
             <Territory key={territory.id} territory={territory} />
           ))}
         </Grid>
-      </PageBody>
-      <PageBottom></PageBottom>
+      </Card>
+      <Card variant="soft" sx={{ height: "50%" }} />
     </Page>
   );
 };
