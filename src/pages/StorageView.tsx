@@ -23,6 +23,7 @@ const StorageView = () => {
           flexDirection: "column",
           gap: 1,
           minWidth: 400,
+          maxWidth: 400,
         }}
       >
         <Card

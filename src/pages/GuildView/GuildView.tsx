@@ -17,7 +17,8 @@ const GuildView = () => {
         size="sm"
         variant="soft"
         sx={{
-          minWidth: 220,
+          minWidth: 400,
+          maxWidth: 400,
         }}
       >
         <Box

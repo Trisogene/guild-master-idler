@@ -29,7 +29,8 @@ const RecruitView = () => {
           display: "flex",
           flexDirection: "column",
           gap: 1,
-          width: 220,
+          minWidth: 400,
+          maxWidth: 400,
         }}
       >
         <Card variant="soft" size="sm">
@@ -51,7 +52,7 @@ const RecruitView = () => {
           <Grid
             sx={{
               display: "grid",
-              gridTemplateColumns: "repeat(auto-fill, minmax(100px, 1fr))",
+              gridTemplateColumns: "repeat(auto-fill, minmax(150px, 1fr))",
               gap: 1,
             }}
           >
