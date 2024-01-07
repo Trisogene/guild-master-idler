@@ -352,6 +352,7 @@ export const RECRUITS: T_Players = {
       atk: 50,
       ap: 20,
       def: 60,
+      mdef: 10,
     },
     masteries: {
       gathering: 0,
@@ -382,6 +383,7 @@ export const RECRUITS: T_Players = {
       atk: 50,
       ap: 20,
       def: 60,
+      mdef: 10,
     },
     masteries: {
       gathering: 0,

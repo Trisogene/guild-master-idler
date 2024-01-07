@@ -11,20 +11,19 @@ const PlayerInfoStats = ({ stats }: PlayerInfoStatsProps) => {
       sx={{
         display: "flex",
         flexDirection: "column",
+        flexWrap: "wrap",
         p: 1,
-        minWidth: 100,
-        maxWidth: 100,
         gap: 1,
+        minWidth: "80%",
       }}
     >
       {Object.entries(stats).map(([statId, statValue]) => (
         <Chip
-          // variant="soft"
           startDecorator={
             <>
               <Typography
                 fontSize="sm"
-                sx={{ minWidth: 35, textAlign: "center" }}
+                sx={{ minWidth: 50, maxWidth: "none", textAlign: "center" }}
               >
                 {statId.toUpperCase()}
               </Typography>
@@ -35,12 +34,14 @@ const PlayerInfoStats = ({ stats }: PlayerInfoStatsProps) => {
           sx={{
             display: "flex",
             justifyContent: "space-between",
-
+            maxWidth: "none",
             minWidth: "100%",
             bgcolor: "background.level2",
           }}
         >
-          <Typography fontSize="sm">{statValue}</Typography>
+          <Typography fontSize="sm" sx={{ textAlign: "center" }}>
+            {statValue}
+          </Typography>
         </Chip>
       ))}
     </Box>

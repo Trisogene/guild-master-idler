@@ -22,15 +22,18 @@ export default function RecruitTimer({}: I_RecruitTimerProps) {
       sx={{
         "&::before": {
           transition: "width 0.2s ease-in-out",
+          background: "#32383E",
         },
         "--LinearProgress-progressThickness": "100%",
         borderColor: "neutral.500",
+        background: "black",
       }}
     >
       <Typography
         fontSize={12}
         sx={{
-          mixBlendMode: "color-dodge",
+          // mixBlendMode: "color-dodge",
+          zIndex: 1,
         }}
       >
         NEW RECRUITS IN {TIMERS["recruit"].duration - timeToFinish}

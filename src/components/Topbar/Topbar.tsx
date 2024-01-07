@@ -36,7 +36,7 @@ const Topbar = ({ currentPage }: I_NavigatorProps) => {
             key={linkId}
           >
             <Box sx={{ display: "flex", gap: 1, alignItems: "center" }}>
-              <Avatar src={link.icon} />
+              <Avatar size="sm" src={link.icon} />
 
               <Typography fontSize="sm">{link.label}</Typography>
             </Box>
@@ -54,7 +54,7 @@ const Topbar = ({ currentPage }: I_NavigatorProps) => {
         }}
       >
         <Button variant="plain">
-          <Avatar src={settingsIcon} />
+          <Avatar size="sm" src={settingsIcon} />
         </Button>
       </Box>
 

@@ -6,10 +6,8 @@ import { Page } from "../styles/PageStyles";
 const TerritoryView = () => {
   return (
     <Page>
-      <Card size="sm" variant="soft" sx={{ height: "50%" }}>
-        <Typography fontSize="lg">
-          Territories are still working in progress
-        </Typography>
+      <Card size="sm" variant="soft" sx={{}}>
+        <Typography fontSize="lg"></Typography>
         <Grid
           sx={{
             display: "grid",
@@ -22,7 +20,7 @@ const TerritoryView = () => {
           ))}
         </Grid>
       </Card>
-      <Card variant="soft" sx={{ height: "50%" }} />
+      <Card variant="soft" sx={{ flexGrow: 1 }}></Card>
     </Page>
   );
 };

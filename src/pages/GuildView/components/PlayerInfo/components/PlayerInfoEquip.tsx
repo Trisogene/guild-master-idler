@@ -2,6 +2,7 @@ import { Box, Card, Divider, Grid } from "@mui/joy";
 import Item from "../../../../../components/Item/Item";
 import { ID_Item_Category, T_Player } from "../../../../../config/config.d";
 import useFilterStorageByType from "../../../../../hooks/useFilterStorageByType";
+import PlayerInfoStats from "./PlayerInfoStats";
 
 interface PlayerInfoEquipProps {
   player: T_Player;
@@ -23,12 +24,17 @@ const PlayerInfoEquip = ({ player }: PlayerInfoEquipProps) => {
       }}
     >
       <Box
-        sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: 1,
+        }}
       >
         <Box
           sx={{
             display: "grid",
-            maxHeight: 250,
+            width: "fit-content",
             gap: 1,
             p: 1,
           }}
@@ -79,7 +85,10 @@ const PlayerInfoEquip = ({ player }: PlayerInfoEquipProps) => {
             }}
           ></Card>
         </Box>
+
+        <PlayerInfoStats stats={player.stats} />
       </Box>
+
       <Divider orientation="vertical" />
 
       <Grid

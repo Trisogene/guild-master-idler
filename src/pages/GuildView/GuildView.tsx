@@ -17,14 +17,13 @@ const GuildView = () => {
         size="sm"
         variant="soft"
         sx={{
-          height: "50%",
-          overflowY: "auto",
+          width: 220,
         }}
       >
         <Box
           sx={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
+            gridTemplateColumns: "repeat(auto-fill, minmax(150px, 1fr))",
             gap: 1,
             p: 0.5,
           }}
@@ -43,8 +42,7 @@ const GuildView = () => {
         size="sm"
         variant="soft"
         sx={{
-          height: "50%",
-          overflowY: "hidden",
+          flexGrow: 1,
         }}
       >
         {selectedPlayer && <PlayerInfo player={players[selectedPlayer]} />}

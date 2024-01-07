@@ -39,7 +39,6 @@ function App() {
           sx={{
             display: "flex",
             flexGrow: 1,
-
             gap: 1,
             height: "calc(100vh - 85px)",
           }}

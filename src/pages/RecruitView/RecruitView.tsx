@@ -1,4 +1,4 @@
-import { Card, Grid } from "@mui/joy";
+import { Box, Card, Grid } from "@mui/joy";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import RecruitInfo from "../../components/RecruitInfo/RecruitInfo";
@@ -23,38 +23,50 @@ const RecruitView = () => {
   }, [dispatch, recruits]);
 
   return (
-    <Page>
-      <Card size="sm" variant="soft">
-        <RecruitTimer />
-      </Card>
-      <Card
-        variant="soft"
-        size="sm"
+    <Page className="Recruit">
+      <Box
         sx={{
           display: "flex",
           flexDirection: "column",
-          height: "50%",
-          overflowY: "auto",
+          gap: 1,
+          width: 220,
         }}
       >
-        <Grid
+        <Card variant="soft" size="sm">
+          <Box>
+            <RecruitTimer />
+          </Box>
+        </Card>
+        <Card
+          variant="soft"
+          size="sm"
           sx={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
-            gap: 1,
+            display: "flex",
+            flexDirection: "column",
+            overflowY: "auto",
+            gap: 2,
+            flexGrow: 1,
           }}
         >
-          {Object.values(recruits).map((recruit) => (
-            <Recruit
-              key={recruit.id}
-              recruit={recruit}
-              isSelected={recruit.id === selectedPlayer}
-            />
-          ))}
-        </Grid>
-      </Card>
+          <Grid
+            sx={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fill, minmax(100px, 1fr))",
+              gap: 1,
+            }}
+          >
+            {Object.values(recruits).map((recruit) => (
+              <Recruit
+                key={recruit.id}
+                recruit={recruit}
+                isSelected={recruit.id === selectedPlayer}
+              />
+            ))}
+          </Grid>
+        </Card>
+      </Box>
 
-      <Card variant="soft" size="sm" sx={{ height: "50%" }}>
+      <Card variant="soft" size="sm" sx={{ flexGrow: 1 }}>
         {selectedPlayer && recruits[selectedPlayer] ? (
           <RecruitInfo recruit={recruits[selectedPlayer]} />
         ) : (

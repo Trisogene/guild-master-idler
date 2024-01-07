@@ -5,7 +5,6 @@ import { T_Player } from "../../../../config/config.d";
 import PlayerInfoEquip from "./components/PlayerInfoEquip";
 import PlayerInfoLore from "./components/PlayerInfoLore";
 import PlayerInfoRole from "./components/PlayerInfoRole";
-import PlayerInfoStats from "./components/PlayerInfoStats";
 
 enum E_TABS {
   equip = "equip",
@@ -52,10 +51,11 @@ const PlayerInfo = ({ player }: I_PlayerInfo) => {
       sx={{
         display: "flex",
         flexDirection: "column",
-        height: "100%",
-        gap: 0.5,
+        flexGrow: 1,
+        gap: 1,
       }}
     >
+      {/* Header */}
       <Box
         sx={{
           display: "flex",
@@ -69,17 +69,20 @@ const PlayerInfo = ({ player }: I_PlayerInfo) => {
         <Typography>{player.name}</Typography>
       </Box>
       <Divider />
+      {/* Body */}
       <Box
-        sx={{ display: "flex", flexGrow: 1, maxHeight: "calc(100% - 24px)" }}
+        sx={{
+          display: "flex",
+          flexGrow: 1,
+          gap: 1,
+        }}
       >
+        {/* Sidebar */}
         <Box
           sx={{
             display: "flex",
             flexDirection: "column",
             gap: 1,
-            p: 0.5,
-            minWidth: 100,
-            maxWidth: 100,
           }}
         >
           {Object.values(tabs).map((tab) => (
@@ -93,11 +96,20 @@ const PlayerInfo = ({ player }: I_PlayerInfo) => {
             </Button>
           ))}
         </Box>
-        <Divider orientation="vertical" />
-        <PlayerInfoStats stats={player.stats} />
-        <Divider orientation="vertical" />
 
-        {tabs[currentTab].component({ player: player })}
+        <Divider orientation="vertical" />
+        {/* Tabs */}
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            gap: 1,
+            p: 0.5,
+            flexGrow: 1,
+          }}
+        >
+          {tabs[currentTab].component({ player: player })}
+        </Box>
       </Box>
     </Box>
   );

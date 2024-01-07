@@ -1,9 +1,9 @@
-import { Avatar, Box, Card, Chip, Divider, Typography } from "@mui/joy";
+import { Avatar, Box, Card, Chip, Typography } from "@mui/joy";
 import { memo } from "react";
 
 import { useDispatch } from "react-redux";
 import { ITEMS, RECIPES } from "../../config/config";
-import { ID_Item, ID_Recipe, ItemBase, T_Recipe } from "../../config/config.d";
+import { ID_Item, ID_Recipe, Item, T_Recipe } from "../../config/config.d";
 import useSelectItemsFromStorage from "../../hooks/useSelectItemsFromStorage";
 import { setCurrentCraftingItem } from "../../redux/ui/uiSlice";
 
@@ -14,7 +14,7 @@ interface I_CraftableItemCard {
 
 const Recipe = ({ itemId, isSelected }: I_CraftableItemCard) => {
   const dispatch = useDispatch();
-  const itemConfig: ItemBase = ITEMS[itemId];
+  const itemConfig: Item = ITEMS[itemId];
   const itemRecipe: T_Recipe = RECIPES[itemId as unknown as ID_Recipe];
   const igredientsInStorage = useSelectItemsFromStorage(
     Object.keys(itemRecipe.ingredients) as ID_Item[]
@@ -67,10 +67,6 @@ const Recipe = ({ itemId, isSelected }: I_CraftableItemCard) => {
           <Box sx={{ height: 12, fontSize: 10 }}>{itemConfig.label}</Box>
         </Box>
       </Box>
-      <Divider
-        orientation="horizontal"
-        sx={{ width: "90%", alignSelf: "center" }}
-      />
 
       {Object.entries(itemRecipe.ingredients).map(
         ([ingredientName, igredientQuantity]) => {

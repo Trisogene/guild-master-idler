@@ -23,7 +23,7 @@ const root = document.getElementById("root");
                   background: "#222",
                 },
                 "*::-webkit-scrollbar-thumb": {
-                  background: "#888",
+                  background: "#414141",
                 },
                 "*::-webkit-scrollbar-thumb:hover": {
                   background: "#555",
