@@ -128,7 +128,7 @@ type ItemBase = {
   tier: number;
 };
 
-type Equip = ItemBase & {
+export type Equip = ItemBase & {
   category: ID_Item_Category.equip;
   slot: ID_Equip_Slot;
   statBonus: Partial<Record<ID_Stat, number>>;
@@ -219,6 +219,7 @@ export type T_Player = {
   description: string;
   role: ID_Role;
   img: string;
+  equip: Record<ID_Equip_Slot, ID_Item | null>;
 };
 
 type T_Player_Mastery = {

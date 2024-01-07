@@ -371,6 +371,12 @@ export const RECRUITS: T_Players = {
     role: ID_Role.archer,
     img: faceImg,
     description: "the basic recruit",
+    equip: {
+      [ID_Equip_Slot.head]: null,
+      [ID_Equip_Slot.chest]: null,
+      [ID_Equip_Slot.boots]: null,
+      [ID_Equip_Slot.weapon]: null,
+    },
   },
   luca: {
     id: "",
@@ -402,6 +408,12 @@ export const RECRUITS: T_Players = {
     role: ID_Role.archer,
     img: faceImg,
     description: "the basic recruit",
+    equip: {
+      [ID_Equip_Slot.head]: null,
+      [ID_Equip_Slot.chest]: null,
+      [ID_Equip_Slot.boots]: null,
+      [ID_Equip_Slot.weapon]: null,
+    },
   },
 };
 

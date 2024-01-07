@@ -9,6 +9,6 @@ export const playerSlice = createSlice({
   reducers: playerActions,
 });
 
-export const { addPlayer, changePlayerContent, setPlayerRole } =
+export const { addPlayer, changePlayerContent, setPlayerRole, setPlayerEquip } =
   playerSlice.actions;
 export default playerSlice.reducer;

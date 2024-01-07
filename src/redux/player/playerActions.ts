@@ -1,5 +1,11 @@
 import { PayloadAction } from "@reduxjs/toolkit";
-import { ID_Content, ID_Role, T_Player } from "../../config/config.d";
+import {
+  ID_Content,
+  ID_Equip_Slot,
+  ID_Item,
+  ID_Role,
+  T_Player,
+} from "../../config/config.d";
 import { T_PlayersSlice } from "../../config/store.d";
 
 const addPlayer = (
@@ -29,8 +35,22 @@ const setPlayerRole = (
   state.players[playerId].role = role;
 };
 
+const setPlayerEquip = (
+  state: T_PlayersSlice,
+  {
+    payload: { playerId, itemId, equipSlot },
+  }: PayloadAction<{
+    playerId: string;
+    itemId: ID_Item | null;
+    equipSlot: ID_Equip_Slot;
+  }>
+) => {
+  state.players[playerId].equip[equipSlot] = itemId;
+};
+
 export const playerActions = {
   addPlayer,
   changePlayerContent,
   setPlayerRole,
+  setPlayerEquip,
 };

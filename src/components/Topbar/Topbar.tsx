@@ -1,8 +1,9 @@
 import { Avatar, Box, Button, Card, Typography } from "@mui/joy";
 import { useDispatch } from "react-redux";
-import { LINKS } from "../../config/config";
+import { ITEMS, LINKS } from "../../config/config";
 import { ID_Link } from "../../config/config.d";
 import { setPage } from "../../redux/navigation/navigationSlice";
+import { addItem } from "../../redux/storage/storageSlice";
 import Clock from "../Sidebar/components/Clock/Clock";
 import settingsIcon from "./../../assets/settings.svg";
 
@@ -52,7 +53,17 @@ const Topbar = ({ currentPage }: I_NavigatorProps) => {
           alignItems: "center",
         }}
       >
-        <Button variant="plain">
+        <Button
+          variant="plain"
+          onClick={() => {
+            //FIXME  FOR TESTING ONLY
+            dispatch(addItem({ itemId: ITEMS.bow.id, quantity: 1 }));
+            dispatch(addItem({ itemId: ITEMS.mace.id, quantity: 2 }));
+            dispatch(addItem({ itemId: ITEMS.clothChest.id, quantity: 1 }));
+            dispatch(addItem({ itemId: ITEMS.ironHelmet.id, quantity: 1 }));
+            dispatch(addItem({ itemId: ITEMS.ironBoots.id, quantity: 1 }));
+          }}
+        >
           <Avatar size="sm" src={settingsIcon} />
         </Button>
       </Box>

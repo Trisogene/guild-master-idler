@@ -1,12 +1,16 @@
 import { Box, Card, Divider } from "@mui/joy";
+import { useDispatch } from "react-redux";
 import Item from "../../../../../components/Item/Item";
 import { ITEMS } from "../../../../../config/config";
 import {
+  Equip,
+  ID_Equip_Slot,
   ID_Item,
   ID_Item_Category,
   T_Player,
 } from "../../../../../config/config.d";
 import useFilterStorageByType from "../../../../../hooks/useFilterStorageByType";
+import { equipItemThunk } from "../../../../../redux/player/playerThunk";
 import PlayerInfoStats from "./PlayerInfoStats";
 
 interface PlayerInfoEquipProps {
@@ -14,11 +18,28 @@ interface PlayerInfoEquipProps {
 }
 
 const PlayerInfoEquip = ({ player }: PlayerInfoEquipProps) => {
+  const dispatch = useDispatch();
   const equips = useFilterStorageByType({ filter: ID_Item_Category.equip });
 
   const handleEquipItem = (itemId: ID_Item) => {
-    console.log("equip", ITEMS[itemId]);
-    console.log(player);
+    const equipSlot = (ITEMS[itemId] as Equip).slot;
+    dispatch(
+      equipItemThunk({
+        playerId: player.id,
+        itemId: itemId,
+        equipSlot: equipSlot,
+      })
+    );
+  };
+
+  const handleUnequipItem = (equipSlot: ID_Equip_Slot) => {
+    dispatch(
+      equipItemThunk({
+        playerId: player.id,
+        itemId: null,
+        equipSlot: equipSlot,
+      })
+    );
   };
 
   return (
@@ -51,13 +72,19 @@ const PlayerInfoEquip = ({ player }: PlayerInfoEquipProps) => {
         >
           <Card
             className="HeadSlot"
+            onClick={() => handleUnequipItem(ID_Equip_Slot.head)}
             sx={{
               gridColumn: "2",
               gridRow: "1",
               width: 48,
               height: 48,
+              p: 0,
             }}
-          ></Card>
+          >
+            {player.equip.head ? (
+              <Item itemStack={{ id: player.equip.head, quantity: 1 }} />
+            ) : null}
+          </Card>
           <Card
             className="OffHandSlot"
             sx={{
@@ -69,31 +96,49 @@ const PlayerInfoEquip = ({ player }: PlayerInfoEquipProps) => {
           ></Card>
           <Card
             className="BodySlot"
+            onClick={() => handleUnequipItem(ID_Equip_Slot.chest)}
             sx={{
               gridColumn: "2",
               gridRow: "2",
               width: 48,
               height: 48,
+              p: 0,
             }}
-          ></Card>
+          >
+            {player.equip.chest ? (
+              <Item itemStack={{ id: player.equip.chest, quantity: 1 }} />
+            ) : null}
+          </Card>
           <Card
             className="WeaponSlot"
+            onClick={() => handleUnequipItem(ID_Equip_Slot.weapon)}
             sx={{
               gridColumn: "3",
               gridRow: "2",
               width: 48,
               height: 48,
+              p: 0,
             }}
-          ></Card>
+          >
+            {player.equip.weapon ? (
+              <Item itemStack={{ id: player.equip.weapon, quantity: 1 }} />
+            ) : null}
+          </Card>
           <Card
             className="LegsSlot"
+            onClick={() => handleUnequipItem(ID_Equip_Slot.boots)}
             sx={{
               gridColumn: "2",
               gridRow: "3",
               width: 48,
               height: 48,
+              p: 0,
             }}
-          ></Card>
+          >
+            {player.equip.boots ? (
+              <Item itemStack={{ id: player.equip.boots, quantity: 1 }} />
+            ) : null}
+          </Card>
         </Box>
 
         <PlayerInfoStats stats={player.stats} />
