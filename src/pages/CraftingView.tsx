@@ -72,7 +72,8 @@ const CraftingView = () => {
           size="sm"
           sx={{
             overflowY: "auto",
-            minHeight: "100%",
+            flexGrow: 1,
+            maxHeight: "100%",
           }}
         >
           <Grid
