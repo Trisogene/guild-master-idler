@@ -38,14 +38,14 @@ const Player = ({ player, isSelected }: I_PlayerCard) => {
       {
         filter: [
           "brightness(1)",
-          "brightness(2)",
-          "brightness(2)",
+          "brightness(1.5)",
+          "brightness(1.5)",
           "brightness(1)",
         ],
       },
       {
-        duration: 0.8,
-        ease: "easeOut",
+        duration: 0.5,
+        ease: "easeIn",
       }
     );
   };

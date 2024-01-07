@@ -4,19 +4,21 @@ import { T_TimerSlice } from "../../config/store.d";
 type T_TimerAction = {
   timerName: string;
   timerId?: string;
+  tickValue?: number;
 };
 const tick = (
   state: T_TimerSlice,
-  { payload }: PayloadAction<T_TimerAction>
+  {
+    payload: { timerName, timerId, tickValue = 1 },
+  }: PayloadAction<T_TimerAction>
 ) => {
-  const { timerName, timerId } = payload;
   if (timerName in state.timers) {
     const key = timerName as keyof typeof state.timers;
 
     switch (key) {
       case "players":
         if (timerId) {
-          state.timers[key][timerId] += 1;
+          state.timers[key][timerId] += tickValue;
         }
         break;
       default:

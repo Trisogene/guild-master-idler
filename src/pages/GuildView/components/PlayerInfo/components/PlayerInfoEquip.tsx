@@ -96,13 +96,19 @@ const PlayerInfoEquip = ({ player }: PlayerInfoEquipProps) => {
           display: "grid",
           width: "100%",
           gridTemplateColumns: "repeat(auto-fill, minmax(48px, 1fr))",
-          gap: 1,
+
           p: 1,
           height: "max-content",
         }}
+        spacing={1}
       >
         {Object.values(equips).map((itemStack) => (
-          <Item itemStack={itemStack} key={itemStack.id} />
+          <Box
+            onClick={() => console.log("equip", itemStack)}
+            key={itemStack.id}
+          >
+            <Item itemStack={itemStack} />
+          </Box>
         ))}
       </Grid>
     </Box>

@@ -49,6 +49,7 @@ export const startTimers =
 export const advancePlayerContent =
   (playerId: string) =>
   (dispatch: AppDispatch, getState: () => T_ReduxState) => {
+    console.log("advancePlayerContent");
     const state = getState();
     const player = state.players.players[playerId];
     const playerContent = CONTENTS[player.currentContent];
@@ -58,7 +59,9 @@ export const advancePlayerContent =
     if (isContentComplete) {
       completeContent(playerId, player.currentContent, dispatch, state);
     } else {
-      dispatch(tick({ timerName: "players", timerId: playerId }));
+      dispatch(
+        tick({ timerName: "players", timerId: playerId, tickValue: 10 })
+      );
     }
   };
 
