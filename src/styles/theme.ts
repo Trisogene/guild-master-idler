@@ -26,6 +26,9 @@ export const theme = extendTheme({
       },
     },
     JoyCard: {
+      defaultProps: {
+        variant: "soft",
+      },
       styleOverrides: {
         root: ({ ownerState, theme }) => ({
           ...(ownerState && {
@@ -41,24 +44,16 @@ export const theme = extendTheme({
       },
       styleOverrides: {
         root: ({ ownerState, theme }) => ({
-          ...(ownerState.size === "sm" && {
-            fontSize: 12,
-            minHeight: 24,
-          }),
-        }),
-      },
-    },
-    JoyBadge: {
-      styleOverrides: {
-        root: ({ ownerState, theme }) => ({
-          ...(ownerState.size === "sm" && {
-            padding: 0,
-            margin: 0,
+          ...(ownerState && {
+            minHeight: 0,
           }),
         }),
       },
     },
     JoyChip: {
+      defaultProps: {
+        variant: "soft",
+      },
       styleOverrides: {
         root: ({ ownerState, theme }) => ({
           ...(ownerState && {

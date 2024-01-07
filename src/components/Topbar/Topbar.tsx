@@ -17,7 +17,6 @@ const Topbar = ({ currentPage }: I_NavigatorProps) => {
     <Card
       className="Topbar"
       size="sm"
-      variant="soft"
       sx={{
         display: "flex",
         flexDirection: "row",

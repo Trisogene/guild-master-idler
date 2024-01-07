@@ -33,13 +33,12 @@ const RecruitView = () => {
           maxWidth: 400,
         }}
       >
-        <Card variant="soft" size="sm">
+        <Card size="sm">
           <Box>
             <RecruitTimer />
           </Box>
         </Card>
         <Card
-          variant="soft"
           size="sm"
           sx={{
             display: "flex",
@@ -53,7 +52,7 @@ const RecruitView = () => {
             sx={{
               display: "grid",
               gridTemplateColumns: "repeat(auto-fill, minmax(150px, 1fr))",
-              gap: 1,
+              gap: 2,
             }}
           >
             {Object.values(recruits).map((recruit) => (
@@ -67,7 +66,7 @@ const RecruitView = () => {
         </Card>
       </Box>
 
-      <Card variant="soft" size="sm" sx={{ flexGrow: 1 }}>
+      <Card size="sm" sx={{ flexGrow: 1 }}>
         {selectedPlayer && recruits[selectedPlayer] ? (
           <RecruitInfo recruit={recruits[selectedPlayer]} />
         ) : (

@@ -15,7 +15,6 @@ const GuildView = () => {
     <Page className="Guild">
       <Card
         size="sm"
-        variant="soft"
         sx={{
           minWidth: 400,
           maxWidth: 400,
@@ -25,8 +24,7 @@ const GuildView = () => {
           sx={{
             display: "grid",
             gridTemplateColumns: "repeat(auto-fill, minmax(150px, 1fr))",
-            gap: 1,
-            p: 0.5,
+            gap: 2,
             overflowY: "auto",
             maxHeight: "100%",
           }}
@@ -43,7 +41,6 @@ const GuildView = () => {
 
       <Card
         size="sm"
-        variant="soft"
         sx={{
           flexGrow: 1,
         }}

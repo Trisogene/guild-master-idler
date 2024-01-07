@@ -22,7 +22,6 @@ const Recruit = ({ recruit, isSelected }: I_RecruitCard) => {
   return (
     <Card
       size="sm"
-      variant="soft"
       orientation="horizontal"
       sx={{
         alignItems: "center",
@@ -77,13 +76,14 @@ const Recruit = ({ recruit, isSelected }: I_RecruitCard) => {
           fullWidth
           disabled={avaialablePicks === 0}
           size="sm"
-          variant="solid"
           onClick={(e) => {
             e.stopPropagation();
             dispatch(recruitPlayerThunk(recruit));
           }}
         >
-          RECRUIT ({avaialablePicks}/2)
+          <Typography fontSize="xs" sx={{ color: "white" }}>
+            RECRUIT ({avaialablePicks}/2)
+          </Typography>
         </Button>
       </Box>
     </Card>

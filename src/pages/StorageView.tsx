@@ -27,7 +27,6 @@ const StorageView = () => {
         }}
       >
         <Card
-          variant="soft"
           size="sm"
           sx={{
             flexDirection: "row",
@@ -50,7 +49,6 @@ const StorageView = () => {
         </Card>
 
         <Card
-          variant="soft"
           sx={{
             p: 1,
             flexGrow: 1,
@@ -70,7 +68,6 @@ const StorageView = () => {
         </Card>
       </Box>
       <Card
-        variant="soft"
         sx={{
           flexDirection: "row",
           alignItems: "center",

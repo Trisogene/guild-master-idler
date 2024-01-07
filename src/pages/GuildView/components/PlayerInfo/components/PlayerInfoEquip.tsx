@@ -1,6 +1,11 @@
-import { Box, Card, Divider, Grid } from "@mui/joy";
+import { Box, Card, Divider } from "@mui/joy";
 import Item from "../../../../../components/Item/Item";
-import { ID_Item_Category, T_Player } from "../../../../../config/config.d";
+import { ITEMS } from "../../../../../config/config";
+import {
+  ID_Item,
+  ID_Item_Category,
+  T_Player,
+} from "../../../../../config/config.d";
 import useFilterStorageByType from "../../../../../hooks/useFilterStorageByType";
 import PlayerInfoStats from "./PlayerInfoStats";
 
@@ -10,6 +15,11 @@ interface PlayerInfoEquipProps {
 
 const PlayerInfoEquip = ({ player }: PlayerInfoEquipProps) => {
   const equips = useFilterStorageByType({ filter: ID_Item_Category.equip });
+
+  const handleEquipItem = (itemId: ID_Item) => {
+    console.log("equip", ITEMS[itemId]);
+    console.log(player);
+  };
 
   return (
     <Box
@@ -91,26 +101,22 @@ const PlayerInfoEquip = ({ player }: PlayerInfoEquipProps) => {
 
       <Divider orientation="vertical" />
 
-      <Grid
+      <Box
         sx={{
-          display: "grid",
+          display: "flex",
+          flexWrap: "wrap",
           width: "100%",
-          gridTemplateColumns: "repeat(auto-fill, minmax(48px, 1fr))",
-
-          p: 1,
+          gridTemplateColumns: "repeat(auto-fill, minmax(56px, 1fr))",
+          gap: 1,
           height: "max-content",
         }}
-        spacing={1}
       >
         {Object.values(equips).map((itemStack) => (
-          <Box
-            onClick={() => console.log("equip", itemStack)}
-            key={itemStack.id}
-          >
+          <Box onClick={() => handleEquipItem(itemStack.id)} key={itemStack.id}>
             <Item itemStack={itemStack} />
           </Box>
         ))}
-      </Grid>
+      </Box>
     </Box>
   );
 };

@@ -6,7 +6,7 @@ import { Page } from "../styles/PageStyles";
 const TerritoryView = () => {
   return (
     <Page>
-      <Card size="sm" variant="soft" sx={{ minWidth: 400, maxWidth: 400 }}>
+      <Card size="sm" sx={{ minWidth: 400, maxWidth: 400 }}>
         <Grid
           sx={{
             display: "grid",
@@ -19,7 +19,7 @@ const TerritoryView = () => {
           ))}
         </Grid>
       </Card>
-      <Card variant="soft" sx={{ flexGrow: 1 }}></Card>
+      <Card sx={{ flexGrow: 1 }}></Card>
     </Page>
   );
 };

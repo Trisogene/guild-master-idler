@@ -45,7 +45,6 @@ const CraftingView = () => {
         }}
       >
         <Card
-          variant="soft"
           size="sm"
           sx={{
             flexDirection: "row",
@@ -69,7 +68,6 @@ const CraftingView = () => {
           })}
         </Card>
         <Card
-          variant="soft"
           size="sm"
           sx={{
             overflowY: "auto",
@@ -98,7 +96,7 @@ const CraftingView = () => {
         </Card>
       </Box>
 
-      <Card size="sm" variant="soft" sx={{ flexGrow: 1 }}>
+      <Card size="sm" sx={{ flexGrow: 1 }}>
         {currentSelectedItem && <RecipeInfo itemId={currentSelectedItem} />}
       </Card>
     </Page>

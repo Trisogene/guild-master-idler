@@ -18,7 +18,6 @@ const Item: React.FC<I_ItemCard> = ({ itemStack }) => {
           anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
           badgeContent={"T" + itemConfig.tier}
           badgeInset={inset}
-          size="sm"
           variant="outlined"
           color="neutral"
           sx={{
@@ -28,13 +27,10 @@ const Item: React.FC<I_ItemCard> = ({ itemStack }) => {
           <Badge
             badgeContent={itemStack.quantity}
             badgeInset={inset}
-            size="sm"
             variant="outlined"
             color="neutral"
           >
             <Card
-              variant="soft"
-              size="sm"
               sx={{
                 position: "relative",
                 alignItems: "center",

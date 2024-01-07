@@ -11,7 +11,7 @@ const Clock = () => {
     .padStart(2, "0")}`;
 
   return (
-    <Chip variant="soft" size="lg">
+    <Chip size="lg">
       <Typography fontSize="sm">{formattedTime}</Typography>
     </Chip>
   );

@@ -13,7 +13,7 @@ const Territory = ({ territory }: I_TerritoryProps) => {
         {territory.id.toUpperCase()}
       </Typography>
       <Box sx={{ display: "flex", gap: 1, zIndex: 1 }}>
-        <Chip variant="solid">
+        <Chip>
           <Typography fontSize={14}>
             Defenders: {territory.defenders.min}-{territory.defenders.max}
           </Typography>
@@ -21,7 +21,6 @@ const Territory = ({ territory }: I_TerritoryProps) => {
       </Box>
       <Box sx={{ position: "absolute", top: 0, right: 0, zIndex: 1 }}>
         <Chip
-          variant="solid"
           startDecorator={<Avatar size="md" src={warIcon} />}
           sx={{ gap: 1, alignItems: "center", alignContent: "center" }}
         >

@@ -32,7 +32,6 @@ const Recipe = ({ itemId, isSelected }: I_CraftableItemCard) => {
   return (
     <Card
       size="sm"
-      variant="soft"
       onClick={() => dispatch(setCurrentCraftingItem(itemRecipe.id))}
       sx={{
         border: (theme) =>

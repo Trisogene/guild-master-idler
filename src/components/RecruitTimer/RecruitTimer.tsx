@@ -16,7 +16,6 @@ export default function RecruitTimer({}: I_RecruitTimerProps) {
   return (
     <LinearProgress
       determinate
-      variant="solid"
       color="neutral"
       value={timerPerc}
       sx={{

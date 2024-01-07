@@ -53,7 +53,6 @@ const Player = ({ player, isSelected }: I_PlayerCard) => {
   return (
     <Card
       size="sm"
-      variant="soft"
       orientation="horizontal"
       sx={{
         alignItems: "center",
@@ -116,7 +115,6 @@ const Player = ({ player, isSelected }: I_PlayerCard) => {
             color="neutral"
             determinate
             value={timerPerc}
-            variant="solid"
             sx={{
               zIndex: -1,
               borderColor: "white",
