@@ -26,6 +26,8 @@ const GuildView = () => {
             gridTemplateColumns: "repeat(auto-fill, minmax(150px, 1fr))",
             gap: 1,
             p: 0.5,
+            overflowY: "auto",
+            maxHeight: "100%",
           }}
         >
           {Object.values(players).map((player) => (

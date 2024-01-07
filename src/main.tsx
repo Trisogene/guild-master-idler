@@ -24,6 +24,7 @@ const root = document.getElementById("root");
                 },
                 "*::-webkit-scrollbar-thumb": {
                   background: "#414141",
+                  borderRadius: "8px",
                 },
                 "*::-webkit-scrollbar-thumb:hover": {
                   background: "#555",
