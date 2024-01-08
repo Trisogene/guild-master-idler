@@ -1,7 +1,7 @@
 import { PayloadAction } from "@reduxjs/toolkit";
 import {
   ID_Item_Category,
-  ID_Player_FightClass,
+  ID_Player_Job,
   ID_Recipe,
 } from "../../config/config.d";
 import { T_UiSlice } from "../../config/store.d";
@@ -43,7 +43,7 @@ const setStorageFilter = (
 
 const setPlayersFilter = (
   state: T_UiSlice,
-  { payload: filter }: PayloadAction<ID_Player_FightClass>
+  { payload: filter }: PayloadAction<ID_Player_Job>
 ) => {
   state.players.currentFilter = filter;
 };

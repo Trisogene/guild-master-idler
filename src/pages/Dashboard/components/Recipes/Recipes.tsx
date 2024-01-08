@@ -1,11 +1,11 @@
-import { Avatar, Box, Button, Card, Grid } from "@mui/joy";
+import { Avatar, Box, Button, Card, Divider, Grid } from "@mui/joy";
 import { useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Recipe } from "../../../../components";
 import { ITEMS, ITEM_CATEGORIES, RECIPES } from "../../../../config/config";
 import { ID_Item, T_Recipes } from "../../../../config/config.d";
 import { T_ReduxState } from "../../../../config/store.d";
 import { setCraftingFilter } from "../../../../redux/ui/uiSlice";
+import Recipe from "./components/Recipe/Recipe";
 
 const Recipes = () => {
   const dispatch = useDispatch();
@@ -31,12 +31,16 @@ const Recipes = () => {
   );
 
   return (
-    <Box
-      sx={{ display: "flex", flexDirection: "column", height: "100%", gap: 1 }}
+    <Card
+      sx={{
+        height: "100%",
+        gap: 0.5,
+        p: 0.5,
+      }}
     >
-      <Card
-        size="sm"
+      <Box
         sx={{
+          display: "flex",
           flexDirection: "row",
           alignItems: "center",
           justifyContent: "space-evenly",
@@ -50,17 +54,28 @@ const Recipes = () => {
               onClick={() => dispatch(setCraftingFilter(category.id))}
               variant={craftingFilter === category.id ? "solid" : "plain"}
               key={category.label}
-              startDecorator={<Avatar src={category.icon} size="sm" />}
             >
-              {/* {category.label} */}
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: 0,
+                  alignItems: "center",
+                }}
+              >
+                <Avatar src={category.icon} size="sm" />
+                {category.label}
+              </Box>
             </Button>
           ) : null;
         })}
-      </Card>
+      </Box>
 
-      <Card
+      <Divider />
+
+      <Box
         sx={{
-          p: 1,
+          // p: 1,
           flexGrow: 1,
           overflowY: "auto",
         }}
@@ -83,8 +98,8 @@ const Recipes = () => {
             );
           })}
         </Grid>
-      </Card>
-    </Box>
+      </Box>
+    </Card>
   );
 };
 

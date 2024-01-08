@@ -1,12 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { ID_Item_Category, ID_Player_FightClass } from "../../config/config.d";
+import { ID_Item_Category, ID_Player_Job } from "../../config/config.d";
 import { uiActions } from "./uiActions";
 
 export const uiSlice = createSlice({
   name: "ui",
   initialState: {
     players: {
-      currentFilter: ID_Player_FightClass.archer,
+      currentFilter: ID_Player_Job.fighter,
       selectedPlayer: null,
     },
     crafting: {

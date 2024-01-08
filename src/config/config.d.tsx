@@ -63,7 +63,7 @@ export enum ID_Race {
   human = "human",
 }
 
-export enum ID_Player_FightClass {
+export enum ID_Role {
   archer = "archer",
   bruiser = "bruiser",
   defensiveTank = "defensiveTank",
@@ -221,7 +221,7 @@ export type T_Player = {
   masteries: T_Player_Mastery;
   lore: string;
   description: string;
-  fightClass: ID_Player_FightClass;
+  role: ID_Role;
   job: ID_Player_Job;
   img: string;
   equip: Record<ID_Equip_Slot, ID_Item | null>;
@@ -251,10 +251,17 @@ export type T_Race = {
   img: string;
 };
 
-export type T_Roles = Record<ID_Player_FightClass, T_Role>;
+export type T_Roles = Record<ID_Role, T_Role>;
 
 export type T_Role = {
-  id: ID_Player_FightClass;
+  id: ID_Role;
+  label: string;
+  description: string;
+  icon: string;
+};
+
+export type Job = {
+  id: ID_Player_Job;
   label: string;
   description: string;
   icon: string;

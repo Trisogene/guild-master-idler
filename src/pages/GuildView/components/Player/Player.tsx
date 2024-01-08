@@ -99,7 +99,7 @@ const Player = ({ player, isSelected }: I_PlayerCard) => {
             </Typography>
           </Chip>
 
-          <Avatar size="sm" src={ROLES[player.fightClass].icon} />
+          <Avatar size="sm" src={ROLES[player.role].icon} />
         </Box>
 
         <Box

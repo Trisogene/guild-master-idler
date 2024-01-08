@@ -1,4 +1,4 @@
-import { Avatar, Box, Button, Card, Grid } from "@mui/joy";
+import { Avatar, Box, Button, Card, Divider, Grid } from "@mui/joy";
 import { useDispatch, useSelector } from "react-redux";
 import { Item } from "../../../../components";
 import { ITEM_CATEGORIES } from "../../../../config/config";
@@ -14,40 +14,59 @@ const Items = () => {
   const filteredItems = useFilterStorageByType({ filter: currentFilter });
 
   return (
-    <Box
+    <Card
       sx={{
         display: "flex",
         flexDirection: "column",
         height: "100%",
-        width: "100%",
-        gap: 1,
+        gap: 0.5,
+        p: 0.5,
       }}
     >
-      <Card
-        size="sm"
+      <Box
         sx={{
+          display: "flex",
           flexDirection: "row",
           alignItems: "center",
           justifyContent: "space-evenly",
         }}
       >
         {Object.values(ITEM_CATEGORIES).map((category) => (
-          <Button
-            size="sm"
-            fullWidth
-            onClick={() => dispatch(setStorageFilter(category.id))}
-            variant={currentFilter === category.id ? "solid" : "plain"}
-            key={category.label}
-            startDecorator={<Avatar src={category.icon} size="sm" />}
-          >
-            {/* {category.label} */}
-          </Button>
-        ))}
-      </Card>
+          <>
+            <Button
+              size="sm"
+              fullWidth
+              onClick={() => dispatch(setStorageFilter(category.id))}
+              variant={currentFilter === category.id ? "solid" : "plain"}
+              key={category.label}
+              // startDecorator={<Avatar src={category.icon} size="sm" />}
+              sx={{
+                textOverflow: "ellipsis",
+                overflow: "hidden",
+                whiteSpace: "nowrap",
+              }}
+            >
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: 0,
 
-      <Card
+                  alignItems: "center",
+                }}
+              >
+                <Avatar src={category.icon} size="sm" />
+                {category.label}
+              </Box>
+            </Button>
+          </>
+        ))}
+      </Box>
+
+      <Divider />
+
+      <Box
         sx={{
-          p: 1,
           flexGrow: 1,
         }}
       >
@@ -62,8 +81,8 @@ const Items = () => {
             <Item key={itemStack.id} itemStack={itemStack} />
           ))}
         </Grid>
-      </Card>
-    </Box>
+      </Box>
+    </Card>
   );
 };
 

@@ -1,6 +1,6 @@
 import { Chip, Typography } from "@mui/joy";
 import { useSelector } from "react-redux";
-import { T_ReduxState } from "../../../../config/store.d";
+import { T_ReduxState } from "../../config/store.d";
 
 const Clock = () => {
   const clock = useSelector((state: T_ReduxState) => state.timer.timers.clock);

@@ -4,7 +4,7 @@ import { ITEMS, LINKS } from "../../config/config";
 import { ID_Link } from "../../config/config.d";
 import { setPage } from "../../redux/navigation/navigationSlice";
 import { addItem } from "../../redux/storage/storageSlice";
-import Clock from "../Sidebar/components/Clock/Clock";
+import Clock from "../Clock/Clock";
 import infoIcon from "./../../assets/info.svg";
 import settingsIcon from "./../../assets/settings.svg";
 

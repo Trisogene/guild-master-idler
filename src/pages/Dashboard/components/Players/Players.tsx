@@ -1,7 +1,9 @@
-import { Box, Card } from "@mui/joy";
+import { Avatar, Box, Button, Card, Divider } from "@mui/joy";
 import { useDispatch, useSelector } from "react-redux";
 import { Player } from "../../../../components";
+import { JOBS } from "../../../../config/config";
 import { T_ReduxState } from "../../../../config/store.d";
+import { setPlayersFilter } from "../../../../redux/ui/uiSlice";
 
 const Players = () => {
   const dispatch = useDispatch();
@@ -14,42 +16,68 @@ const Players = () => {
   );
 
   return (
-    <Box
+    <Card
       sx={{
         display: "flex",
         flexDirection: "column",
         height: "100%",
-        width: "100%",
-        gap: 1,
+        gap: 0.5,
+        p: 0.5,
       }}
     >
-      <Card
-        size="sm"
+      <Box
         sx={{
+          display: "flex",
           flexDirection: "row",
           alignItems: "center",
           justifyContent: "space-evenly",
         }}
-      ></Card>
-      <Card sx={{ height: "100%" }}>
-        <Box
-          sx={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fill, minmax(150px, 1fr))",
-            overflowY: "auto",
-            gap: 1,
-          }}
-        >
-          {Object.values(players).map((player) => (
-            <Player
-              key={player.id}
-              player={player}
-              isSelected={player.id === selectedPlayer}
-            />
-          ))}
-        </Box>
-      </Card>
-    </Box>
+      >
+        {Object.values(JOBS).map((job) => (
+          <Button
+            size="sm"
+            fullWidth
+            onClick={() => dispatch(setPlayersFilter(job.id))}
+            variant={currentFilter === job.id ? "solid" : "plain"}
+            key={job.label}
+            sx={{ p: 0.5 }}
+          >
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                gap: 0,
+
+                alignItems: "center",
+              }}
+            >
+              <Avatar src={job.icon} size="sm" />
+              {job.label}
+            </Box>
+          </Button>
+        ))}
+      </Box>
+
+      <Divider />
+
+      <Box
+        sx={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fill, minmax(150px, 1fr))",
+          overflowY: "auto",
+          gap: 1,
+          p: 1,
+        }}
+      >
+        {Object.values(players).map((player) => (
+          <Player
+            key={player.id}
+            player={player}
+            isSelected={player.id === selectedPlayer}
+          />
+        ))}
+      </Box>
+    </Card>
   );
 };
 

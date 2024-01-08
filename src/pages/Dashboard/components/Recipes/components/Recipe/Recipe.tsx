@@ -2,10 +2,15 @@ import { Avatar, Box, Card, Chip, Typography } from "@mui/joy";
 import { memo } from "react";
 
 import { useDispatch } from "react-redux";
-import { ITEMS, RECIPES } from "../../config/config";
-import { ID_Item, ID_Recipe, Item, T_Recipe } from "../../config/config.d";
-import useSelectItemsFromStorage from "../../hooks/useSelectItemsFromStorage";
-import { setCurrentCraftingItem } from "../../redux/ui/uiSlice";
+import { ITEMS, RECIPES } from "../../../../../../config/config";
+import {
+  ID_Item,
+  ID_Recipe,
+  Item,
+  T_Recipe,
+} from "../../../../../../config/config.d";
+import useSelectItemsFromStorage from "../../../../../../hooks/useSelectItemsFromStorage";
+import { setCurrentCraftingItem } from "../../../../../../redux/ui/uiSlice";
 
 interface I_CraftableItemCard {
   itemId: ID_Item;

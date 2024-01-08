@@ -2,7 +2,7 @@ import {
   ID_Content,
   ID_Item_Category,
   ID_Link,
-  ID_Player_FightClass,
+  ID_Player_Job,
   ID_Race,
   ID_Recipe,
   ItemStack,
@@ -102,7 +102,7 @@ export type T_NavigationSlice = {
 /* -------------------------------------------------------------------------- */
 export type T_UiSlice = {
   players: {
-    currentFilter: ID_Player_FightClass;
+    currentFilter: ID_Player_Job;
     selectedPlayer: string | null;
   };
   crafting: {

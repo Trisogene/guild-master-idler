@@ -2,11 +2,11 @@ import { Avatar, Badge, Box, Card, Tooltip } from "@mui/joy";
 import { ITEMS } from "../../config/config";
 import { ItemStack } from "../../config/config.d";
 
-interface I_ItemCard {
+interface ItemProps {
   itemStack: ItemStack;
 }
 
-const Item: React.FC<I_ItemCard> = ({ itemStack }) => {
+const Item = ({ itemStack }: ItemProps) => {
   const itemConfig = ITEMS[itemStack.id];
 
   const inset = "4px";

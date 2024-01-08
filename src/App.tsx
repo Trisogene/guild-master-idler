@@ -17,7 +17,6 @@ function App() {
 
   useEffect(() => {
     dispatch(startTimers());
-    console.log(currentPage);
   }, [dispatch]);
 
   return (

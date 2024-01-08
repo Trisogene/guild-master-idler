@@ -1,6 +1,7 @@
-import { Box, Button, Card } from "@mui/joy";
+import { Avatar, Box, Button, Card, Divider } from "@mui/joy";
 import { useState } from "react";
 import { useSelector } from "react-redux";
+import placeholder_icon from "../../../../assets/race.svg";
 import { T_ReduxState } from "../../../../config/store.d";
 import PlayerInfoEquip from "../../../GuildView/components/PlayerInfo/components/PlayerInfoEquip";
 import PlayerInfoLore from "../../../GuildView/components/PlayerInfo/components/PlayerInfoLore";
@@ -19,6 +20,7 @@ type T_Tab = {
   id: E_TABS;
   label: string;
   component: (props: any) => JSX.Element;
+  icon: string;
 };
 
 const tabs: T_Tabs = {
@@ -26,16 +28,19 @@ const tabs: T_Tabs = {
     id: E_TABS.equip,
     label: "Equip",
     component: (props: any) => <PlayerInfoEquip {...props} />,
+    icon: placeholder_icon,
   },
   role: {
     id: E_TABS.role,
     label: "Role",
     component: (props: any) => <PlayerInfoRole {...props} />,
+    icon: placeholder_icon,
   },
   lore: {
     id: E_TABS.lore,
     label: "Lore",
     component: (props: any) => <PlayerInfoLore {...props} />,
+    icon: placeholder_icon,
   },
 };
 
@@ -50,12 +55,16 @@ const PlayerDetail = () => {
   const [currentTab, setCurrentTab] = useState(E_TABS.equip);
 
   return (
-    <Box
-      sx={{ display: "flex", flexDirection: "column", height: "100%", gap: 1 }}
+    <Card
+      sx={{
+        height: "100%",
+        gap: 0.5,
+        p: 0.5,
+      }}
     >
-      <Card
-        size="sm"
+      <Box
         sx={{
+          display: "flex",
           flexDirection: "row",
           alignItems: "center",
           justifyContent: "space-evenly",
@@ -70,10 +79,23 @@ const PlayerDetail = () => {
             variant={currentTab === tab.id ? "solid" : "plain"}
             color="neutral"
           >
-            {tab.label}
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                gap: 0,
+                fontSize: 12,
+                alignItems: "center",
+              }}
+            >
+              <Avatar src={tab.icon} size="sm" />
+              {tab.label}
+            </Box>
           </Button>
         ))}
-      </Card>
+      </Box>
+
+      <Divider />
 
       <Card
         className="PlayerInfo"
@@ -95,7 +117,7 @@ const PlayerDetail = () => {
           </>
         ) : null}
       </Card>
-    </Box>
+    </Card>
   );
 };
 
