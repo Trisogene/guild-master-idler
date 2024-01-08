@@ -5,6 +5,7 @@ import { ID_Link } from "../../config/config.d";
 import { setPage } from "../../redux/navigation/navigationSlice";
 import { addItem } from "../../redux/storage/storageSlice";
 import Clock from "../Sidebar/components/Clock/Clock";
+import infoIcon from "./../../assets/info.svg";
 import settingsIcon from "./../../assets/settings.svg";
 
 interface I_NavigatorProps {
@@ -56,7 +57,20 @@ const Topbar = ({ currentPage }: I_NavigatorProps) => {
         <Button
           variant="plain"
           onClick={() => {
-            //FIXME  FOR TESTING ONLY
+            // //FIXME  FOR TESTING ONLY
+            // dispatch(addItem({ itemId: ITEMS.bow.id, quantity: 1 }));
+            // dispatch(addItem({ itemId: ITEMS.mace.id, quantity: 2 }));
+            // dispatch(addItem({ itemId: ITEMS.clothChest.id, quantity: 1 }));
+            // dispatch(addItem({ itemId: ITEMS.ironHelmet.id, quantity: 1 }));
+            // dispatch(addItem({ itemId: ITEMS.ironBoots.id, quantity: 1 }));
+          }}
+        >
+          <Avatar size="sm" src={infoIcon} />
+        </Button>
+        <Button
+          variant="plain"
+          onClick={() => {
+            // //FIXME  FOR TESTING ONLY
             dispatch(addItem({ itemId: ITEMS.bow.id, quantity: 1 }));
             dispatch(addItem({ itemId: ITEMS.mace.id, quantity: 2 }));
             dispatch(addItem({ itemId: ITEMS.clothChest.id, quantity: 1 }));

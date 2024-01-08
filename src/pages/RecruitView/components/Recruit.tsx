@@ -70,7 +70,7 @@ const Recruit = ({ recruit, isSelected }: I_RecruitCard) => {
               {recruit.name}
             </Typography>
           </Chip>
-          <Avatar size="sm" src={ROLES[recruit.role].icon} />
+          <Avatar size="sm" src={ROLES[recruit.fightClass].icon} />
         </Box>
         <Button
           fullWidth

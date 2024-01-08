@@ -42,16 +42,14 @@ export enum ID_Item_Category {
 }
 
 export enum ID_Content {
-  sleeping = "sleeping",
   gathering = "gathering",
   dungeoning = "dungeoning",
 }
 
 export enum ID_Link {
+  dashboard = "dashboard",
   recruit = "recruit",
-  guild = "guild",
-  storage = "storage",
-  crafting = "crafting",
+
   territory = "territory",
 }
 
@@ -65,7 +63,7 @@ export enum ID_Race {
   human = "human",
 }
 
-export enum ID_Role {
+export enum ID_Player_FightClass {
   archer = "archer",
   bruiser = "bruiser",
   defensiveTank = "defensiveTank",
@@ -74,6 +72,12 @@ export enum ID_Role {
   healer = "healer",
   piercer = "piercer",
   support = "support",
+}
+
+export enum ID_Player_Job {
+  fighter = "fighter",
+  gatherer = "gatherer",
+  crafter = "crafter",
 }
 
 export enum ID_Recipe {
@@ -217,7 +221,8 @@ export type T_Player = {
   masteries: T_Player_Mastery;
   lore: string;
   description: string;
-  role: ID_Role;
+  fightClass: ID_Player_FightClass;
+  job: ID_Player_Job;
   img: string;
   equip: Record<ID_Equip_Slot, ID_Item | null>;
 };
@@ -246,10 +251,10 @@ export type T_Race = {
   img: string;
 };
 
-export type T_Roles = Record<ID_Role, T_Role>;
+export type T_Roles = Record<ID_Player_FightClass, T_Role>;
 
 export type T_Role = {
-  id: ID_Role;
+  id: ID_Player_FightClass;
   label: string;
   description: string;
   icon: string;

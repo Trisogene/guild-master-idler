@@ -2,7 +2,6 @@ import { Box } from "@mui/joy";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./App.css";
-import Sidebar from "./components/Sidebar/Sidebar";
 
 import Topbar from "./components/Topbar/Topbar";
 import { LINKS } from "./config/config";
@@ -18,6 +17,7 @@ function App() {
 
   useEffect(() => {
     dispatch(startTimers());
+    console.log(currentPage);
   }, [dispatch]);
 
   return (
@@ -37,13 +37,11 @@ function App() {
         <Box
           className="Body"
           sx={{
-            display: "flex",
             flexGrow: 1,
             gap: 1,
             height: "calc(100vh - 85px)",
           }}
         >
-          <Sidebar />
           {LINKS[currentPage].component}
         </Box>
       </Box>

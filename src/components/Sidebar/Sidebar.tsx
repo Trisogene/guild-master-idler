@@ -1,11 +1,7 @@
 import { Box } from "@mui/joy";
-import { useSelector } from "react-redux";
-import { T_ReduxState } from "../../config/store.d";
 import Logs from "./components/Logs/Logs";
 
 const Sidebar = () => {
-  const logs = useSelector((state: T_ReduxState) => state.log.logs);
-
   return (
     <Box
       className="Sidebar"

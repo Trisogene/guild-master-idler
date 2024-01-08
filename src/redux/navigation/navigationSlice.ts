@@ -4,7 +4,7 @@ import { navigationActions } from "./navigationActions";
 
 export const navigationSlice = createSlice({
   name: "navigation",
-  initialState: { currentPage: ID_Link.guild },
+  initialState: { currentPage: ID_Link.dashboard },
   reducers: navigationActions,
 });
 

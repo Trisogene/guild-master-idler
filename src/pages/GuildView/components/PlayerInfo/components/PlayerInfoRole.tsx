@@ -26,7 +26,7 @@ const PlayerInfoRole = ({ player }: I_PlayerInfoRole) => {
           <Box key={role.id} sx={{ display: "flex", gap: 1 }}>
             <Chip
               size="sm"
-              variant={player.role === role.id ? "solid" : "soft"}
+              variant={player.class === role.id ? "solid" : "soft"}
               // color="success"
               sx={{ minWidth: 150 }}
               startDecorator={

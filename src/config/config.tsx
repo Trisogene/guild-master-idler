@@ -1,6 +1,5 @@
 import dungeoningIcon from "../assets/contents/dungeoning.svg";
 import gatheringIcon from "../assets/contents/gathering.svg";
-import sleepingIcon from "../assets/contents/sleeping.svg";
 import artifact_icon from "../assets/items/artifact.svg";
 import fiber_icon from "../assets/items/fiber.svg";
 import hide_icon from "../assets/items/hide.svg";
@@ -16,10 +15,8 @@ import {
   default as wood_icon,
 } from "../assets/items/wood.svg";
 import circleIcon from "../assets/pages/circle.svg";
-import craftingIcon from "../assets/pages/crafting.svg";
 import guildIcon from "../assets/pages/guild.svg";
 import recruitIcon from "../assets/pages/recruit.svg";
-import storageIcon from "../assets/pages/storage.svg";
 import archerIcon from "../assets/roles/archer.svg";
 import bruiserIcon from "../assets/roles/bruiser.svg";
 import defensiveTankIcon from "../assets/roles/defensiveTank.svg";
@@ -28,22 +25,21 @@ import mageIcon from "../assets/roles/mage.svg";
 import offensiveTankIcon from "../assets/roles/offensiveTank.svg";
 import piercerIcon from "../assets/roles/piercer.svg";
 import supportIcon from "../assets/roles/support.svg";
-import CraftingView from "../pages/CraftingView";
-import Guild from "../pages/GuildView/GuildView";
 import Recruit from "../pages/RecruitView/RecruitView";
-import Storage from "../pages/StorageView";
 import temp_race from "./../assets/race.svg";
 import faceImg from "./../assets/recruits/face.png";
 
+import Dashboard from "../pages/Dashboard/Dashboard";
 import TerritoryView from "../pages/TerritoryView";
 import {
   ID_Content,
   ID_Equip_Slot,
   ID_Item,
   ID_Item_Category,
+  ID_Player_FightClass,
+  ID_Player_Job,
   ID_Race,
   ID_Recipe,
-  ID_Role,
   Item,
   ItemCategory,
   T_Contents,
@@ -57,49 +53,49 @@ import {
 
 export const ROLES: T_Roles = {
   archer: {
-    id: ID_Role.archer,
+    id: ID_Player_FightClass.archer,
     label: "Archer",
     description: "Shoots arrows",
     icon: archerIcon,
   },
   mage: {
-    id: ID_Role.mage,
+    id: ID_Player_FightClass.mage,
     label: "Mage",
     description: "Casts spells",
     icon: mageIcon,
   },
   offensiveTank: {
-    id: ID_Role.offensiveTank,
+    id: ID_Player_FightClass.offensiveTank,
     label: "Offensive Tank",
     description: "Tanks and deals damage",
     icon: offensiveTankIcon,
   },
   defensiveTank: {
-    id: ID_Role.defensiveTank,
+    id: ID_Player_FightClass.defensiveTank,
     label: "Defensive Tank",
     description: "Tanks and protects allies",
     icon: defensiveTankIcon,
   },
   healer: {
-    id: ID_Role.healer,
+    id: ID_Player_FightClass.healer,
     label: "Healer",
     description: "Heals allies",
     icon: healerIcon,
   },
   bruiser: {
-    id: ID_Role.bruiser,
+    id: ID_Player_FightClass.bruiser,
     label: "Bruiser",
     description: "Deals damage",
     icon: bruiserIcon,
   },
   piercer: {
-    id: ID_Role.piercer,
+    id: ID_Player_FightClass.piercer,
     label: "Piercer",
     description: "Deals damage",
     icon: piercerIcon,
   },
   support: {
-    id: ID_Role.support,
+    id: ID_Player_FightClass.support,
     label: "Support",
     description: "Supports allies",
     icon: supportIcon,
@@ -107,10 +103,10 @@ export const ROLES: T_Roles = {
 };
 
 export const LINKS: T_Links = {
-  guild: {
-    id: "guild",
-    label: "Guild",
-    component: <Guild />,
+  dashboard: {
+    id: "dashboard",
+    label: "Dashboard",
+    component: <Dashboard />,
     icon: guildIcon,
   },
   recruit: {
@@ -118,18 +114,6 @@ export const LINKS: T_Links = {
     label: "Recruit",
     component: <Recruit />,
     icon: recruitIcon,
-  },
-  storage: {
-    id: "storage",
-    label: "Storage",
-    component: <Storage />,
-    icon: storageIcon,
-  },
-  crafting: {
-    id: "crafting",
-    label: "Crafting",
-    component: <CraftingView />,
-    icon: craftingIcon,
   },
   territory: {
     id: "territory",
@@ -368,7 +352,8 @@ export const RECRUITS: T_Players = {
       bow: 0,
     },
     lore: "A Young adventurer, ready to explore the world, and make a name for himself.",
-    role: ID_Role.archer,
+    fightClass: ID_Player_FightClass.archer,
+    job: ID_Player_Job.fighter,
     img: faceImg,
     description: "the basic recruit",
     equip: {
@@ -405,7 +390,8 @@ export const RECRUITS: T_Players = {
       bow: 0,
     },
     lore: "A Young adventurer, ready to explore the world, and make a name for himself.",
-    role: ID_Role.archer,
+    fightClass: ID_Player_FightClass.archer,
+    job: ID_Player_Job.fighter,
     img: faceImg,
     description: "the basic recruit",
     equip: {
@@ -733,17 +719,17 @@ export const ITEMS: Record<ID_Item, Item> = {
 };
 
 export const ITEM_CATEGORIES: Record<ID_Item_Category, ItemCategory> = {
+  resource: {
+    craftable: false,
+    icon: fiber_icon,
+    id: ID_Item_Category.resource,
+    label: "Resource",
+  },
   drop: {
     craftable: false,
     icon: artifact_icon,
     id: ID_Item_Category.drop,
     label: "Drop",
-  },
-  equip: {
-    craftable: true,
-    icon: temp_weapon_icon,
-    id: ID_Item_Category.equip,
-    label: "Equip",
   },
   material: {
     craftable: true,
@@ -751,22 +737,15 @@ export const ITEM_CATEGORIES: Record<ID_Item_Category, ItemCategory> = {
     id: ID_Item_Category.material,
     label: "Material",
   },
-  resource: {
-    craftable: false,
-    icon: fiber_icon,
-    id: ID_Item_Category.resource,
-    label: "Resource",
+  equip: {
+    craftable: true,
+    icon: temp_weapon_icon,
+    id: ID_Item_Category.equip,
+    label: "Equip",
   },
 };
 
 export const CONTENTS: T_Contents = {
-  sleeping: {
-    id: ID_Content.sleeping,
-    label: "Sleeping",
-    timeToComplete: 60,
-    rewards: [],
-    icon: sleepingIcon,
-  },
   gathering: {
     id: ID_Content.gathering,
     icon: gatheringIcon,

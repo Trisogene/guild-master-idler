@@ -3,7 +3,7 @@ import {
   ID_Content,
   ID_Equip_Slot,
   ID_Item,
-  ID_Role,
+  ID_Player_FightClass,
   T_Player,
 } from "../../config/config.d";
 import { T_PlayersSlice } from "../../config/store.d";
@@ -30,9 +30,9 @@ const setPlayerRole = (
   state: T_PlayersSlice,
   {
     payload: { playerId, role },
-  }: PayloadAction<{ playerId: string; role: ID_Role }>
+  }: PayloadAction<{ playerId: string; role: ID_Player_FightClass }>
 ) => {
-  state.players[playerId].role = role;
+  state.players[playerId].class = role;
 };
 
 const setPlayerEquip = (

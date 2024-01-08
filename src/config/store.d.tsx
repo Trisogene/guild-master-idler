@@ -2,6 +2,7 @@ import {
   ID_Content,
   ID_Item_Category,
   ID_Link,
+  ID_Player_FightClass,
   ID_Race,
   ID_Recipe,
   ItemStack,
@@ -100,17 +101,21 @@ export type T_NavigationSlice = {
 /*                                   UiSlice                                  */
 /* -------------------------------------------------------------------------- */
 export type T_UiSlice = {
-  [ID_Link.crafting]: {
+  players: {
+    currentFilter: ID_Player_FightClass;
+    selectedPlayer: string | null;
+  };
+  crafting: {
     currentSelectedItem: ID_Recipe | null;
     currentFilter: ID_Item_Category;
   };
-  [ID_Link.guild]: {
+  guild: {
     selectedPlayer: string | null;
   };
-  [ID_Link.recruit]: {
+  recruit: {
     selectedPlayer: string | null;
   };
-  [ID_Link.storage]: {
+  storage: {
     currentFilter: ID_Item_Category;
   };
 };

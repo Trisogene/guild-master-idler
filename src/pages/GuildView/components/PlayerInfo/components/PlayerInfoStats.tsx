@@ -14,7 +14,6 @@ const PlayerInfoStats = ({ stats }: PlayerInfoStatsProps) => {
         flexWrap: "wrap",
         p: 1,
         gap: 1,
-        minWidth: "80%",
       }}
     >
       {Object.entries(stats).map(([statId, statValue]) => (
@@ -23,7 +22,7 @@ const PlayerInfoStats = ({ stats }: PlayerInfoStatsProps) => {
             <>
               <Typography
                 fontSize="sm"
-                sx={{ minWidth: 50, maxWidth: "none", textAlign: "center" }}
+                sx={{ minWidth: 40, maxWidth: "none", textAlign: "center" }}
               >
                 {statId.toUpperCase()}
               </Typography>

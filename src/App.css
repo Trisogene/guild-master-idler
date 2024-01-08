@@ -1,6 +1,6 @@
 .App {
-  min-width: 800px !important;
-  min-height: 600px !important;
+  /* min-width: 800px !important;
+  min-height: 600px !important; */
   overflow-y: auto;
   overflow-x: auto;
 }
