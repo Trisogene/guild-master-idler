@@ -1,5 +1,5 @@
-import { Avatar, Box, Card, CardCover, Chip, Typography } from "@mui/joy";
-import warIcon from "../../assets/war.svg";
+import { Box, Card, CardCover, Chip, Typography } from "@mui/joy";
+
 import { T_Territory } from "../../config/config";
 
 interface I_TerritoryProps {
@@ -20,10 +20,7 @@ const Territory = ({ territory }: I_TerritoryProps) => {
         </Chip>
       </Box>
       <Box sx={{ position: "absolute", top: 0, right: 0, zIndex: 1 }}>
-        <Chip
-          startDecorator={<Avatar size="md" src={warIcon} />}
-          sx={{ gap: 1, alignItems: "center", alignContent: "center" }}
-        >
+        <Chip sx={{ gap: 1, alignItems: "center", alignContent: "center" }}>
           <Typography fontSize={14}>
             {new Date(territory.vulnerable * 1000).toISOString().substr(14, 5)}
           </Typography>

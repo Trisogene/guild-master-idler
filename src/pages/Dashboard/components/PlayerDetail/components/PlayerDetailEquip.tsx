@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { Item } from "../../../../../components";
 import { ID_Equip_Slot, T_Player } from "../../../../../config/config.d";
 import { equipItemThunk } from "../../../../../redux/player/playerThunk";
-import PlayerInfoStats from "../../../../GuildView/components/PlayerInfo/components/PlayerInfoStats";
+import PlayerInfoStats from "./PlayerInfoStats";
 
 interface PlayerDetailEquipProps {
   player: T_Player;

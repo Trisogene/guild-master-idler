@@ -7,7 +7,7 @@ import { setPlayerRole } from "../../../../../redux/player/playerSlice";
 interface I_PlayerInfoRole {
   player: T_Player;
 }
-const PlayerInfoRole = ({ player }: I_PlayerInfoRole) => {
+const PlayerDetailRole = ({ player }: I_PlayerInfoRole) => {
   const dispatch = useDispatch();
   return (
     <>
@@ -26,8 +26,7 @@ const PlayerInfoRole = ({ player }: I_PlayerInfoRole) => {
           <Box key={role.id} sx={{ display: "flex", gap: 1 }}>
             <Chip
               size="sm"
-              variant={player.class === role.id ? "solid" : "soft"}
-              // color="success"
+              variant={player.role === role.id ? "solid" : "soft"}
               sx={{ minWidth: 150 }}
               startDecorator={
                 <Avatar
@@ -50,4 +49,4 @@ const PlayerInfoRole = ({ player }: I_PlayerInfoRole) => {
   );
 };
 
-export default PlayerInfoRole;
+export default PlayerDetailRole;

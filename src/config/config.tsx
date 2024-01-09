@@ -16,7 +16,6 @@ import {
 } from "../assets/items/wood.svg";
 import circleIcon from "../assets/pages/circle.svg";
 import guildIcon from "../assets/pages/guild.svg";
-import recruitIcon from "../assets/pages/recruit.svg";
 import archerIcon from "../assets/roles/archer.svg";
 import bruiserIcon from "../assets/roles/bruiser.svg";
 import defensiveTankIcon from "../assets/roles/defensiveTank.svg";
@@ -25,12 +24,18 @@ import mageIcon from "../assets/roles/mage.svg";
 import offensiveTankIcon from "../assets/roles/offensiveTank.svg";
 import piercerIcon from "../assets/roles/piercer.svg";
 import supportIcon from "../assets/roles/support.svg";
-import Recruit from "../pages/RecruitView/RecruitView";
-import temp_race from "./../assets/race.svg";
+import crafterIcon from "./../assets/crafter.svg";
+import dropIcon from "./../assets/drop.svg";
+import equipIcon from "./../assets/equip.svg";
+import fighterIcon from "./../assets/fighter.svg";
+import gathererIcon from "./../assets/gatherer.svg";
+import materialIcon from "./../assets/material.svg";
+import temp_race from "./../assets/placeHolders/race.svg";
 import faceImg from "./../assets/recruits/face.png";
+import resourceIcon from "./../assets/resource.svg";
 
-import Dashboard from "../pages/Dashboard/Dashboard";
-import TerritoryView from "../pages/TerritoryView";
+import Dashboard from "../pages/Dashboard/DashboardView";
+import TerritoryView from "../pages/Territory/TerritoryView";
 import {
   ID_Content,
   ID_Equip_Slot,
@@ -108,19 +113,19 @@ export const JOBS: Record<ID_Player_Job, Job> = {
     id: ID_Player_Job.fighter,
     label: "Fighter",
     description: "Fights",
-    icon: archerIcon,
+    icon: fighterIcon,
   },
   gatherer: {
     id: ID_Player_Job.gatherer,
     label: "Gatherer",
     description: "Gathers",
-    icon: archerIcon,
+    icon: gathererIcon,
   },
   crafter: {
     id: ID_Player_Job.crafter,
     label: "Crafter",
     description: "Crafts",
-    icon: archerIcon,
+    icon: crafterIcon,
   },
 };
 
@@ -130,18 +135,15 @@ export const LINKS: T_Links = {
     label: "Dashboard",
     component: <Dashboard />,
     icon: guildIcon,
+    enabled: true,
   },
-  recruit: {
-    id: "recruit",
-    label: "Recruit",
-    component: <Recruit />,
-    icon: recruitIcon,
-  },
+
   territory: {
     id: "territory",
     label: "Territory",
     component: <TerritoryView />,
     icon: circleIcon,
+    enabled: false,
   },
 };
 
@@ -443,6 +445,8 @@ export const TIMERS: T_Timers = {
   },
 };
 
+/* ----------------------------------- epo ---------------------------------- */
+
 /* ---------------------------------- Items --------------------------------- */
 
 export const ITEMS: Record<ID_Item, Item> = {
@@ -743,25 +747,25 @@ export const ITEMS: Record<ID_Item, Item> = {
 export const ITEM_CATEGORIES: Record<ID_Item_Category, ItemCategory> = {
   resource: {
     craftable: false,
-    icon: fiber_icon,
+    icon: resourceIcon,
     id: ID_Item_Category.resource,
     label: "Resource",
   },
   drop: {
     craftable: false,
-    icon: artifact_icon,
+    icon: dropIcon,
     id: ID_Item_Category.drop,
     label: "Drop",
   },
   material: {
     craftable: true,
-    icon: fiber_icon,
+    icon: materialIcon,
     id: ID_Item_Category.material,
     label: "Material",
   },
   equip: {
     craftable: true,
-    icon: temp_weapon_icon,
+    icon: equipIcon,
     id: ID_Item_Category.equip,
     label: "Equip",
   },

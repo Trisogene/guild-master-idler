@@ -1,7 +1,6 @@
-import Player from "../pages/GuildView/components/Player/Player";
-import PlayerInfo from "../pages/GuildView/components/PlayerInfo/PlayerInfo";
-import Recruit from "../pages/RecruitView/components/Recruit";
+import Player from "../pages/Dashboard/components/Players/components/Player";
 import Item from "./Item/Item";
+import Recruit from "./Modals/components/ModalRecruit/components/Recruit";
 
 import RecruitInfo from "./RecruitInfo/RecruitInfo";
 import RecruitTimer from "./RecruitTimer/RecruitTimer";
@@ -12,7 +11,6 @@ export {
   Item,
   Topbar as Navigator,
   Player,
-  PlayerInfo,
   Recruit,
   RecruitInfo,
   RecruitTimer,

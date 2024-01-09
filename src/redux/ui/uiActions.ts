@@ -1,6 +1,7 @@
 import { PayloadAction } from "@reduxjs/toolkit";
 import {
   ID_Item_Category,
+  ID_Notification,
   ID_Player_Job,
   ID_Recipe,
 } from "../../config/config.d";
@@ -48,6 +49,28 @@ const setPlayersFilter = (
   state.players.currentFilter = filter;
 };
 
+const setModalIsOpen = (
+  state: T_UiSlice,
+  { payload: isOpen }: PayloadAction<boolean>
+) => {
+  state.modal.isOpen = isOpen;
+};
+
+const addNotification = (
+  state: T_UiSlice,
+  { payload }: PayloadAction<ID_Notification>
+) => {
+  state.notification.messages.push(payload);
+};
+
+const removeNotification = (
+  state: T_UiSlice,
+  { payload }: PayloadAction<ID_Notification>
+) => {
+  const index = state.notification.messages.indexOf(payload);
+  state.notification.messages.splice(index, 1);
+};
+
 export const uiActions = {
   setCraftingFilter,
   setCurrentCraftingItem,
@@ -55,4 +78,7 @@ export const uiActions = {
   setSelectedRecruitPlayer,
   setStorageFilter,
   setPlayersFilter,
+  setModalIsOpen,
+  addNotification,
+  removeNotification,
 };

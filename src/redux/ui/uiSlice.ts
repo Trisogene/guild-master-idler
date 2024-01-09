@@ -1,10 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { ID_Item_Category, ID_Player_Job } from "../../config/config.d";
+import {
+  ID_Item_Category,
+  ID_Modal,
+  ID_Player_Job,
+} from "../../config/config.d";
 import { uiActions } from "./uiActions";
 
 export const uiSlice = createSlice({
   name: "ui",
   initialState: {
+    modal: {
+      isOpen: false,
+      id: ID_Modal.recruit,
+    },
     players: {
       currentFilter: ID_Player_Job.fighter,
       selectedPlayer: null,
@@ -22,6 +30,9 @@ export const uiSlice = createSlice({
     storage: {
       currentFilter: "material" as ID_Item_Category,
     },
+    notification: {
+      messages: [],
+    },
   },
   reducers: uiActions,
 });
@@ -33,6 +44,9 @@ export const {
   setSelectedRecruitPlayer,
   setStorageFilter,
   setPlayersFilter,
+  setModalIsOpen,
+  addNotification,
+  removeNotification,
 } = uiSlice.actions;
 
 export default uiSlice.reducer;

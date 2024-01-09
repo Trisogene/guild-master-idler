@@ -10,7 +10,6 @@ const updateRecruits = (state: T_RecruitSlice) => {
     randomRecruits[randomRecruit.id] = randomRecruit;
   }
   state.avaialablePicks = 2;
-  // state.currentlySelectedRecruit = Object.keys(randomRecruits)[0];
   state.recruits = randomRecruits;
 };
 
@@ -21,10 +20,14 @@ const removeRecruit = (
   state.recruits = Object.fromEntries(
     Object.entries(state.recruits).filter(([key, value]) => key !== recruitId)
   );
+};
+
+const decreaseAvailablePicks = (state: T_RecruitSlice) => {
   state.avaialablePicks--;
 };
 
 export const recruitActions = {
   updateRecruits,
   removeRecruit,
+  decreaseAvailablePicks,
 };

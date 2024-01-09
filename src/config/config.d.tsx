@@ -48,8 +48,6 @@ export enum ID_Content {
 
 export enum ID_Link {
   dashboard = "dashboard",
-  recruit = "recruit",
-
   territory = "territory",
 }
 
@@ -119,6 +117,14 @@ export enum ID_Stat {
   mdef = "mdef",
 }
 
+export enum ID_Modal {
+  recruit = "recruit",
+}
+
+export enum ID_Notification {
+  avaialablePicks = "avaialablePicks",
+}
+
 /* -------------------------------------------------------------------------- */
 /*                                    Types                                   */
 /* -------------------------------------------------------------------------- */
@@ -186,6 +192,7 @@ export type T_Link = {
   label: string;
   component: JSX.Element;
   icon: string;
+  enabled: boolean;
 };
 
 export type T_Links = Record<ID_Link, T_Link>;

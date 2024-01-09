@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { ID_Link } from "../../config/config.d";
 import { navigationActions } from "./navigationActions";
 
+//TODO merge navigationSlice into uiSlice
 export const navigationSlice = createSlice({
   name: "navigation",
   initialState: { currentPage: ID_Link.dashboard },

@@ -2,6 +2,8 @@ import {
   ID_Content,
   ID_Item_Category,
   ID_Link,
+  ID_Modal,
+  ID_Notification,
   ID_Player_Job,
   ID_Race,
   ID_Recipe,
@@ -101,6 +103,10 @@ export type T_NavigationSlice = {
 /*                                   UiSlice                                  */
 /* -------------------------------------------------------------------------- */
 export type T_UiSlice = {
+  modal: {
+    id: ID_Modal;
+    isOpen: boolean;
+  };
   players: {
     currentFilter: ID_Player_Job;
     selectedPlayer: string | null;
@@ -117,5 +123,8 @@ export type T_UiSlice = {
   };
   storage: {
     currentFilter: ID_Item_Category;
+  };
+  notification: {
+    messages: ID_Notification[];
   };
 };

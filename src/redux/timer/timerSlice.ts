@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { timerActions } from "./timerActions";
 
+//TODO rename into game manager slice
 export const timer_slice = createSlice({
   name: "timer",
   initialState: {

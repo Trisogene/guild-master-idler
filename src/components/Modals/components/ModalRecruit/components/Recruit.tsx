@@ -1,11 +1,11 @@
 import { Avatar, Box, Button, Card, Chip, Typography } from "@mui/joy";
 import { useDispatch, useSelector } from "react-redux";
-import { RACES, ROLES } from "../../../config/config";
-import { T_Player } from "../../../config/config.d";
-import { T_ReduxState } from "../../../config/store.d";
-import { recruitPlayerThunk } from "../../../redux/recruit/recruitThunk";
-import { AppDispatch } from "../../../redux/store";
-import { setSelectedRecruitPlayer } from "../../../redux/ui/uiSlice";
+import { RACES, ROLES } from "../../../../../config/config";
+import { T_Player } from "../../../../../config/config.d";
+import { T_ReduxState } from "../../../../../config/store.d";
+import { recruitPlayerThunk } from "../../../../../redux/recruit/recruitThunk";
+import { AppDispatch } from "../../../../../redux/store";
+import { setSelectedRecruitPlayer } from "../../../../../redux/ui/uiSlice";
 
 interface I_RecruitCard {
   recruit: T_Player;

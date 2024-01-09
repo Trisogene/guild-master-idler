@@ -35,7 +35,6 @@ store.subscribe(
       navigation: store.getState().navigation,
       timer: store.getState().timer,
       recruit: store.getState().recruit,
-
       log: store.getState().log,
       ui: store.getState().ui,
     });

@@ -32,7 +32,7 @@ const setPlayerRole = (
     payload: { playerId, role },
   }: PayloadAction<{ playerId: string; role: ID_Role }>
 ) => {
-  state.players[playerId].class = role;
+  state.players[playerId].role = role;
 };
 
 const setPlayerEquip = (

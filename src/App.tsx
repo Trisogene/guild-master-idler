@@ -30,6 +30,7 @@ function App() {
           flexDirection: "column",
           p: 1,
           gap: 1,
+          background: (theme) => theme.palette.neutral[700],
         }}
       >
         <Topbar currentPage={currentPage} />

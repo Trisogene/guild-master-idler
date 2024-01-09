@@ -1,19 +1,24 @@
 import uuid from "react-uuid";
-import { T_Player } from "../../config/config.d";
+import { ID_Notification, T_Player } from "../../config/config.d";
 import { E_Log_Type, T_ReduxState } from "../../config/store.d";
 import { addLog } from "../log/logSlice";
 import { addPlayerThunk } from "../player/playerThunk";
 import { AppDispatch } from "../store";
 import { initPlayerTimer } from "../timer/timerSlice";
-import { setSelectedRecruitPlayer } from "../ui/uiSlice";
+import { removeNotification, setSelectedRecruitPlayer } from "../ui/uiSlice";
 
-import { removeRecruit } from "./recruitSlice";
+import { decreaseAvailablePicks, removeRecruit } from "./recruitSlice";
 
 export const recruitPlayerThunk =
   (recruit: T_Player): any =>
   (dispatch: AppDispatch, getState: () => T_ReduxState) => {
     const state = getState();
     dispatch(removeRecruit(recruit.id));
+    if (state.recruit.avaialablePicks === 1) {
+      dispatch(removeNotification(ID_Notification.avaialablePicks));
+    }
+    dispatch(decreaseAvailablePicks());
+
     if (state.ui.recruit.selectedPlayer === recruit.id) {
       dispatch(setSelectedRecruitPlayer(null));
     }

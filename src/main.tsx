@@ -2,7 +2,11 @@ import { CssBaseline, CssVarsProvider, GlobalStyles } from "@mui/joy";
 import ReactDOM from "react-dom/client";
 import { Provider } from "react-redux";
 
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import App from "./App.jsx";
+
+import ModalContainer from "./components/Modals/ModalContainer.js";
 import store from "./redux/store.js";
 import { theme } from "./styles/theme.js";
 
@@ -38,8 +42,17 @@ const root = document.getElementById("root");
                 },
               }}
             />
-
             <App />
+            <ToastContainer
+              closeOnClick={false}
+              position="bottom-right"
+              autoClose={60000}
+              theme="dark"
+              newestOnTop
+              pauseOnHover={false}
+              limit={3}
+            />
+            <ModalContainer />
           </Provider>
         </CssVarsProvider>
       </>

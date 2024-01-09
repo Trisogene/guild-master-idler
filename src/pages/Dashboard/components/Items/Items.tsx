@@ -1,4 +1,4 @@
-import { Avatar, Box, Button, Card, Divider, Grid } from "@mui/joy";
+import { Avatar, Box, Button, Card, Divider, Grid, Typography } from "@mui/joy";
 import { useDispatch, useSelector } from "react-redux";
 import { Item } from "../../../../components";
 import { ITEM_CATEGORIES } from "../../../../config/config";
@@ -29,37 +29,37 @@ const Items = () => {
           flexDirection: "row",
           alignItems: "center",
           justifyContent: "space-evenly",
+          gap: 1,
         }}
       >
         {Object.values(ITEM_CATEGORIES).map((category) => (
-          <>
-            <Button
-              size="sm"
-              fullWidth
-              onClick={() => dispatch(setStorageFilter(category.id))}
-              variant={currentFilter === category.id ? "solid" : "plain"}
-              key={category.label}
-              // startDecorator={<Avatar src={category.icon} size="sm" />}
+          <Button
+            key={category.id}
+            size="sm"
+            fullWidth
+            onClick={() => dispatch(setStorageFilter(category.id))}
+            variant={currentFilter === category.id ? "solid" : "plain"}
+          >
+            <Box
               sx={{
-                textOverflow: "ellipsis",
-                overflow: "hidden",
-                whiteSpace: "nowrap",
+                display: "flex",
+                gap: 1,
+                alignItems: "center",
               }}
             >
-              <Box
+              <Avatar src={category.icon} />
+              <Typography
                 sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: 0,
-
-                  alignItems: "center",
+                  display: {
+                    xs: "none",
+                    xl: "block",
+                  },
                 }}
               >
-                <Avatar src={category.icon} size="sm" />
                 {category.label}
-              </Box>
-            </Button>
-          </>
+              </Typography>
+            </Box>
+          </Button>
         ))}
       </Box>
 

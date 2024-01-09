@@ -4,12 +4,12 @@ import Box from "@mui/joy/Box";
 import { useAnimate } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
 
-import { CONTENTS, RACES, ROLES } from "../../../../config/config";
-import { T_Player } from "../../../../config/config.d";
-import { T_ReduxState } from "../../../../config/store.d";
-import { AppDispatch } from "../../../../redux/store";
-import { advancePlayerContent } from "../../../../redux/timer/timerThunks";
-import { setSelectedGuildPlayer } from "../../../../redux/ui/uiSlice";
+import { CONTENTS, RACES, ROLES } from "../../../../../config/config";
+import { T_Player } from "../../../../../config/config.d";
+import { T_ReduxState } from "../../../../../config/store.d";
+import { AppDispatch } from "../../../../../redux/store";
+import { advancePlayerContent } from "../../../../../redux/timer/timerThunks";
+import { setSelectedGuildPlayer } from "../../../../../redux/ui/uiSlice";
 
 interface I_PlayerCard {
   player: T_Player;
@@ -94,7 +94,7 @@ const Player = ({ player, isSelected }: I_PlayerCard) => {
           }}
         >
           <Chip startDecorator={<Avatar size="sm" src={playerRace.img} />}>
-            <Typography fontSize="xs" sx={{ color: "white" }}>
+            <Typography fontSize="xs" sx={{ textTransform: "capitalize" }}>
               {player.name}
             </Typography>
           </Chip>
@@ -125,7 +125,10 @@ const Player = ({ player, isSelected }: I_PlayerCard) => {
               },
             }}
           >
-            <Typography fontSize="xs" sx={{ color: "white", zIndex: 1 }}>
+            <Typography
+              fontSize="xs"
+              sx={{ zIndex: 1, textTransform: "capitalize" }}
+            >
               {player.currentContent}
             </Typography>
           </LinearProgress>

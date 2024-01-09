@@ -1,4 +1,4 @@
-import { Avatar, Box, Button, Card, Divider, Grid } from "@mui/joy";
+import { Avatar, Box, Button, Card, Divider, Grid, Typography } from "@mui/joy";
 import { useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ITEMS, ITEM_CATEGORIES, RECIPES } from "../../../../config/config";
@@ -44,6 +44,7 @@ const Recipes = () => {
           flexDirection: "row",
           alignItems: "center",
           justifyContent: "space-evenly",
+          gap: 1,
         }}
       >
         {Object.values(ITEM_CATEGORIES).map((category) => {
@@ -58,13 +59,21 @@ const Recipes = () => {
               <Box
                 sx={{
                   display: "flex",
-                  flexDirection: "column",
-                  gap: 0,
+                  gap: 1,
                   alignItems: "center",
                 }}
               >
-                <Avatar src={category.icon} size="sm" />
-                {category.label}
+                <Avatar src={category.icon} />
+                <Typography
+                  sx={{
+                    display: {
+                      xs: "none",
+                      xl: "block",
+                    },
+                  }}
+                >
+                  {category.label}{" "}
+                </Typography>
               </Box>
             </Button>
           ) : null;

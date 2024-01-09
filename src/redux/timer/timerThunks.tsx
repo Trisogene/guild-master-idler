@@ -1,20 +1,35 @@
 import _ from "lodash";
 
+import { toast } from "react-toastify";
 import uuid from "react-uuid";
+import ToastRecruitsUpdated from "../../components/ToastRecruitsUpdated/ToastRecruitsUpdated";
 import { CONTENTS, TIMERS } from "../../config/config";
-import { ID_Content, ItemStack } from "../../config/config.d";
+import { ID_Content, ID_Notification, ItemStack } from "../../config/config.d";
 import { E_Log_Type, T_ReduxState } from "../../config/store.d";
 import { addLog } from "../log/logSlice";
 import { changePlayerContent } from "../player/playerSlice";
 import { updateRecruits } from "../recruit/recruitSlice";
 import { giveContentReward } from "../storage/storageThunks";
 import { AppDispatch } from "../store";
+import { addNotification } from "../ui/uiSlice";
 import { reset, tick } from "./timerSlice";
 
 export const startTimers =
   () => (dispatch: AppDispatch, getState: () => T_ReduxState) => {
     setInterval(() => {
       const state = getState();
+
+      /* ----------------------------- UpdateRecruits ----------------------------- */
+
+      if (state.timer.timers.clock / 60 === 0) {
+        dispatch(updateRecruits());
+        if (state.ui.notification.messages.length === 0) {
+          dispatch(addNotification(ID_Notification.avaialablePicks));
+        }
+        toast(<ToastRecruitsUpdated />, {
+          toastId: "recruitsUpdated",
+        });
+      }
 
       /* ------------------------------- clockTimer ------------------------------- */
       if (state.timer.timers.clock < TIMERS.clock.duration) {

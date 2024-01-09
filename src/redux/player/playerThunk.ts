@@ -9,7 +9,6 @@ export const addPlayerThunk =
   (player: T_Player): any =>
   (dispatch: AppDispatch, getState: () => T_ReduxState) => {
     dispatch(addPlayer(player));
-
     const ui = getState().ui;
     if (!ui.guild.selectedPlayer) {
       dispatch(setSelectedGuildPlayer(player.id));

@@ -1,7 +1,7 @@
 {
   "name": "guild-master-idle",
   "private": true,
-  "version": "0.0.2",
+  "version": "0.0.6",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -21,6 +21,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.1.3",
+    "react-toastify": "^9.1.3",
     "react-uuid": "^2.0.0"
   },
   "devDependencies": {

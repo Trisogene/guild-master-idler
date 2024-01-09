@@ -1,4 +1,4 @@
-import { Avatar, Box, Button, Card, Divider } from "@mui/joy";
+import { Avatar, Box, Button, Card, Divider, Typography } from "@mui/joy";
 import { useDispatch, useSelector } from "react-redux";
 import { Player } from "../../../../components";
 import { JOBS } from "../../../../config/config";
@@ -31,6 +31,7 @@ const Players = () => {
           flexDirection: "row",
           alignItems: "center",
           justifyContent: "space-evenly",
+          gap: 1,
         }}
       >
         {Object.values(JOBS).map((job) => (
@@ -40,19 +41,25 @@ const Players = () => {
             onClick={() => dispatch(setPlayersFilter(job.id))}
             variant={currentFilter === job.id ? "solid" : "plain"}
             key={job.label}
-            sx={{ p: 0.5 }}
           >
             <Box
               sx={{
                 display: "flex",
-                flexDirection: "column",
-                gap: 0,
-
+                gap: 1,
                 alignItems: "center",
               }}
             >
-              <Avatar src={job.icon} size="sm" />
-              {job.label}
+              <Avatar src={job.icon} />
+              <Typography
+                sx={{
+                  display: {
+                    xs: "none",
+                    xl: "block",
+                  },
+                }}
+              >
+                {job.label}
+              </Typography>
             </Box>
           </Button>
         ))}

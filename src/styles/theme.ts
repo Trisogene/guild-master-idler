@@ -33,7 +33,10 @@ export const theme = extendTheme({
         root: ({ ownerState, theme }) => ({
           ...(ownerState && {
             userSelect: "none",
-            boxShadow: theme.shadow.md,
+            boxShadow: theme.shadow.sm,
+          }),
+          ...(ownerState.size === "sm" && {
+            padding: theme.spacing(0.75),
           }),
         }),
       },

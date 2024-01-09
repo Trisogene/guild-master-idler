@@ -11,4 +11,5 @@ export const recruit_slice = createSlice({
 });
 
 export default recruit_slice.reducer;
-export const { updateRecruits, removeRecruit } = recruit_slice.actions;
+export const { updateRecruits, removeRecruit, decreaseAvailablePicks } =
+  recruit_slice.actions;
