@@ -114,7 +114,7 @@ const Topbar = ({ currentPage }: I_NavigatorProps) => {
         </Dropdown>
 
         <Button variant="soft">
-          <Avatar src={settingsIcon} />
+          <Avatar src={settingsIcon} size="sm" />
         </Button>
       </Box>
 

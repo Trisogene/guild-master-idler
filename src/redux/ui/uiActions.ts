@@ -9,9 +9,11 @@ import { T_UiSlice } from "../../config/store.d";
 
 const setCraftingFilter = (
   state: T_UiSlice,
-  { payload: filter }: PayloadAction<ID_Item_Category>
+  {
+    payload: { filterId, value },
+  }: PayloadAction<{ filterId: ID_Item_Category; value: boolean }>
 ) => {
-  state.crafting.currentFilter = filter;
+  state.crafting.currentFilter[filterId] = value;
 };
 
 const setCurrentCraftingItem = (
@@ -35,11 +37,14 @@ const setSelectedRecruitPlayer = (
   state.recruit.selectedPlayer = playerId;
 };
 
+//arguments are filter id and value
 const setStorageFilter = (
   state: T_UiSlice,
-  { payload: filter }: PayloadAction<ID_Item_Category>
+  {
+    payload: { filterId, value },
+  }: PayloadAction<{ filterId: ID_Item_Category; value: boolean }>
 ) => {
-  state.storage.currentFilter = filter;
+  state.storage.currentFilter[filterId] = value;
 };
 
 const setPlayersFilter = (

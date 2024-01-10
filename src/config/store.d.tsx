@@ -108,12 +108,12 @@ export type T_UiSlice = {
     isOpen: boolean;
   };
   players: {
-    currentFilter: ID_Player_Job;
+    currentFilter: Record<ID_Player_Job, boolean>;
     selectedPlayer: string | null;
   };
   crafting: {
     currentSelectedItem: ID_Recipe | null;
-    currentFilter: ID_Item_Category;
+    currentFilter: Record<ID_Item_Category, boolean>;
   };
   guild: {
     selectedPlayer: string | null;
@@ -122,7 +122,7 @@ export type T_UiSlice = {
     selectedPlayer: string | null;
   };
   storage: {
-    currentFilter: ID_Item_Category;
+    currentFilter: Record<ID_Item_Category, boolean>;
   };
   notification: {
     messages: ID_Notification[];

@@ -1,9 +1,8 @@
-import { Avatar, Box, Button, Card, Divider, Typography } from "@mui/joy";
+import { Box, Card, Divider, Typography } from "@mui/joy";
 import { useDispatch, useSelector } from "react-redux";
 import { Player } from "../../../../components";
-import { JOBS } from "../../../../config/config";
 import { T_ReduxState } from "../../../../config/store.d";
-import { setPlayersFilter } from "../../../../redux/ui/uiSlice";
+import PlayerSelector from "./components/PlayerSelector";
 
 const Players = () => {
   const dispatch = useDispatch();
@@ -17,14 +16,12 @@ const Players = () => {
 
   return (
     <Card
+      size="sm"
       sx={{
-        display: "flex",
-        flexDirection: "column",
         height: "100%",
-        gap: 0.5,
-        p: 0.5,
       }}
     >
+      {/* Header */}
       <Box
         sx={{
           display: "flex",
@@ -34,35 +31,10 @@ const Players = () => {
           gap: 1,
         }}
       >
-        {Object.values(JOBS).map((job) => (
-          <Button
-            size="sm"
-            fullWidth
-            onClick={() => dispatch(setPlayersFilter(job.id))}
-            variant={currentFilter === job.id ? "solid" : "plain"}
-            key={job.label}
-          >
-            <Box
-              sx={{
-                display: "flex",
-                gap: 1,
-                alignItems: "center",
-              }}
-            >
-              <Avatar src={job.icon} />
-              <Typography
-                sx={{
-                  display: {
-                    xs: "none",
-                    xl: "block",
-                  },
-                }}
-              >
-                {job.label}
-              </Typography>
-            </Box>
-          </Button>
-        ))}
+        <Typography>Players</Typography>
+        <Box sx={{ position: "absolute", right: 2, top: 2 }}>
+          <PlayerSelector />
+        </Box>
       </Box>
 
       <Divider />

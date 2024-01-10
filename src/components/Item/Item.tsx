@@ -12,7 +12,7 @@ const Item = ({ itemStack }: ItemProps) => {
   const inset = "4px";
 
   return (
-    <Box sx={{ p: "4px", maxWidth: 48, maxHeight: 48 }}>
+    <Box sx={{ p: "2px", maxWidth: 48, maxHeight: 48 }}>
       <Tooltip disableInteractive title={itemConfig.label} placement="top">
         <Badge
           anchorOrigin={{ vertical: "bottom", horizontal: "left" }}

@@ -18,7 +18,12 @@ export const uiSlice = createSlice({
       selectedPlayer: null,
     },
     crafting: {
-      currentFilter: "material" as ID_Item_Category,
+      currentFilter: {
+        [ID_Item_Category.resource]: true,
+        [ID_Item_Category.material]: true,
+        [ID_Item_Category.drop]: true,
+        [ID_Item_Category.equip]: true,
+      },
       currentSelectedItem: null,
     },
     guild: {
@@ -28,7 +33,12 @@ export const uiSlice = createSlice({
       selectedPlayer: null,
     },
     storage: {
-      currentFilter: "material" as ID_Item_Category,
+      currentFilter: {
+        [ID_Item_Category.resource]: true,
+        [ID_Item_Category.material]: true,
+        [ID_Item_Category.drop]: true,
+        [ID_Item_Category.equip]: true,
+      },
     },
     notification: {
       messages: [],

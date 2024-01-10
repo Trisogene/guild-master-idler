@@ -1,11 +1,11 @@
-import { Avatar, Box, Button, Card, Divider, Grid, Typography } from "@mui/joy";
+import { Box, Card, Divider, Grid, Typography } from "@mui/joy";
 import { useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { ITEMS, ITEM_CATEGORIES, RECIPES } from "../../../../config/config";
+import { ITEMS, RECIPES } from "../../../../config/config";
 import { ID_Item, T_Recipes } from "../../../../config/config.d";
 import { T_ReduxState } from "../../../../config/store.d";
-import { setCraftingFilter } from "../../../../redux/ui/uiSlice";
-import Recipe from "./components/Recipe/Recipe";
+import Recipe from "./components/Recipe";
+import RecipeSelector from "./components/RecipeSelector";
 
 const Recipes = () => {
   const dispatch = useDispatch();
@@ -18,7 +18,7 @@ const Recipes = () => {
     let newFilteredRecipes: Partial<T_Recipes> = {};
 
     Object.values(RECIPES).forEach((recipe) => {
-      if (ITEMS[recipe.id].category === craftingFilter) {
+      if (craftingFilter[ITEMS[recipe.id].category]) {
         newFilteredRecipes[recipe.id] = recipe;
       }
     });
@@ -32,12 +32,12 @@ const Recipes = () => {
 
   return (
     <Card
+      size="sm"
       sx={{
         height: "100%",
-        gap: 0.5,
-        p: 0.5,
       }}
     >
+      {/* Header */}
       <Box
         sx={{
           display: "flex",
@@ -47,44 +47,16 @@ const Recipes = () => {
           gap: 1,
         }}
       >
-        {Object.values(ITEM_CATEGORIES).map((category) => {
-          return category.craftable ? (
-            <Button
-              size="sm"
-              fullWidth
-              onClick={() => dispatch(setCraftingFilter(category.id))}
-              variant={craftingFilter === category.id ? "solid" : "plain"}
-              key={category.label}
-            >
-              <Box
-                sx={{
-                  display: "flex",
-                  gap: 1,
-                  alignItems: "center",
-                }}
-              >
-                <Avatar src={category.icon} />
-                <Typography
-                  sx={{
-                    display: {
-                      xs: "none",
-                      xl: "block",
-                    },
-                  }}
-                >
-                  {category.label}{" "}
-                </Typography>
-              </Box>
-            </Button>
-          ) : null;
-        })}
+        <Typography>Recipes</Typography>
+        <Box sx={{ position: "absolute", right: 2, top: 2 }}>
+          <RecipeSelector />
+        </Box>
       </Box>
 
       <Divider />
 
       <Box
         sx={{
-          // p: 1,
           flexGrow: 1,
           overflowY: "auto",
         }}

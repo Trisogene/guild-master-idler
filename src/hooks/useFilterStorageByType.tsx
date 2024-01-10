@@ -7,7 +7,7 @@ import { ID_Item_Category, ItemStacks } from "../config/config.d";
 import { T_ReduxState } from "../config/store.d";
 
 interface I_UseFilterStorageByType {
-  filter: ID_Item_Category;
+  filter: Record<ID_Item_Category, boolean>;
 }
 
 const useFilterStorageByType = ({ filter }: I_UseFilterStorageByType) => {
@@ -17,9 +17,8 @@ const useFilterStorageByType = ({ filter }: I_UseFilterStorageByType) => {
 
   useEffect(() => {
     const newFilteredItems: Partial<ItemStacks> = {};
-
     Object.values(storage).forEach((itemStack) => {
-      if (ITEMS[itemStack.id].category === filter) {
+      if (filter[ITEMS[itemStack.id].category]) {
         newFilteredItems[itemStack.id] = {
           id: itemStack.id,
           quantity: itemStack.quantity,
